@@ -1,0 +1,16 @@
+.footer {
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: none; /* Masquer le footer par défaut */
+}
+
+.footer.visible {
+  display: block; /* Afficher le footer lorsque la classe 'visible' est ajoutée */
+}
+

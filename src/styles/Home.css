@@ -1,0 +1,118 @@
+/* Appliquer un fond global et s'assurer que la page prend toute la hauteur */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f8ff; /* Bleu clair */
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Ajout du scroll si besoin */
+.app {
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Style du main */
+/* Assurer que le contenu est long pour scroller */
+.main-content {
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 150vh; /* Page plus longue pour tester le scroll */
+}
+
+
+/* Bannière */
+.banner {
+  background: linear-gradient(135deg, #0077b6, #00b4d8); /* Dégradé bleu */
+  color: white;
+  padding: 60px 20px;
+  border-radius: 10px;
+  width: 90%;
+  border: 2px solid red;
+  margin: 70px 60px 200px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  background: #ff6600;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cta-button:hover {
+  background: #cc5200;
+}
+
+/* Catégories */
+.categories, .popular-products {
+  background: white;
+  padding: 40px 20px;
+  margin: 20px auto;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-list, .product-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.category-item, .product-item {
+  background: #e3f2fd;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: center;
+  width: 200px;
+}
+
+.product-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Scroll fluide */
+html {
+  scroll-behavior: smooth;
+}
+
+.card {
+  height: 100%; /* Toutes les cartes auront la même hauteur */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 200px; /* Taille fixe pour toutes les images */
+  object-fit: cover; /* Redimensionne l'image sans la déformer */
+}
+
+.card-body {
+  flex-grow: 1; /* Remplit l'espace restant */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
