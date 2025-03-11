@@ -1,0 +1,352 @@
+/* Reset et structure de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Empêche un éventuel scroll horizontal */
+  }
+  
+.products-page {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f5f7fa;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero section avec les mêmes animations */
+.products-hero {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(13, 59, 102, 0.95), rgba(0, 184, 212, 0.9)),
+              url('../assets/imgbanner1.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+  margin-top: 80px;
+  padding: 50px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet de rotation en arrière-plan */
+.products-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+  animation: rotate 30s linear infinite;
+}
+
+.products-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  position: relative;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: slideInDown 0.8s ease;
+}
+
+.products-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  animation: fadeIn 0.8s ease 0.3s forwards;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.products-container {
+    width: 100vw; /* Force à utiliser toute la largeur de l’écran */
+    max-width: 100vw; /* Assure que rien ne le limite */
+    margin: 0;
+    padding: 40px 20px;
+    margin-bottom: 80px; /* Ajoute de l'espace en bas de la grille de produits */
+  }
+  
+
+.filters-section {
+  width: 100%;
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  background: rgba(245, 247, 250, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: #00b8d4;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 184, 212, 0.1);
+}
+
+.categories-filter {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  border: 2px solid #00b8d4;
+  border-radius: 25px;
+  background: transparent;
+  color: #00b8d4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background: #00b8d4;
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+  width: 100%;
+  flex: 1; /* Important pour occuper l'espace disponible */
+  padding: 20px;
+  margin-bottom: 40px; /* Ajoute de l'espace supplémentaire après la dernière rangée */
+}
+
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-container img {
+  transform: scale(1.1);
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.detail-btn {
+  padding: 8px 16px;
+  background: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .detail-btn {
+  transform: translateY(0);
+}
+
+.product-info {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-info h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.category {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #00b8d4;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.add-to-cart {
+  width: 100%;
+  padding: 10px;
+  background: #00b8d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background: #0097a7;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Wrapper du contenu */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 60px;
+}
+
+/* Add responsive adjustments */
+@media (max-width: 1200px) {
+  .products-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-hero {
+    margin-top: 60px;
+    padding: 40px 15px;
+  }
+
+  .products-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .products-hero p {
+    font-size: 1.1rem;
+  }
+
+  .products-container {
+    padding: 0 10px;
+    min-height: calc(100vh - 30vh);
+    margin-bottom: 60px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .filters-section {
+    top: 60px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-hero h1 {
+    font-size: 2rem;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-image-container {
+    height: 200px;
+  }
+}
+
+/* Animations */
+@keyframes slideInDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.footer {
+  margin-top: auto; /* Pousse le footer vers le bas */
+}

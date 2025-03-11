@@ -1,0 +1,318 @@
+/* Ajout d'un reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .contact-page {
+    width: 100vw; /* Prend toute la largeur de l'écran */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #f5f7fa;
+    position: relative;
+}
+  
+.contact-hero {
+    width: 100%;
+    padding: 60px 0; /* Ajuste l'espacement */
+    background: linear-gradient(135deg, rgba(13, 59, 102, 0.95), rgba(0, 184, 212, 0.9)),
+                url('../assets/imgbanner1.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px; /* Hauteur du header */
+    padding: 50px 20px;
+    position: relative;
+    overflow: hidden;
+}
+  
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+    animation: rotate 30s linear infinite;
+  }
+
+  .contact-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: slideInDown 0.8s ease;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contact-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    animation: fadeIn 0.8s ease 0.3s forwards;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contact-container {
+    width: 100%; /* Utilise toute la largeur */
+    max-width: 1200px; /* Ajustement du conteneur principal */
+    padding: 0;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+  
+.contact-info-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: none;
+    padding: 20px;
+}
+  
+.info-card {
+    flex: 1; /* Permet aux cartes de s'étendre */
+    min-width: 300px;
+}
+  
+  .info-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .info-icon {
+    width: 60px;
+    height: 60px;
+    background: #00b8d4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .info-card h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .info-card p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .contact-form-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 184, 212, 0.1);
+    margin: 30px 0;
+  }
+  
+  .contact-form-section h2 {
+    color: #0d3b66;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .contact-form-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #00b8d4, #0d3b66);
+    border-radius: 2px;
+  }
+  
+  .map-section {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .map-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .map-container {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+.contact-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+
+.form-group label {
+  color: #0d3b66;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  color: #333;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #00b8d4;
+  box-shadow: 0 0 0 4px rgba(0, 184, 212, 0.1);
+  outline: none;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+  border-color: #00b8d4;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #00b8d4 0%, #0d3b66 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(0, 184, 212, 0.2);
+  background: linear-gradient(135deg, #0d3b66 0%, #00b8d4 100%);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-hero {
+      padding-top: 80px; /* Ajusté pour mobile */
+      padding: 40px 20px;
+      margin-top: 60px;
+      padding: 40px 15px;
+    }
+  
+    .contact-hero h1 {
+      font-size: 2rem;
+      font-size: 2.5rem;
+    }
+  
+    .contact-container {
+      padding: 0 15px;
+    }
+  
+    .contact-form-section,
+    .map-section {
+      padding: 20px;
+    }
+
+    .submit-button {
+      padding: 12px 30px;
+      font-size: 0.9rem;
+    }
+
+    .contact-hero p {
+      font-size: 1.1rem;
+    }
+  }

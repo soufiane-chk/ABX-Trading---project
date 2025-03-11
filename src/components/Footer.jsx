@@ -20,7 +20,7 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <p>&copy; 2025 ABX FISH. Tous droits réservés.</p>
+      <p className="para">&copy; 2025 ABX FISH. Tous droits réservés.</p>
     </footer>
   );
 };

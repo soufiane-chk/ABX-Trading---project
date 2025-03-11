@@ -14,3 +14,8 @@
   display: block; /* Afficher le footer lorsque la classe 'visible' est ajoutée */
 }
 
+.footer .para{
+  margin: 0;
+  font-size: 14px;
+}
+
