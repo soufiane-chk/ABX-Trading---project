@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from '../context/LanguageContext';
 import "../styles/header.css";
+
 import frFlag from "../assets/france.png";
 import enFlag from "../assets/english.png";
 import esFlag from "../assets/spain.png";
@@ -14,13 +16,14 @@ const languages = [
 ];
 
 const Header = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
   const [visible, setVisible] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
   const [showLangMenu, setShowLangMenu] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(languages[0]); // FR par défaut
-
-  const location = useLocation(); // Récupérer l'URL actuelle
+  
+  const location = useLocation();
+  const selectedLang = languages.find(lang => lang.code === language) || languages[0];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,12 +45,8 @@ const Header = () => {
     }
   };
 
-  const handleToggleLangMenu = () => {
-    setShowLangMenu(!showLangMenu);
-  };
-
   const handleChangeLang = (lang) => {
-    setSelectedLang(lang);
+    setLanguage(lang.code);
     setShowLangMenu(false);
   };
 
@@ -70,7 +69,7 @@ const Header = () => {
                 className={location.pathname === "/" ? "active" : ""} 
                 onClick={handleNavClick}
               >
-                Accueil
+                {t.nav.home}
               </Link>
             </li>
             <li>
@@ -79,7 +78,7 @@ const Header = () => {
                 className={location.pathname === "/products" ? "active" : ""} 
                 onClick={handleNavClick}
               >
-                Produits
+                {t.nav.products}
               </Link>
             </li>
             <li>
@@ -88,7 +87,7 @@ const Header = () => {
                 className={location.pathname === "/contact" ? "active" : ""} 
                 onClick={handleNavClick}
               >
-                Contact
+                {t.nav.contact}
               </Link>
             </li>
           </ul>
@@ -101,19 +100,17 @@ const Header = () => {
             </button>
             {showSearch && (
               <div className="search-box">
-                <input type="text" className="search-input" placeholder="Rechercher un produit..." />
+                <input 
+                  type="text" 
+                  className="search-input" 
+                  placeholder={t.nav.search} 
+                />
               </div>
             )}
           </div>
 
-          <div className="cart-container">
-            <a href="#">
-              <i className="fa fa-shopping-cart"></i>
-            </a>
-          </div>
-
           <div className="language-selector">
-            <button onClick={handleToggleLangMenu} className="lang-button">
+            <button onClick={() => setShowLangMenu(!showLangMenu)} className="lang-button">
               <img src={selectedLang.flag} alt={selectedLang.code} className="lang-flag" />
               {selectedLang.code}
               <i className="fa fa-chevron-down"></i>
@@ -122,7 +119,11 @@ const Header = () => {
             {showLangMenu && (
               <ul className="language-menu">
                 {languages.map((lang) => (
-                  <li key={lang.code} onClick={() => handleChangeLang(lang)}>
+                  <li 
+                    key={lang.code} 
+                    onClick={() => handleChangeLang(lang)}
+                    className={lang.code === language ? 'active' : ''}
+                  >
                     <img src={lang.flag} alt={lang.name} className="lang-flag" />
                     {lang.name}
                   </li>

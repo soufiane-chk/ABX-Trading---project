@@ -1,21 +1,175 @@
+/* Footer amélioré avec animations et design cohérent */
 .footer {
-  background: #003366;
+  background: linear-gradient(90deg, #004b73, #003366, #004b73);
   color: white;
-  text-align: center;
-  padding: 15px 0;
-  font-size: 14px;
-  position: fixed;
-  bottom: 0;
+  padding: 20px 0;
+  position: relative; /* Changer de fixed à relative */
+  overflow: hidden;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
   width: 100%;
   display: none; /* Masquer le footer par défaut */
+  z-index: 100;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .footer.visible {
   display: block; /* Afficher le footer lorsque la classe 'visible' est ajoutée */
+  animation: slideUp 0.5s forwards;
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.footer .para{
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Motif décoratif subtil */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00b8d4, rgba(0, 184, 212, 0.5), #00b8d4);
+  opacity: 0.8;
+}
+
+/* Effet de brillance animé */
+.footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shine 8s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer .para {
   margin: 0;
   font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeIn 0.5s forwards 0.3s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Logos et liens du footer */
+.footer-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-logo {
+  height: 30px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.social-link:hover {
+  color: white;
+  transform: translateY(-3px);
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00b8d4;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .footer-links {
+    margin-top: 10px;
+    justify-content: center;
+  }
+}
+
+/* Ajouter un espace en bas du préfooter pour le footer */
+.pre-footer {
+  padding-bottom: 0; /* Supprimer le padding-bottom du préfooter qui n'est plus nécessaire */
+}
+
+/* Création d'un espace pour garantir que le préfooter est entièrement visible */
+.footer-spacer {
+  height: 0;
+  transition: height 0.5s ease;
+}
+
+.footer-spacer.active {
+  height: 70px; /* Ajuster à la hauteur de votre footer */
 }
 

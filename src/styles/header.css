@@ -118,7 +118,6 @@
   color: #00b8d4;
 }
 
-
 /* Hover state */
 .nav a:hover {
   color: #00b8d4;
@@ -270,14 +269,15 @@
   height: 14px;
   border-radius: 3px;
 }
+
 .header-right {
   display: flex;
   align-items: center;
   gap: 20px; /* Espacement entre les éléments */
-  margin-left: 540px; /* Pousse tout vers la droite */
+  margin-left: auto; /* Pousse tout vers la droite */
 }
+
 .search-container,
-.cart-container,
 .language-selector {
   display: flex;
   align-items: center;
@@ -285,17 +285,6 @@
 
 /* Animations globales */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
   from {
     opacity: 0;
     transform: translateY(-10px);
@@ -319,5 +308,36 @@
   .nav a {
     font-size: 0.9rem;
     padding: 8px 12px;
+  }
+}
+
+/* Supprimez les styles associés au panier */
+.cart-container,
+.cart-modal,
+.cart-modal-content,
+.cart-modal-header,
+.cart-modal-body,
+.cart-items,
+.cart-item,
+.cart-item-image-wrapper,
+.cart-item-image,
+.cart-item-details,
+.cart-item-category,
+.remove-item,
+.empty-cart,
+.cart-icon,
+.cart-count {
+  display: none;
+}
+
+/* Supprimez les animations associées au panier */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
