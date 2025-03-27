@@ -7,8 +7,26 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { translations } from "../translations/translations";
 import { useLanguage } from '../context/LanguageContext';
 import PreFooter from '../components/PreFooter';
+import { useLocation } from 'react-router-dom';
 
 const Contact = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Vérifier si l'URL contient un fragment
+    if (location.hash) {
+      // Attendre que le DOM soit chargé
+      setTimeout(() => {
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          // Faire défiler jusqu'à l'élément
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+  
   // Récupérer la langue depuis le hook
   const { language = "FR" } = useLanguage() || {}; // Protection contre undefined
   
@@ -169,8 +187,8 @@ const Contact = () => {
         </div>
 
         <div className="contact-form-section">
-          <h2>{t.sendMessage}</h2>
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <h2 id="contact-form-title">{t.sendMessage}</h2>
+          <form id="contact-form" className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">{t.name}</label>
               <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/footer.css";
 import { useLanguage } from '../context/LanguageContext';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-
 const Footer = () => {
   const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
@@ -43,26 +41,39 @@ const Footer = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Supprimer toutes les animations et transitions
+    const footer = document.querySelector('.footer');
+    if (footer) {
+      footer.classList.add('visible');
+      footer.style.transform = 'none';
+      footer.style.transition = 'none';
+      footer.style.opacity = '1';
+    }
+    
+    // Supprimer le spacer
+    const spacer = document.querySelector('.footer-spacer');
+    if (spacer) {
+      spacer.style.display = 'none';
+      spacer.style.height = '0';
+    }
+  }, []);
+
   return (
-    <footer className={`footer ${isVisible ? 'visible' : ''}`}>
-      <div className="footer-container">
-        <p className="para">&copy; 2025 ABX FISH. {t?.footer?.rights || "Tous droits réservés."}</p>
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-logo">
+          <h2>ABX Trading</h2>
+        </div>
         
         <div className="footer-links">
-          <div className="footer-social">
-            <a href="https://facebook.com" className="social-link" aria-label="Facebook">
-              <FaFacebookF />
-            </a>
-            <a href="https://twitter.com" className="social-link" aria-label="Twitter">
-              <FaTwitter />
-            </a>
-            <a href="https://linkedin.com" className="social-link" aria-label="LinkedIn">
-              <FaLinkedinIn />
-            </a>
-            <a href="https://instagram.com" className="social-link" aria-label="Instagram">
-              <FaInstagram />
-            </a>
-          </div>
+          <a href="/">Accueil</a>
+          <a href="/produit">Produit</a>
+          <a href="/contact">Contact</a>
+        </div>
+        
+        <div className="footer-copyright">
+          &copy; {new Date().getFullYear()} ABX Trading. Tous droits réservés.
         </div>
       </div>
     </footer>

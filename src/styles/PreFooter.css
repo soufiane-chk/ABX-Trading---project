@@ -1,13 +1,19 @@
-/* Préfooter amélioré avec animations et thème cohérent */
+/* Préfooter avec thème maritime amélioré */
 .pre-footer {
-  background: linear-gradient(135deg, #f7fbff 0%, #eef6fc 100%);
-  border-top: none;
-  padding: 70px 0 50px;
+  background: linear-gradient(165deg, #f7fbff 0%, #e6f1f9 100%);
+  padding: 70px 0 0; /* Suppression du padding-bottom */
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Changé de 'hidden' à 'visible' */
+  border-top: none;
+  margin-bottom: 0; /* Suppression de la marge */
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  border-bottom: 0 !important;
+  padding-bottom: 70px !important; /* Ajoute de l'espace en bas du préfooter */
+  padding-bottom: 90px !important; /* Augmenté de 70px à 90px */
 }
 
-/* Effet de vague en haut du préfooter */
+/* Vague supérieure animée */
 .pre-footer::before {
   content: '';
   position: absolute;
@@ -15,34 +21,34 @@
   left: 0;
   right: 0;
   height: 8px;
-  background: linear-gradient(90deg, #00669b, #00b8d4, #00669b);
-  animation: shimmer 3s infinite linear;
-  background-size: 200% 100%;
+  background: linear-gradient(90deg, #00669b, #00b8d4, #4dd0e1, #00669b);
+  background-size: 300% 100%;
+  animation: oceanWave 6s ease infinite;
 }
 
-@keyframes shimmer {
-  0% { background-position: 100% 0; }
-  100% { background-position: -100% 0; }
+@keyframes oceanWave {
+  0% { background-position: 0% 0; }
+  50% { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
 }
 
-/* Points décoratifs en arrière-plan */
+/* Effet de surface d'eau en arrière-plan */
 .pre-footer::after {
   content: '';
   position: absolute;
-  top: 40px;
-  right: 40px;
-  width: 300px;
-  height: 300px;
-  background-image: radial-gradient(#00669b 1px, transparent 2px);
-  background-size: 20px 20px;
-  opacity: 0.1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 20, 50 10 T 100 10' stroke='rgba(0, 184, 212, 0.03)' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+  opacity: 0.7;
   z-index: 0;
-  animation: fadeInRotate 1.5s ease-out forwards;
+  animation: waterSurface 15s linear infinite;
 }
 
-@keyframes fadeInRotate {
-  from { opacity: 0; transform: rotate(-10deg) scale(0.8); }
-  to { opacity: 0.1; transform: rotate(0) scale(1); }
+@keyframes waterSurface {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 0; }
 }
 
 .pre-footer-container {
@@ -50,7 +56,7 @@
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .pre-footer-content {
@@ -59,7 +65,6 @@
   gap: 40px;
   justify-content: space-between;
   margin-bottom: 40px;
-  position: relative;
 }
 
 /* Section d'information avec animation */
@@ -68,10 +73,10 @@
   min-width: 300px;
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
+  animation: floatUp 0.8s ease forwards;
 }
 
-@keyframes fadeInUp {
+@keyframes floatUp {
   to {
     opacity: 1;
     transform: translateY(0);
@@ -79,152 +84,251 @@
 }
 
 .pre-footer-info h2 {
-  color: #00669b;
-  font-size: 30px;
-  margin-bottom: 15px;
+  color: var(--color-heading);
+  font-size: var(--text-3xl);
+  margin-bottom: 0.75em;
   position: relative;
+  font-weight: 700;
+  display: inline-block;
+  font-size: calc(var(--text-3xl) * 1.1) !important; /* Augmentation de 10% */
+  margin-bottom: 1em !important;
 }
 
-/* Soulignement animé */
+/* Soulignement animé avec effet de vague */
 .pre-footer-info h2::after {
   content: '';
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 0;
+  width: 80px;
   height: 3px;
   background: linear-gradient(to right, #00669b, #00b8d4);
-  border-radius: 3px;
-  animation: lineExpand 1s ease-out 0.3s forwards;
+  border-radius: 2px;
 }
 
-@keyframes lineExpand {
-  to { width: 80px; }
+@keyframes waveGrow {
+  0% { width: 0; }
+  50% { width: 90px; }
+  70% { width: 80px; }
+  100% { width: 85px; }
 }
 
 .pre-footer-info p {
-  color: #4a5568;
-  line-height: 1.7;
+  color: var(--color-paragraph);
+  line-height: 1.8;
   margin-top: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 1.75rem;
+  font-size: 1.05rem;
+  max-width: 90%;
+  font-size: 1.15rem !important; /* Augmenté de 1.05rem à 1.15rem */
+  line-height: 1.9 !important; /* Augmenté de 1.8 à 1.9 */
 }
 
-/* Badges améliorés avec effet hover */
+/* Badges stylisés comme des coquillages */
 .pre-footer-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .badge {
   display: flex;
   align-items: center;
   background: white;
-  border-radius: 30px;
-  padding: 10px 18px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border-left: 3px solid #00669b;
+  border-radius: 12px;
+  padding: 12px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 25px !important; /* Augmenté de 12px 20px à 15px 25px */
+  border-radius: 15px !important; /* Augmenté de 12px à 15px */
+}
+
+.badge::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background: linear-gradient(to bottom, #00669b, #00b8d4);
+  border-radius: 4px 0 0 4px;
+}
+
+.badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.6) 38%, rgba(255,255,255,0) 48%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .badge:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 102, 155, 0.2);
-  background: linear-gradient(45deg, #ffffff, #f5f9ff);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 102, 155, 0.15);
+}
+
+.badge:hover::after {
+  opacity: 1;
+  animation: shineBadge 2s infinite;
+}
+
+@keyframes shineBadge {
+  to { background-position: -100% 0; }
 }
 
 .badge svg {
-  color: #00669b;
-  margin-right: 10px;
-  font-size: 18px;
-  transition: transform 0.3s ease;
+  color: #00b8d4;
+  margin-right: 12px;
+  font-size: 20px;
+  filter: drop-shadow(0 2px 3px rgba(0, 102, 155, 0.2));
+  transition: all 0.3s ease;
+  font-size: 24px !important; /* Augmenté de 20px à 24px */
+  margin-right: 15px !important; /* Augmenté de 12px à 15px */
 }
 
 .badge:hover svg {
-  transform: scale(1.2);
+  transform: rotateY(180deg);
+  color: #00669b;
 }
 
 .badge span {
   font-weight: 600;
   color: #2d3748;
-  font-size: 14px;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  font-size: 1rem !important; /* Augmenté de 0.875rem à 1rem */
 }
 
-/* Section de contact améliorée */
+.badge:hover span {
+  color: var(--color-heading);
+}
+
+/* Section de contact stylisée comme une bulle d'eau */
 .pre-footer-contact {
   background: white;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  width: 380px;
-  border-top: none;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 15px 35px rgba(0, 102, 155, 0.1);
+  width: 400px;
   position: relative;
   overflow: hidden;
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease 0.3s forwards;
+  animation: bubbleRise 0.8s ease 0.3s forwards;
 }
 
+@keyframes bubbleRise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Effet de goutte d'eau */
 .pre-footer-contact::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
+  height: 8px;
   background: linear-gradient(90deg, #00669b, #00b8d4);
-  border-radius: 6px 6px 0 0;
+  opacity: 0.8;
+}
+
+/* Points d'eau en arrière-plan */
+.pre-footer-contact::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#00b8d4 1px, transparent 2px);
+  background-size: 20px 20px;
+  opacity: 0.04;
+  z-index: 0;
 }
 
 .pre-footer-contact h3 {
-  color: #00669b;
-  margin-bottom: 20px;
-  font-size: 22px;
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+  font-size: var(--text-2xl);
   position: relative;
   display: inline-block;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+}
+
+/* Soulignement du titre de contact */
+.pre-footer-contact h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-accent);
 }
 
 .pre-footer-contact p {
-  color: #4a5568;
-  margin-bottom: 25px;
-  font-size: 15px;
-  line-height: 1.6;
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
 }
 
-/* Boutons de contact améliorés */
+/* Boutons de contact avec effet d'eau */
 .contact-buttons {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 20px;
-  border-radius: 8px;
+  padding: 16px 20px;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 0.95rem;
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.02em;
+  padding: 18px 25px !important; /* Augmenté de 16px 20px à 18px 25px */
+  font-size: 1.05rem !important; /* Augmenté de 0.95rem à 1.05rem */
 }
 
+/* Effet de vague au survol */
 .contact-btn::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150%;
-  height: 150%;
-  background: rgba(255, 255, 255, 0.2);
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  transition: transform 0.6s, opacity 0.6s;
+  transition: transform 0.8s, opacity 0.8s;
 }
 
 .contact-btn:hover::after {
@@ -233,59 +337,85 @@
 }
 
 .contact-btn.primary {
-  background: linear-gradient(45deg, #00669b, #00b8d4);
+  background: linear-gradient(135deg, #00669b, #00b8d4);
   color: white;
+  box-shadow: 0 5px 15px rgba(0, 102, 155, 0.2);
 }
 
 .contact-btn.secondary {
-  background-color: #f0f4f8;
+  background-color: #f0f8ff;
   color: #00669b;
-  border: 1px solid #dbe4ed;
+  border: 1px solid #dbe6f0;
 }
 
 .contact-btn.primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 102, 155, 0.3);
+  box-shadow: 0 12px 25px rgba(0, 102, 155, 0.3);
 }
 
 .contact-btn.secondary:hover {
-  background-color: #e6edf5;
+  background-color: #e6f3ff;
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 15px rgba(0, 102, 155, 0.1);
 }
 
 .contact-btn svg {
-  margin-right: 10px;
-  transition: transform 0.3s ease;
+  margin-right: 12px;
+  transition: transform 0.4s ease;
 }
 
 .contact-btn:hover svg {
-  transform: scale(1.2);
+  transform: rotateY(360deg);
 }
 
-/* Section des certifications améliorée */
+/* Section des certifications avec style maritime */
 .certifications {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
-  margin-top: 50px;
-  padding-top: 40px;
+  gap: 50px;
+  margin-top: 60px;
+  margin-bottom: 0 !important; /* Aucune marge en bas */
+  padding-top: 50px;
   border-top: 1px solid rgba(0, 102, 155, 0.1);
   opacity: 0;
-  animation: fadeIn 0.8s ease 0.6s forwards;
+  animation: fadeSlideIn 1s ease 0.6s forwards;
+  position: relative;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 20px !important; /* Espace sous les certifications */
+  padding-bottom: 30px !important; /* Padding supplémentaire */
+  z-index: 2; /* S'assure que les icônes sont au-dessus */
 }
 
-@keyframes fadeIn {
+@keyframes fadeSlideIn {
   to { opacity: 1; }
+}
+
+/* Élément décoratif de bulles */
+.certifications::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 10%;
+  width: 80%;
+  height: 40px;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 184, 212, 0.05) 20px, transparent 20px),
+    radial-gradient(circle at 40% 40%, rgba(0, 184, 212, 0.05) 16px, transparent 16px),
+    radial-gradient(circle at 60% 60%, rgba(0, 184, 212, 0.05) 14px, transparent 14px),
+    radial-gradient(circle at 80% 40%, rgba(0, 184, 212, 0.05) 18px, transparent 18px);
+  opacity: 0.6;
 }
 
 .certification {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  transition: transform 0.3s ease;
+  gap: 12px;
+  transition: all 0.4s ease;
+  transform: translateY(10px);
 }
 
 .certification:hover {
@@ -293,8 +423,8 @@
 }
 
 .certification-icon {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   background: linear-gradient(135deg, #00669b, #00b8d4);
   color: white;
   border-radius: 50%;
@@ -302,17 +432,25 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 16px;
-  box-shadow: 0 5px 15px rgba(0, 102, 155, 0.2);
-  transition: all 0.3s ease;
+  font-size: 18px;
+  box-shadow: 0 8px 20px rgba(0, 102, 155, 0.25);
+  transition: all 0.5s ease;
   position: relative;
   overflow: hidden;
+  z-index: 3; /* S'assurer qu'elles sont bien visibles */
+  width: 70px !important; /* Réduit de 90px à 70px */
+  height: 70px !important; /* Réduit de 90px à 70px */
+  font-size: 20px !important; /* Réduit de 24px à 20px */
+  box-shadow: 0 8px 20px rgba(0, 102, 155, 0.25) !important; /* Ombre légèrement réduite */
 }
 
+/* Effet ondulant */
 .certification:hover .certification-icon {
-  transform: rotate(10deg);
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(0, 102, 155, 0.3);
 }
 
+/* Vague brillante au survol */
 .certification-icon::after {
   content: '';
   position: absolute;
@@ -320,54 +458,238 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(45deg);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  transform: rotate(45deg) translateY(100%);
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: transform 0.6s, opacity 0.6s;
 }
 
 .certification:hover .certification-icon::after {
-  animation: shine 1.5s;
-}
-
-@keyframes shine {
-  0% { opacity: 0; transform: translateX(-100%) rotate(45deg); }
-  100% { opacity: 1; transform: translateX(100%) rotate(45deg); }
+  transform: rotate(45deg) translateY(-100%);
+  opacity: 1;
 }
 
 .certification span {
-  font-size: 13px;
-  color: #4a5568;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
   font-weight: 500;
   text-align: center;
+  max-width: 120px;
+  transition: color 0.3s ease;
+  line-height: 1.4;
+  font-size: 0.9rem !important; /* Réduit de 1rem à 0.9rem */
+  max-width: 120px !important; /* Réduit de 140px à 120px */
+  font-weight: 500 !important;
 }
 
-/* Effet de vague du bas */
-.pre-footer::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='white'%3E%3C/path%3E%3C/svg%3E");
-  background-size: cover;
-  z-index: 1;
+.certification:hover span {
+  color: var(--color-heading);
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
+/* Vague décorative du bas */
+.pre-footer-wave {
+  display: none; /* Cache complètement la vague */
+  display: none !important;
+}
+
+/* Media Queries avec améliorations */
+@media (max-width: 992px) {
   .pre-footer-content {
-    flex-direction: column;
+    gap: 30px;
   }
   
   .pre-footer-contact {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
   }
   
   .certifications {
-    gap: 25px;
+    gap: 35px;
   }
+
+  .pre-footer-info h2 {
+    font-size: var(--text-2xl);
+  }
+  
+  .pre-footer-info h2::after {
+    width: 70px;
+  }
+  
+  .pre-footer-contact h3 {
+    font-size: var(--text-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .pre-footer {
+    padding: 60px 0 0; /* Suppression du padding-bottom */
+    margin-bottom: 0;
+    padding-bottom: 60px !important;
+  }
+  
+  .pre-footer-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .pre-footer-contact {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .pre-footer-badges {
+    justify-content: center;
+  }
+  
+  .certifications {
+    margin-top: 50px;
+    margin-bottom: 0;
+    gap: 30px;
+    margin-bottom: 15px !important;
+  }
+  
+  .certification-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 16px;
+    width: 65px !important; /* Réduit de 75px à 65px */
+    height: 65px !important;
+    font-size: 18px !important;
+  }
+  
+  .pre-footer-wave {
+    height: 20px; /* Vague encore plus petite */
+  }
+
+  .pre-footer-info p {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 100%;
+    font-size: 1.05rem !important;
+  }
+  
+  .badge span {
+    font-size: 0.875rem;
+  }
+  
+  .pre-footer-contact h3::after {
+    width: 35px;
+  }
+  
+  .contact-btn {
+    font-size: 0.9rem;
+  }
+  
+  .pre-footer-info h2 {
+    font-size: calc(var(--text-2xl) * 1.1) !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .pre-footer {
+    padding: 50px 0 0; /* Suppression du padding-bottom */
+    margin-bottom: 0;
+    padding-bottom: 50px !important;
+  }
+  
+  .pre-footer-info h2 {
+    font-size: var(--text-xl);
+    margin-bottom: 1rem;
+  }
+  
+  .pre-footer-info h2::after {
+    width: 60px;
+    height: 2px;
+    bottom: -8px;
+  }
+  
+  .pre-footer-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pre-footer-contact h3 {
+    font-size: 1.1rem;
+  }
+  
+  .certifications {
+    margin-top: 40px;
+    margin-bottom: 0;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 10px !important;
+  }
+  
+  .certification {
+    width: 45%;
+  }
+  
+  .pre-footer-wave {
+    height: 15px; /* Vague minimale */
+  }
+
+  .certification span {
+    font-size: 0.8rem;
+    max-width: 100px;
+  }
+  
+  .certification-icon {
+    width: 65px !important;
+    height: 65px !important;
+    font-size: 18px !important;
+    width: 55px !important; /* Réduit de 65px à 55px */
+    height: 55px !important;
+    font-size: 16px !important;
+  }
+  
+  .certification span {
+    font-size: 0.9rem !important;
+    max-width: 120px !important;
+    font-size: 0.85rem !important;
+    max-width: 110px !important;
+  }
+}
+
+/* Solution pour éliminer la marge blanche entre préfooter et footer */
+
+/* 1. Modifier le préfooter */
+.pre-footer {
+  background: linear-gradient(165deg, #f7fbff 0%, #e6f1f9 100%);
+  padding: 70px 0 0;
+  position: relative;
+  overflow: visible; /* Changé de 'hidden' à 'visible' */
+  border-top: none;
+  margin-bottom: 0;
+}
+
+/* 2. Ajouter une connexion directe entre préfooter et footer */
+.pre-footer::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; /* Assure la connexion parfaite */
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: transparent;
+  z-index: 10;
+}
+
+/* 3. Sélecteur pour cibler le footer directement après le préfooter */
+.pre-footer + footer,
+.pre-footer + .footer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 4. Modifier les certifications pour qu'elles n'ajoutent pas d'espace */
+.certifications {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 5. Forcer la suppression de tout espace entre préfooter et footer */
+body {
+  overflow-x: hidden; /* Évite les barres de défilement horizontales */
 }

@@ -245,6 +245,11 @@
   border-left: 4px solid #28a745;
   animation: fadeIn 0.3s ease;
 }
+
+#contact-form-title {
+  scroll-margin-top: 100px; /* Ajuste la position finale du défilement */
+  margin-top: 30px; /* Un peu d'espace visuel au-dessus du titre */
+}
   
   @keyframes fadeInDown {
     from {

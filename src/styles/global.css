@@ -1,8 +1,220 @@
-/* Global Styles
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-  } */
+/* Typographie améliorée pour l'ensemble du site */
+
+/* 1. Polices de base et variables */
+:root {
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary: 'Montserrat', 'Segoe UI', sans-serif;
+  --font-heading: 'Montserrat', 'Segoe UI', sans-serif;
   
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+  
+  --color-text: #1e3a5f;
+  --color-text-light: #4a5568;
+  --color-text-lighter: #718096;
+  --color-heading: #00669b;
+  --color-paragraph: #2d3748;
+  --color-accent: #00b8d4;
+}
+
+/* 2. Règles de base */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 3. Typographie des titres */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-heading);
+  margin-bottom: 0.75em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--text-5xl);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+}
+
+h4 {
+  font-size: var(--text-xl);
+}
+
+h5 {
+  font-size: var(--text-lg);
+}
+
+h6 {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+/* 4. Paragraphes et texte */
+p {
+  margin-bottom: 1.5rem;
+  color: var(--color-paragraph);
+  line-height: 1.8;
+}
+
+.subtitle, .section-subtitle {
+  color: var(--color-text-light);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+/* 5. Mise en évidence - Titres de sections */
+.section-header-animated .animated-title {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--color-heading), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+/* Amélioration spécifique pour chaque section */
+
+/* 6. Hero Section */
+.hero-content h1 {
+  font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
+  font-weight: 800;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.hero-content p {
+  font-size: clamp(var(--text-base), 2.5vw, var(--text-xl));
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  font-weight: 400;
+}
+
+/* 7. Services Section */
+.service-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.service-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-heading), var(--color-accent));
+  border-radius: 2px;
+}
+
+.service-description {
+  color: var(--color-text-light);
+  line-height: 1.7;
+  font-size: var(--text-base);
+}
+
+/* 8. Process Section */
+.service-number {
+  font-family: var(--font-secondary);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: rgba(0, 102, 155, 0.1);
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+/* 9. Why Choose Us Section */
+.why-choose-card h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--color-heading);
+}
+
+.why-choose-card p {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-text-light);
+}
+
+/* 10. PreFooter Section */
+.pre-footer-info h2 {
+  font-size: var(--text-3xl);
+  margin-bottom: 1.5rem;
+}
+
+.pre-footer-info p {
+  font-size: var(--text-base);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.badge span {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+/* 11. Footer */
+.footer {
+  font-size: var(--text-sm);
+}
+
+.footer h4 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+/* 12. Responsive Typography */
+@media (max-width: 992px) {
+  :root {
+    --text-5xl: 2.5rem;  /* 40px */
+    --text-4xl: 2rem;    /* 32px */
+    --text-3xl: 1.75rem; /* 28px */
+  }
+  
+  .hero-content h1 {
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-content p {
+    margin-bottom: 1.5rem;
+  }
+}

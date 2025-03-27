@@ -5,6 +5,15 @@ import "../styles/Home.css"; // Assure-toi que ce fichier contient les styles
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Numéro de téléphone sans caractères spéciaux (format international)
+  const phoneNumber = '212600000000'; // Remplacez par votre numéro réel
+  
+  // Message pré-rempli (optionnel)
+  const message = encodeURIComponent('Bonjour, je vous contacte depuis votre site web.');
+  
+  // URL de redirection WhatsApp
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
   return (
     <div className="whatsapp-container">
       {/* Bouton flottant WhatsApp */}
@@ -24,7 +33,7 @@ const WhatsAppButton = () => {
           </div>
           <div className="chatbox-footer">
             <a
-              href="https://wa.me/212600000000" 
+              href={whatsappUrl} 
               target="_blank"
               rel="noopener noreferrer"
               className="open-whatsapp"

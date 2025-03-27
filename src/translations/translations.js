@@ -1,3 +1,7 @@
+import imgcong from "../assets/imgcong.jpg";
+import imgval from "../assets/imgemba1.jpg";
+import imgcond from "../assets/imgsupp3.png";
+
 export const translations = {
   FR: {
     nav: {
@@ -18,10 +22,25 @@ export const translations = {
       title: "Nos Services",
       subtitle: "Des solutions complètes pour vos besoins",
       list: [
-        { title: "Exportation de poissons et fruits de mer frais et vivants", description: "Grâce à notre réseau mondial, nous assurons des livraisons fiables et ponctuelles de poissons et fruits de mer frais vivants et congelés, adaptés aux besoins des marchés internationaux." },
-        { title: "Traitement et emballage adaptés", description: "Nous offrons un service de traitement, de nettoyage et d’emballage de vos produits marins en conformité avec les normes internationales, garantissant ainsi leur fraîcheur et leur qualité jusqu'à leur arrivée." },
-        { title: "Support client dédié", description: "Notre équipe expérimentée est à votre disposition pour vous fournir un accompagnement personnalisé tout au long du processus, depuis la commande jusqu’à la livraison. Nous nous engageons à répondre à vos besoins et à garantir une expérience client optimale." }
-      ]
+        {
+          title: "Exportation de poissons et fruits de mer frais et vivants",
+          description:
+            "Grâce à notre réseau mondial, nous assurons des livraisons fiables et ponctuelles de poissons et fruits de mer frais vivants et congelés, adaptés aux besoins des marchés internationaux.",
+          image: imgcong, // Utilisez la variable importée
+        },
+        {
+          title: "Traitement et emballage adaptés",
+          description:
+            "Nous offrons un service de traitement, de nettoyage et d’emballage de vos produits marins en conformité avec les normes internationales, garantissant ainsi leur fraîcheur et leur qualité jusqu'à leur arrivée.",
+          image: imgval, // Utilisez la variable importée
+        },
+        {
+          title: "Support client dédié",
+          description:
+            "Notre équipe expérimentée est à votre disposition pour vous fournir un accompagnement personnalisé tout au long du processus, depuis la commande jusqu’à la livraison. Nous nous engageons à répondre à vos besoins et à garantir une expérience client optimale.",
+          image: imgcond, // Utilisez la variable importée
+        },
+      ],
     },
     process: {
       title: "Notre Processus de Production",
@@ -116,10 +135,22 @@ export const translations = {
       title: "Our Services",
       subtitle: "Comprehensive solutions for your needs",
       list: [
-        { title: "Export of fresh and live seafood", description: "Thanks to our global network, we ensure reliable and timely deliveries of fresh and live seafood, tailored to the needs of international markets." },
-        { title: "Tailored processing and packaging", description: "We offer a service of processing, cleaning, and packaging your seafood products in compliance with international standards, ensuring their freshness and quality until arrival." },
-        { title: "Dedicated customer support", description: "Our experienced team is at your disposal to provide personalized support throughout the process, from order to delivery. We are committed to meeting your needs and ensuring an optimal customer experience." }
-      ]
+        {
+          title: "Export of fresh and live seafood",
+          description:
+            "Thanks to our global network, we ensure reliable and timely deliveries of fresh, live, and frozen seafood tailored to international market needs.",
+        },
+        {
+          title: "Tailored processing and packaging",
+          description:
+            "We offer processing, cleaning, and packaging services for your seafood products in compliance with international standards, ensuring their freshness and quality until arrival.",
+        },
+        {
+          title: "Dedicated customer support",
+          description:
+            "Our experienced team is here to provide personalized support throughout the process, from order to delivery, ensuring an optimal customer experience.",
+        },
+      ],
     },
     process: {
       title: "Our Production Process",

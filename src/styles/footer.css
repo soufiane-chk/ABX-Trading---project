@@ -1,35 +1,44 @@
-/* Footer amélioré avec animations et design cohérent */
+/* Supprimer l'espace entre préfooter et footer */
 .footer {
   background: linear-gradient(90deg, #004b73, #003366, #004b73);
   color: white;
   padding: 20px 0;
-  position: relative; /* Changer de fixed à relative */
+  position: relative;
   overflow: hidden;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
   width: 100%;
-  display: none; /* Masquer le footer par défaut */
   z-index: 100;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  transform: translateY(100%);
-  opacity: 0;
+  margin-top: 0 !important; /* Forcer la suppression de toute marge supérieure */
+  border-top: none !important; /* Supprimer toute bordure supérieure */
+  text-align: center !important; /* Centrer tout le texte */
 }
 
+/* Supprimer les animations qui causent l'espace */
+.footer {
+  display: block !important; /* Toujours visible */
+  transform: none !important; /* Pas de transformation */
+  opacity: 1 !important; /* Toujours visible */
+  transition: none !important; /* Pas de transition */
+}
+
+/* Supprimer l'animation slideUp */
 .footer.visible {
-  display: block; /* Afficher le footer lorsque la classe 'visible' est ajoutée */
-  animation: slideUp 0.5s forwards;
-  transform: translateY(0);
-  opacity: 1;
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  display: block !important;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* Supprimer complètement le spacer */
+.footer-spacer {
+  display: none !important;
+  height: 0 !important;
+}
+
+/* Supprimer le padding-bottom du préfooter dans le fichier footer.css */
+.pre-footer {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Motif décoratif subtil */
@@ -95,9 +104,23 @@
 
 /* Logos et liens du footer */
 .footer-links {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+  display: flex !important;
+  flex-direction: row !important; /* Horizontal pour les liens */
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  margin: 15px 0 !important;
+}
+
+.footer-links a {
+  color: white !important;
+  text-decoration: none !important;
+  transition: color 0.3s !important;
+  font-size: 14px !important;
+}
+
+.footer-links a:hover {
+  color: #4dd0e1 !important;
 }
 
 .footer-logo {
@@ -144,6 +167,30 @@
   transform: scaleX(1);
 }
 
+/* Masquer les icônes des réseaux sociaux */
+.footer .social-icons,
+.footer .social-icon {
+  display: none !important;
+}
+
+/* Centrer les colonnes du footer */
+.footer .footer-columns,
+.footer .footer-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Copyright centré */
+.footer-copyright {
+  text-align: center !important;
+  width: 100% !important;
+  margin-top: 15px !important;
+  font-size: 14px !important;
+}
+
 /* Version mobile */
 @media (max-width: 768px) {
   .footer-container {
@@ -156,20 +203,5 @@
     margin-top: 10px;
     justify-content: center;
   }
-}
-
-/* Ajouter un espace en bas du préfooter pour le footer */
-.pre-footer {
-  padding-bottom: 0; /* Supprimer le padding-bottom du préfooter qui n'est plus nécessaire */
-}
-
-/* Création d'un espace pour garantir que le préfooter est entièrement visible */
-.footer-spacer {
-  height: 0;
-  transition: height 0.5s ease;
-}
-
-.footer-spacer.active {
-  height: 70px; /* Ajuster à la hauteur de votre footer */
 }
 

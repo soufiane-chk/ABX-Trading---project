@@ -34,7 +34,7 @@ const PreFooter = () => {
             <h3>{t?.preFooter?.contactTitle || "Contactez-nous dès aujourd'hui"}</h3>
             <p>{t?.preFooter?.contactText || "Besoin d'informations sur nos produits ou services ? Notre équipe est à votre disposition."}</p>
             <div className="contact-buttons">
-              <Link to="/contact" className="contact-btn primary">
+              <Link to="/contact#contact-form-title" className="contact-btn primary">
                 {t?.preFooter?.contactButton || "Nous contacter"}
               </Link>
               <a href="tel:+212612345678" className="contact-btn secondary">
