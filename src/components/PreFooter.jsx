@@ -10,10 +10,12 @@ const PreFooter = () => {
   return (
     <div className="pre-footer">
       <div className="pre-footer-container">
+        {/* Section d'informations principales */}
         <div className="pre-footer-content">
           <div className="pre-footer-info">
             <h2>{t?.preFooter?.title || "Leader en exportation de produits marins"}</h2>
             <p>{t?.preFooter?.description || "Avec plus de 20 ans d'expérience, nous sommes votre partenaire de confiance pour l'exportation de produits marins de haute qualité depuis Safi, Maroc."}</p>
+            
             <div className="pre-footer-badges">
               <div className="badge">
                 <FaAnchor />
@@ -30,9 +32,11 @@ const PreFooter = () => {
             </div>
           </div>
           
+          {/* Section de contact */}
           <div className="pre-footer-contact">
             <h3>{t?.preFooter?.contactTitle || "Contactez-nous dès aujourd'hui"}</h3>
             <p>{t?.preFooter?.contactText || "Besoin d'informations sur nos produits ou services ? Notre équipe est à votre disposition."}</p>
+            
             <div className="contact-buttons">
               <Link to="/contact#contact-form-title" className="contact-btn primary">
                 {t?.preFooter?.contactButton || "Nous contacter"}
@@ -45,6 +49,7 @@ const PreFooter = () => {
           </div>
         </div>
 
+        {/* Section des certifications */}
         <div className="certifications">
           <div className="certification">
             <div className="certification-icon haccp">HACCP</div>

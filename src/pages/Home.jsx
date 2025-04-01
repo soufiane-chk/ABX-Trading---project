@@ -3,12 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
+import PreFooter from "../components/PreFooter";
 import "../styles/Home.css";
 import { useLanguage } from '../context/LanguageContext';
-import PreFooter from "../components/PreFooter";
 import { FaHandsHelping, FaFish, FaCheckCircle, FaBox, FaShippingFast } from "react-icons/fa";
 
-// Banner images
+/* Images */
 import bannerBackground1 from "../assets/imgbanner1.jpg";
 import bannerBackground2 from "../assets/imgbanner2.jpg";
 import bannerBackground3 from "../assets/imgbanner3.jpg";
@@ -20,7 +20,7 @@ import imgselection from "../assets/imgselection.jpeg";
 import imgembalage from "../assets/imgemb1.jpeg";
 import imgsuivi from "../assets/imgsuivi.jpeg";
 
-// Data constants
+/* Données */
 const heroTexts = [
   {
     title: "ABXTRADING",
@@ -41,21 +41,21 @@ const services = [
     id: 1,
     title: "Exportation de poissons et fruits de mer frais et vivants",
     description: "Grâce à notre réseau mondial, nous assurons des livraisons fiables et ponctuelles de poissons et fruits de mer frais vivants et congelés, adaptés aux besoins des marchés internationaux.",
-    icon: <FaShippingFast size={24} />, // Icône associée
+    icon: <FaShippingFast size={24} />,
     image: imgcong,
   },
   {
     id: 2,
     title: "Traitement et emballage adaptés",
     description: "Nous offrons un service de traitement, de nettoyage et d'emballage de vos produits marins en conformité avec les normes internationales, garantissant ainsi leur fraîcheur et leur qualité jusqu'à leur arrivée.",
-    icon: <FaBox size={24} />, // Icône associée
+    icon: <FaBox size={24} />,
     image: imgval,
   },
   {
     id: 3,
     title: "Support client dédié",
     description: "Notre équipe expérimentée est à votre disposition pour vous fournir un accompagnement personnalisé tout au long du processus, depuis la commande jusqu'à la livraison. Nous nous engageons à répondre à vos besoins et à garantir une expérience client optimale.",
-    icon: <FaHandsHelping size={24} />, // Icône associée
+    icon: <FaHandsHelping size={24} />,
     image: imgcond,
   },
 ];
@@ -109,7 +109,7 @@ const processusProduction = [
   }
 ];
 
-// ServiceCard Component
+/* Composant Carte de Service */
 const ServiceCard = ({ title, description, icon, image, index }) => {
   const cardRef = useRef(null);
 
@@ -153,10 +153,8 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
       <div className="service-number">{`0${index + 1}`}</div>
       <div className="service-image-container">
         <img src={image} alt={title} className="service-image" />
-        
-        {/* Icône unique représentant l'étape du processus */}
         <div className="process-stage-icon">
-          {icon} {/* Utilise l'icône passée en prop */}
+          {icon}
         </div>
       </div>
       <div className="service-content">
@@ -167,7 +165,7 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
   );
 };
 
-// Main Component
+/* Composant Principal */
 const Home = () => {
   const { t } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -175,7 +173,7 @@ const Home = () => {
   const [activeStep, setActiveStep] = useState(0);
   const images = [bannerBackground1, bannerBackground2, bannerBackground3];
 
-  // Gestion du bouton "Retour en haut"
+  /* Gestion du bouton "Retour en haut" */
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
@@ -185,39 +183,21 @@ const Home = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fonction pour remonter en haut
-  const handleBackToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  // Gestionnaire unifié pour l'animation de la timeline
+  /* Animation de la timeline */
   useEffect(() => {
     const handleScroll = () => {
-      // Sélectionner la section et les éléments pertinents
       const processSection = document.querySelector('.process-section');
       const waveBackground = document.querySelector('.wave-background');
       const timelineSteps = document.querySelectorAll('.timeline-step');
       const cards = document.querySelectorAll('.service-card');
       
-      if (!processSection || !waveBackground || cards.length === 0) {
-        console.log("Éléments manquants:", { 
-          processSection: !!processSection, 
-          waveBackground: !!waveBackground, 
-          cards: cards.length 
-        });
-        return;
-      }
+      if (!processSection || !waveBackground || cards.length === 0) return;
       
-      // Variables pour calculer la progression
       const sectionTop = processSection.offsetTop;
       const sectionHeight = processSection.offsetHeight;
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       
-      // Trouver la carte la plus visible
       let activeCardIndex = 0;
       cards.forEach((card, idx) => {
         const rect = card.getBoundingClientRect();
@@ -227,24 +207,17 @@ const Home = () => {
         }
       });
       
-      // Mettre à jour l'état actif
       setActiveStep(activeCardIndex);
       
-      // Calculer la progression pour le remplissage
       let progressPercentage = 0;
       if (scrollPosition > sectionTop - windowHeight/2) {
         const scrollableDistance = sectionHeight + windowHeight/2;
         const scrolled = scrollPosition - (sectionTop - windowHeight/2);
         progressPercentage = Math.min(scrolled / scrollableDistance * 100, 100);
-        
-        // Log pour déboguer
-        console.log("Progression:", progressPercentage.toFixed(1) + "%");
       }
       
-      // Appliquer la progression au fond de vague
       waveBackground.style.height = `${progressPercentage}%`;
       
-      // Activer les cercles appropriés de la timeline
       timelineSteps.forEach((step, idx) => {
         const circle = step.querySelector('.timeline-circle');
         if (idx <= activeCardIndex) {
@@ -256,14 +229,14 @@ const Home = () => {
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initialiser au chargement
+    handleScroll(); 
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Navigation du carousel
+  /* Navigation du carousel */
   const handlePrevClick = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
@@ -276,11 +249,20 @@ const Home = () => {
     setCurrentImageIndex(index);
   };
 
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="home-page">
       <Header />
       
+      {/* Section Héro */}
       <div className="hero-section">
+        {/* Images */}
         {images.map((image, index) => (
           <img
             key={index}
@@ -290,49 +272,40 @@ const Home = () => {
           />
         ))}
         
-        {/* Boutons de navigation */}
+        {/* Flèches */}
+        <button className="nav-arrow prev" onClick={handlePrevClick}>
+          <i className="fas fa-chevron-left"></i>
+        </button>
+        <button className="nav-arrow next" onClick={handleNextClick}>
+          <i className="fas fa-chevron-right"></i>
+        </button>
+        
+        {/* Points de navigation */}
         <div className="hero-navigation">
-          <button className="nav-arrow prev" onClick={handlePrevClick}>
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          
           <div className="hero-dots">
             {images.map((_, index) => (
               <span 
                 key={index} 
                 className={`hero-dot ${index === currentImageIndex ? "active" : ""}`} 
-                onClick={() => handleDotClick(index)}
+                onClick={() => setCurrentImageIndex(index)}
               ></span>
             ))}
           </div>
-          
-          <button className="nav-arrow next" onClick={handleNextClick}>
-            <i className="fas fa-chevron-right"></i>
-          </button>
         </div>
         
+        {/* Contenu hero */}
         <div className="hero-content">
           <h1>{t?.hero?.slides?.[currentImageIndex]?.title || heroTexts[currentImageIndex].title}</h1>
           <p>{t?.hero?.slides?.[currentImageIndex]?.description || heroTexts[currentImageIndex].description}</p>
-          
-          {/* Bouton "Explorer" avec défilement */}
-          <button 
-            className="cta-button"
-            onClick={() => {
-              const servicesSection = document.querySelector('.our-services-section');
-              if (servicesSection) {
-                servicesSection.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }}
-          >
+          <button className="cta-button" onClick={() => {
+            document.querySelector('.our-services-section')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
             {t?.hero?.cta || "Explorer"}
           </button>
         </div>
       </div>
 
+      {/* Section Nos Services */}
       <div className="our-services-section">
         <div className="section-header-animated">
           <h2 className="animated-title">{t?.services?.title}</h2>
@@ -340,23 +313,23 @@ const Home = () => {
           <p className="animated-subtitle">{t?.services?.subtitle}</p>
         </div>
         <div className="services-cards-container">
-          {t?.services?.list.map((service, index) => {
-            // Tableau d'icônes correspondant à chaque service
+          {(t?.services?.list || []).map((service, index) => {
             const serviceIcons = [
               <FaShippingFast size={24} />,
               <FaBox size={24} />,
               <FaHandsHelping size={24} />
             ];
             
+            const defaultImages = [imgcong, imgval, imgcond];
+            
             return (
               <div key={index} className="service-card">
                 <div className="service-image-container">
                   <img
-                    src={service.image}
+                    src={service.image || defaultImages[index]}
                     alt={service.title}
                     className="service-image"
                   />
-                  {/* Utiliser l'icône du tableau */}
                   <div className="service-icon">
                     {serviceIcons[index]}
                   </div>
@@ -371,17 +344,15 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Section Processus */}
       <div className="services-section process-section">
-        {/* En-tête de la section */}
         <div className="section-header-animated">
           <h2 className="animated-title">{t?.process?.title || "Notre Processus de Production"}</h2>
           <div className="title-underline"></div>
           <p className="animated-subtitle">{t?.process?.subtitle || "Une approche rigoureuse pour garantir la qualité de nos produits"}</p>
         </div>
 
-        {/* Conteneur principal des cartes et de la timeline */}
         <div className="process-container">
-          {/* Timeline verticale */}
           <div className="timeline-container wave-timeline">
             <div className="wave-background"></div>
             
@@ -402,7 +373,6 @@ const Home = () => {
             ))}
           </div>
 
-          {/* Cartes de processus */}
           <div className="process-cards">
             {processusProduction.map((processus, index) => (
               <ServiceCard
@@ -418,6 +388,10 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Séparateur */}
+      <div className="section-separator"></div>
+
+      {/* Section Pourquoi Nous Choisir */}
       <div className="why-choose-us-section">
         <h2 className="section-title">{t?.whyUs?.title || "Pourquoi Nous Choisir"}</h2>
         <p className="section-subtitle">{t?.whyUs?.subtitle || "Des engagements forts pour votre satisfaction"}</p>
@@ -440,15 +414,15 @@ const Home = () => {
       <WhatsAppButton />
 
       {/* Éléments décoratifs */}
-      <div class="dots-decoration top-right"></div>
-      <div class="dots-decoration bottom-left"></div>
-      <div class="circle-decoration lg" style={{ top: '-200px', right: '-200px' }}></div>
-      <div class="circle-decoration sm" style={{ bottom: '100px', left: '50px' }}></div>
+      <div className="dots-decoration top-right"></div>
+      <div className="dots-decoration bottom-left"></div>
+      <div className="circle-decoration lg" style={{ top: '-200px', right: '-200px' }}></div>
+      <div className="circle-decoration sm" style={{ bottom: '100px', left: '50px' }}></div>
 
       {/* Bouton retour en haut */}
       {showBackToTop && (
-        <div class="back-to-top" onClick={handleBackToTop}>
-          <i class="fas fa-arrow-up"></i>
+        <div className="back-to-top" onClick={handleBackToTop}>
+          <i className="fas fa-arrow-up"></i>
         </div>
       )}
     </div>

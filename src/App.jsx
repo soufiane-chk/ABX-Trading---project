@@ -9,9 +9,11 @@ const App = () => {
   return (
     <LanguageProvider>
       <Routes>
+        {/* Autres routes */}
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
+        {/* Autres routes */}
       </Routes>
     </LanguageProvider>
   );

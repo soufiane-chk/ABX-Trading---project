@@ -1,4 +1,4 @@
-/* Supprimer l'espace entre préfooter et footer */
+/* Structure de base */
 .footer {
   background: linear-gradient(90deg, #004b73, #003366, #004b73);
   color: white;
@@ -8,40 +8,16 @@
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
   width: 100%;
   z-index: 100;
-  margin-top: 0 !important; /* Forcer la suppression de toute marge supérieure */
-  border-top: none !important; /* Supprimer toute bordure supérieure */
-  text-align: center !important; /* Centrer tout le texte */
-}
-
-/* Supprimer les animations qui causent l'espace */
-.footer {
-  display: block !important; /* Toujours visible */
-  transform: none !important; /* Pas de transformation */
-  opacity: 1 !important; /* Toujours visible */
-  transition: none !important; /* Pas de transition */
-}
-
-/* Supprimer l'animation slideUp */
-.footer.visible {
-  animation: none !important;
+  margin-top: 0 !important;
+  border-top: none !important;
+  text-align: center !important;
+  display: block !important;
   transform: none !important;
   opacity: 1 !important;
-  display: block !important;
+  transition: none !important;
 }
 
-/* Supprimer complètement le spacer */
-.footer-spacer {
-  display: none !important;
-  height: 0 !important;
-}
-
-/* Supprimer le padding-bottom du préfooter dans le fichier footer.css */
-.pre-footer {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* Motif décoratif subtil */
+/* Éléments décoratifs */
 .footer::before {
   content: '';
   position: absolute;
@@ -53,7 +29,6 @@
   opacity: 0.8;
 }
 
-/* Effet de brillance animé */
 .footer::after {
   content: '';
   position: absolute;
@@ -61,21 +36,11 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
   animation: shine 8s infinite;
 }
 
-@keyframes shine {
-  0% { left: -100%; }
-  20% { left: 100%; }
-  100% { left: 100%; }
-}
-
+/* Conteneur et disposition */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -87,6 +52,16 @@
   gap: 15px;
 }
 
+.footer .footer-columns,
+.footer .footer-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Texte et paragraphes */
 .footer .para {
   margin: 0;
   font-size: 14px;
@@ -98,42 +73,53 @@
   animation: fadeIn 0.5s forwards 0.3s;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-/* Logos et liens du footer */
+/* Navigation et liens */
 .footer-links {
-  display: flex !important;
-  flex-direction: row !important; /* Horizontal pour les liens */
-  justify-content: center !important;
-  flex-wrap: wrap !important;
-  gap: 20px !important;
-  margin: 15px 0 !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: -10px; /* Pousse les liens légèrement vers le haut */
+  margin-bottom: 15px; /* Ajoute un espace sous les liens */
+  animation: fadeInUp 0.8s ease-out; /* Animation fluide */
 }
 
 .footer-links a {
   color: white !important;
   text-decoration: none !important;
-  transition: color 0.3s !important;
-  font-size: 14px !important;
+  font-size: 16px !important; /* Augmente légèrement la taille de la police */
+  font-weight: 500; /* Rend le texte un peu plus épais */
+  letter-spacing: 0.5px; /* Ajoute un espacement entre les lettres */
+  transition: color 0.3s ease, transform 0.3s ease; /* Animation au survol */
 }
 
 .footer-links a:hover {
-  color: #4dd0e1 !important;
+  color: #4dd0e1 !important; /* Change la couleur au survol */
+  transform: translateY(-3px); /* Légèrement décalé vers le haut au survol */
 }
 
+/* Footer logo */
 .footer-logo {
-  height: 30px;
-  opacity: 0.9;
-  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Réduit l'espace sous le logo */
 }
 
-.footer-logo:hover {
-  opacity: 1;
-  transform: translateY(-2px);
+.footer-logo-img {
+  height: 120px; /* Augmente légèrement la taille du logo */
+  width: auto;
+  max-width: 300px; /* Limite la largeur maximale */
+  filter: drop-shadow(0 4px 8px rgba(0, 102, 155, 0.4)); /* Ajoute une ombre légère */
+  transition: transform 0.3s ease; /* Animation au survol */
 }
 
+.footer-logo-img:hover {
+  transform: scale(1.1); /* Agrandit légèrement au survol */
+}
+
+/* Réseaux sociaux */
 .footer-social {
   display: flex;
   gap: 15px;
@@ -167,28 +153,59 @@
   transform: scaleX(1);
 }
 
-/* Masquer les icônes des réseaux sociaux */
+/* Copyright */
+.footer-copyright {
+  text-align: center !important;
+  width: 100% !important;
+  margin-top: 10px !important; /* Réduit l'espace au-dessus du copyright */
+  font-size: 14px !important;
+  font-style: italic; /* Ajoute un style italique */
+  color: rgba(255, 255, 255, 0.8); /* Couleur légèrement atténuée */
+}
+
+/* Éléments masqués */
+.footer.visible {
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.footer-spacer {
+  display: none !important;
+  height: 0 !important;
+}
+
+.pre-footer {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .footer .social-icons,
 .footer .social-icon {
   display: none !important;
 }
 
-/* Centrer les colonnes du footer */
-.footer .footer-columns,
-.footer .footer-content {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
+/* Animations */
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
 }
 
-/* Copyright centré */
-.footer-copyright {
-  text-align: center !important;
-  width: 100% !important;
-  margin-top: 15px !important;
-  font-size: 14px !important;
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Version mobile */

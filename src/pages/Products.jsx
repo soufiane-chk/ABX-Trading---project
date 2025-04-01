@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { useLanguage } from '../context/LanguageContext';
-import "../styles/Products.css";
 import PreFooter from '../components/PreFooter';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from "../translations/translations";
+import "../styles/Products.css";
 
-// Import des images
+/* Images des produits */
 import sardineImg from "../assets/sardine.jpg";
 import maquereauImg from "../assets/maquereau.jpg";
 import sabreImg from "../assets/sabre1.jpg";
@@ -16,12 +16,13 @@ import calamarImg from "../assets/calamar1.jpg";
 import seicheImg from "../assets/seiche1.jpg";
 import almendritaImg from "../assets/almendrita2.jpg";
 import puntillaImg from "../assets/puntilla1.jpeg";
+import muletImg from "../assets/imgmulet.jpg";
 
 const images = {
   poulpe: poulpeImg,
   calamar: calamarImg,
   seiche: seicheImg,
-  mongo: "https://seafood.vasep.com.vn/DATA/ARTICLES/13253/article_13253.jpg", // Image placeholder temporaire
+  mulet: muletImg,
   almendrita: almendritaImg,
   puntilla: puntillaImg,
   sardine: sardineImg,
@@ -29,31 +30,65 @@ const images = {
   sabre: sabreImg,
 };
 
-const getProductDescription = (imageKey) => {
-  switch (imageKey) {
-    case 'poulpe':
-      return "Le poulpe marocain est reconnu mondialement pour sa qualité exceptionnelle. Sa chair tendre et son goût délicat en font un produit très recherché dans la gastronomie méditerranéenne et internationale. Pêché selon des méthodes traditionnelles respectueuses de l'environnement, notre poulpe est minutieusement sélectionné pour garantir une qualité optimale.";
-    case 'calamar':
-      return "Notre calamar est pêché dans les eaux froides et propres de l'Atlantique marocain. Sa chair ferme et sa saveur subtile en font un ingrédient de choix pour de nombreuses préparations culinaires. Riche en protéines et pauvre en graisses, il constitue un produit de la mer exceptionnel, prisé des chefs et des amateurs de fruits de mer.";
-    case 'seiche':
-      return "La seiche que nous proposons est réputée pour sa fraîcheur exceptionnelle et sa texture parfaite. Ce céphalopode délicat offre une chair blanche et tendre, idéale pour une multitude de recettes. Sélectionnée avec soin, notre seiche est traitée selon les normes les plus strictes pour préserver toutes ses qualités gustatives.";
-    case 'sardine':
-      return "La sardine marocaine est un trésor nutritionnel de l'Atlantique. Reconnue pour sa richesse en Oméga-3 et en vitamines, elle est pêchée selon des méthodes respectueuses de l'environnement. Sa chair savoureuse et sa fraîcheur exceptionnelle en font un produit très apprécié dans le monde entier pour ses qualités gustatives et ses bienfaits pour la santé.";
-    case 'maquereau':
-      return "Notre maquereau est pêché dans les eaux riches de l'Atlantique marocain. Ce poisson bleu, à la chair ferme et savoureuse, est particulièrement apprécié pour sa richesse en acides gras Oméga-3. Son goût caractéristique en fait un produit de choix pour diverses préparations culinaires, du simple grillé aux marinades sophistiquées.";
-    case 'sabre':
-      return "Le sabre est un poisson à la chair blanche et délicate qui se distingue par sa forme allongée caractéristique. Pêché dans les profondeurs de l'océan Atlantique, il offre une texture fine et un goût subtil qui séduisent les connaisseurs. Sa polyvalence en cuisine en fait un produit très recherché par les chefs du monde entier.";
-    case 'almendrita':
-      return "L'Almendrita est un petit poisson pélagique typique des côtes marocaines. Apprécié pour sa chair tendre et sa saveur délicate, il constitue un ingrédient essentiel de nombreuses recettes méditerranéennes. Riche en nutriments essentiels, ce poisson offre un excellent rapport qualité-prix et une grande versatilité en cuisine.";
-    case 'puntilla':
-      return "La Puntilla est un petit céphalopode très prisé pour sa tendreté et sa saveur délicate. Ce produit gourmet, soigneusement sélectionné dans les eaux marocaines, offre une expérience gustative unique. Sa chair fine et son goût subtil en font un ingrédient de choix pour les préparations raffinées de la cuisine méditerranéenne.";
-    default:
-      return "Ce produit de la mer est sélectionné avec le plus grand soin pour garantir une qualité optimale. Issu des eaux riches de l'Atlantique marocain, il est traité selon des méthodes respectueuses de l'environnement et des normes de qualité les plus strictes. Sa fraîcheur et ses qualités gustatives en font un produit d'exception.";
-  }
-};
+const products = [
+  {
+    id: 1,
+    nom: "Poulpe",
+    category: "Mollusques Céphalopodes",
+    imageKey: "poulpe",
+  },
+  {
+    id: 2,
+    nom: "Calamar",
+    category: "Mollusques Céphalopodes",
+    imageKey: "calamar",
+  },
+  {
+    id: 3,
+    nom: "Seiche",
+    category: "Mollusques Céphalopodes",
+    imageKey: "seiche",
+  },
+  {
+    id: 4,
+    nom: "Mulet",
+    category: "Poissons Pélagiques",
+    imageKey: "mulet",
+  },
+  {
+    id: 5,
+    nom: "Almendrita",
+    category: "Poissons Pélagiques",
+    imageKey: "almendrita",
+  },
+  {
+    id: 6,
+    nom: "Puntilla",
+    category: "Mollusques Céphalopodes",
+    imageKey: "puntilla",
+  },
+  {
+    id: 7,
+    nom: "Sardine",
+    category: "Poissons Pélagiques",
+    imageKey: "sardine",
+  },
+  {
+    id: 8,
+    nom: "Maquereau",
+    category: "Poissons Pélagiques",
+    imageKey: "maquereau",
+  },
+  {
+    id: 9,
+    nom: "Sabre",
+    category: "Poissons Pélagiques",
+    imageKey: "sabre",
+  },
+];
 
 const Products = () => {
-  const { t, language } = useLanguage(); // Ajoutez language
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [showOrderForm, setShowOrderForm] = useState(false);
@@ -69,30 +104,32 @@ const Products = () => {
 
   const categories = t.products.categories;
 
+  const getProductDescription = (imageKey) => {
+    return t.products.descriptions[imageKey] || t.products.descriptions.default;
+  };
+
   useEffect(() => {
     setSelectedCategory(t.products.categories[0]);
   }, [t.products.categories]);
 
-  const filteredProducts = t.products.items.filter(produit => {
-    const isAllCategory = categories.indexOf(selectedCategory) === 0;
-
-    // Logique améliorée pour les produits pélagiques avec normalisation des catégories
-    const normalizeCategory = (category) => {
-      return category ? category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') : '';
-    };
-
-    const matchesCategory = 
-      isAllCategory || 
-      (language === 'PT' && 
-        (normalizeCategory(selectedCategory) === normalizeCategory('Peixes Pelágicos') && 
-          normalizeCategory(produit.category) === normalizeCategory('Poissons Pélagiques'))) ||
-      (language === 'ES' && 
-        (normalizeCategory(selectedCategory) === normalizeCategory('Pescados Pelágicos') && 
-          normalizeCategory(produit.category) === normalizeCategory('Poissons Pélagiques'))) ||
-      normalizeCategory(produit.category) === normalizeCategory(selectedCategory);
+  /* Filtrage des produits */
+  const filteredProducts = products.filter((produit) => {
+    const isAllCategory = selectedCategory === categories[0];
+    if (isAllCategory) return true;
     
-    const matchesSearch = produit.nom ? produit.nom.toLowerCase().includes(searchTerm.toLowerCase()) : false;
-    return matchesCategory && matchesSearch;
+    const categoryMap = {
+      'Poissons Pélagiques': 'Poissons Pélagiques',
+      'Céphalopodes': 'Mollusques Céphalopodes',
+      'Pelagic Fish': 'Poissons Pélagiques',
+      'Cephalopods': 'Mollusques Céphalopodes',
+      'Peces Pelágicos': 'Poissons Pélagiques',
+      'Cefalópodos': 'Mollusques Céphalopodes',
+      'Peixes Pelágicos': 'Poissons Pélagiques',
+      'Cefalópodes': 'Mollusques Céphalopodes'
+    };
+    
+    const frenchCategory = categoryMap[selectedCategory] || selectedCategory;
+    return produit.category === frenchCategory || produit.category.includes(frenchCategory);
   });
 
   const handleOrderClick = (product) => {
@@ -102,20 +139,15 @@ const Products = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setOrderDetails(prevDetails => ({
-      ...prevDetails,
-      [name]: value,
-    }));
+    setOrderDetails({...orderDetails, [name]: value});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Créer un iframe caché pour la soumission
     const iframeName = 'hidden-form-iframe';
     let iframe = document.getElementById(iframeName);
     
-    // Créer l'iframe s'il n'existe pas déjà
     if (!iframe) {
       iframe = document.createElement('iframe');
       iframe.setAttribute('id', iframeName);
@@ -124,14 +156,12 @@ const Products = () => {
       document.body.appendChild(iframe);
     }
   
-    // Créer un élément de formulaire
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = `https://formsubmit.co/chakirsoufiane458@gmail.com`;
-    form.target = iframeName; // Cibler l'iframe au lieu de la page entière
+    form.target = iframeName;
     form.style.display = 'none';
   
-    // Ajouter les champs du formulaire
     const fields = {
       product: selectedProduct.nom,
       quantity: `${orderDetails.quantity} kg`,
@@ -141,11 +171,9 @@ const Products = () => {
       '_subject': `Nouvelle commande pour ${selectedProduct.nom}`,
       '_captcha': 'false',
       '_template': 'table',
-      // Ne pas rediriger car nous utilisons un iframe
       '_next': 'https://formsubmit.co/ajax/chakirsoufiane458@gmail.com'
     };
   
-    // Ajouter chaque champ au formulaire
     Object.entries(fields).forEach(([name, value]) => {
       const input = document.createElement('input');
       input.type = 'hidden';
@@ -154,14 +182,10 @@ const Products = () => {
       form.appendChild(input);
     });
   
-    // Ajouter le formulaire au document et le soumettre
     document.body.appendChild(form);
     form.submit();
-    
-    // Fermer le formulaire (sans alerte)
     setShowOrderForm(false);
     
-    // Nettoyer - supprimer le formulaire du DOM
     setTimeout(() => {
       document.body.removeChild(form);
     }, 500);
@@ -170,19 +194,21 @@ const Products = () => {
   const handleDetailClick = (product) => {
     setDetailProduct(product);
     setShowDetailModal(true);
-    document.body.style.overflow = 'hidden'; // Empêche le défilement de la page
+    document.body.style.overflow = 'hidden';
   };
 
   return (
     <div className="products-page">
       <Header />
       
+      {/* Hero */}
       <div className="products-hero">
         <h1>{t.products.title}</h1>
         <p>{t.products.description}</p>
       </div>
 
       <div className="products-container">
+        {/* Filtres */}
         <div className="filters-section">
           <div className="search-box">
             <input
@@ -206,32 +232,38 @@ const Products = () => {
           </div>
         </div>
 
+        {/* Grille de produits */}
         <div className="products-grid">
-          {filteredProducts.map((produit) => (
-            <div key={produit.id} className="product-card">
-              <div className="product-image-container">
-                <img src={images[produit.imageKey]} alt={produit.nom} />
-                <div className="product-overlay">
-                  <button 
-                    className="detail-btn" 
-                    onClick={() => handleDetailClick(produit)}
+          {filteredProducts.filter(produit => produit.nom.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((produit) => (
+              <div key={produit.id} className="product-card">
+                <div className="product-image-container">
+                  <img src={images[produit.imageKey]} alt={produit.nom} />
+                  <div className="product-overlay">
+                    <button
+                      className="detail-btn"
+                      onClick={() => handleDetailClick(produit)}
+                    >
+                      {t.products.detailsButton}
+                    </button>
+                  </div>
+                </div>
+                <div className="product-info">
+                  <h3>{t.products.items.find(item => item.imageKey === produit.imageKey)?.nom || produit.nom}</h3>
+                  <p className="category">{t.products.items.find(item => item.imageKey === produit.imageKey)?.category || produit.category}</p>
+                  <button
+                    className="order-button"
+                    onClick={() => handleOrderClick(produit)}
                   >
-                    {t.products.detailsButton}
+                    {t.products.orderButton}
                   </button>
                 </div>
               </div>
-              <div className="product-info">
-                <h3>{produit.nom}</h3>
-                <p className="category">{produit.category}</p>
-                <button className="order-button" onClick={() => handleOrderClick(produit)}>
-                  {t.products.orderButton}
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
 
+      {/* Formulaire de commande */}
       {showOrderForm && (
         <div className="order-form-overlay">
           <div className="order-form-container">
@@ -286,6 +318,7 @@ const Products = () => {
         </div>
       )}
 
+      {/* Modal de détails */}
       {showDetailModal && detailProduct && (
         <div className="product-detail-modal-overlay" onClick={() => {
           setShowDetailModal(false);
@@ -311,23 +344,23 @@ const Products = () => {
                 </div>
                 
                 <div className="product-characteristics">
-                  <h3>Caractéristiques</h3>
+                  <h3>{t.products.details.characteristics}</h3>
                   <ul className="characteristics-list">
                     <li>
                       <span className="characteristic-icon">🏢</span>
-                      <span>Société: <strong>ABXTRADING Safi, Maroc</strong></span>
+                      <span>{t.products.details.company}: <strong>{t.products.details.companyValue}</strong></span>
                     </li>
                     <li>
                       <span className="characteristic-icon">📍</span>
-                      <span>Zone de pêche: <strong>Côtes de Safi - Atlantique Marocain</strong></span>
+                      <span>{t.products.details.fishingArea}: <strong>{t.products.details.fishingAreaValue}</strong></span>
                     </li>
                     <li>
                       <span className="characteristic-icon">🚢</span>
-                      <span>Port d'expédition: <strong>Safi</strong></span>
+                      <span>{t.products.details.shippingPort}: <strong>{t.products.details.shippingPortValue}</strong></span>
                     </li>
                     <li>
                       <span className="characteristic-icon">🏆</span>
-                      <span>Qualité: <strong>Premium Export</strong></span>
+                      <span>{t.products.details.quality}: <strong>{t.products.details.qualityValue}</strong></span>
                     </li>
                   </ul>
                 </div>
@@ -340,19 +373,18 @@ const Products = () => {
                   <p>{getProductDescription(detailProduct.imageKey)}</p>
                 </div>
                 
-                
                 <div className="product-quality-badge">
                   <div className="quality-icon">✓</div>
                   <div className="quality-text">
-                    <strong>Qualité garantie</strong>
-                    <p>Produit sélectionné avec soin selon nos standards d'excellence</p>
+                    <strong>{t.products.details.guaranteed}</strong>
+                    <p>{t.products.details.selectedWith}</p>
                   </div>
                 </div>
                 
+                {/* Certifications */}
                 <div className="product-certifications">
-                  <h3>Certifications et Conformité</h3>
+                  <h3>{t.products.details.certifications}</h3>
                   <div className="certifications-container">
-                    {/* HACCP Icon */}
                     <div className="certification-item">
                       <div className="certification-icon">
                         <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
@@ -364,12 +396,11 @@ const Products = () => {
                         </svg>
                       </div>
                       <div className="certification-text">
-                        <h4>HACCP</h4>
-                        <p>Système de contrôle pour la sécurité alimentaire</p>
+                        <h4>{t.products.details.haccp}</h4>
+                        <p>{t.products.details.haccpDesc}</p>
                       </div>
                     </div>
 
-                    {/* ISO 22000 Icon */}
                     <div className="certification-item">
                       <div className="certification-icon">
                         <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
@@ -382,12 +413,11 @@ const Products = () => {
                         </svg>
                       </div>
                       <div className="certification-text">
-                        <h4>ISO 22000</h4>
-                        <p>Norme internationale pour la sécurité alimentaire</p>
+                        <h4>{t.products.details.iso}</h4>
+                        <p>{t.products.details.isoDesc}</p>
                       </div>
                     </div>
 
-                    {/* Certification Sanitaire Icon */}
                     <div className="certification-item">
                       <div className="certification-icon">
                         <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
@@ -398,12 +428,11 @@ const Products = () => {
                         </svg>
                       </div>
                       <div className="certification-text">
-                        <h4>Certification Sanitaire</h4>
-                        <p>Conforme aux exigences sanitaires internationales</p>
+                        <h4>{t.products.details.sanitary}</h4>
+                        <p>{t.products.details.sanitaryDesc}</p>
                       </div>
                     </div>
 
-                    {/* Traçabilité Icon */}
                     <div className="certification-item">
                       <div className="certification-icon">
                         <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
@@ -420,8 +449,8 @@ const Products = () => {
                         </svg>
                       </div>
                       <div className="certification-text">
-                        <h4>Traçabilité</h4>
-                        <p>Suivi complet de la pêche à l'exportation</p>
+                        <h4>{t.products.details.traceability}</h4>
+                        <p>{t.products.details.traceabilityDesc}</p>
                       </div>
                     </div>
                   </div>

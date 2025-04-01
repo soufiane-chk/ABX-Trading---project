@@ -1,16 +1,11 @@
-/* Préfooter avec thème maritime amélioré */
+/* Préfooter */
 .pre-footer {
   background: linear-gradient(165deg, #f7fbff 0%, #e6f1f9 100%);
-  padding: 70px 0 0; /* Suppression du padding-bottom */
+  padding: 70px 0 0;
   position: relative;
-  overflow: visible; /* Changé de 'hidden' à 'visible' */
+  overflow: visible;
   border-top: none;
-  margin-bottom: 0; /* Suppression de la marge */
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-  border-bottom: 0 !important;
-  padding-bottom: 70px !important; /* Ajoute de l'espace en bas du préfooter */
-  padding-bottom: 90px !important; /* Augmenté de 70px à 90px */
+  margin-bottom: 0;
 }
 
 /* Vague supérieure animée */
@@ -67,7 +62,7 @@
   margin-bottom: 40px;
 }
 
-/* Section d'information avec animation */
+/* Section d'information */
 .pre-footer-info {
   flex: 1;
   min-width: 300px;
@@ -90,11 +85,10 @@
   position: relative;
   font-weight: 700;
   display: inline-block;
-  font-size: calc(var(--text-3xl) * 1.1) !important; /* Augmentation de 10% */
+  font-size: calc(var(--text-3xl) * 1.1) !important;
   margin-bottom: 1em !important;
 }
 
-/* Soulignement animé avec effet de vague */
 .pre-footer-info h2::after {
   content: '';
   position: absolute;
@@ -120,11 +114,11 @@
   margin-bottom: 1.75rem;
   font-size: 1.05rem;
   max-width: 90%;
-  font-size: 1.15rem !important; /* Augmenté de 1.05rem à 1.15rem */
-  line-height: 1.9 !important; /* Augmenté de 1.8 à 1.9 */
+  font-size: 1.15rem !important;
+  line-height: 1.9 !important;
 }
 
-/* Badges stylisés comme des coquillages */
+/* Badges */
 .pre-footer-badges {
   display: flex;
   flex-wrap: wrap;
@@ -143,8 +137,8 @@
   border: none;
   position: relative;
   overflow: hidden;
-  padding: 15px 25px !important; /* Augmenté de 12px 20px à 15px 25px */
-  border-radius: 15px !important; /* Augmenté de 12px à 15px */
+  padding: 15px 25px !important;
+  border-radius: 15px !important;
 }
 
 .badge::before {
@@ -192,8 +186,8 @@
   font-size: 20px;
   filter: drop-shadow(0 2px 3px rgba(0, 102, 155, 0.2));
   transition: all 0.3s ease;
-  font-size: 24px !important; /* Augmenté de 20px à 24px */
-  margin-right: 15px !important; /* Augmenté de 12px à 15px */
+  font-size: 24px !important;
+  margin-right: 15px !important;
 }
 
 .badge:hover svg {
@@ -206,14 +200,14 @@
   color: #2d3748;
   font-size: var(--text-sm);
   letter-spacing: 0.01em;
-  font-size: 1rem !important; /* Augmenté de 0.875rem à 1rem */
+  font-size: 1rem !important;
 }
 
 .badge:hover span {
   color: var(--color-heading);
 }
 
-/* Section de contact stylisée comme une bulle d'eau */
+/* Section de contact */
 .pre-footer-contact {
   background: white;
   border-radius: 20px;
@@ -234,7 +228,6 @@
   }
 }
 
-/* Effet de goutte d'eau */
 .pre-footer-contact::before {
   content: '';
   position: absolute;
@@ -246,7 +239,6 @@
   opacity: 0.8;
 }
 
-/* Points d'eau en arrière-plan */
 .pre-footer-contact::after {
   content: '';
   position: absolute;
@@ -270,7 +262,6 @@
   padding-bottom: 0.5rem;
 }
 
-/* Soulignement du titre de contact */
 .pre-footer-contact h3::after {
   content: '';
   position: absolute;
@@ -290,7 +281,7 @@
   z-index: 1;
 }
 
-/* Boutons de contact avec effet d'eau */
+/* Boutons de contact */
 .contact-buttons {
   display: flex;
   flex-direction: column;
@@ -312,11 +303,10 @@
   position: relative;
   overflow: hidden;
   letter-spacing: 0.02em;
-  padding: 18px 25px !important; /* Augmenté de 16px 20px à 18px 25px */
-  font-size: 1.05rem !important; /* Augmenté de 0.95rem à 1.05rem */
+  padding: 18px 25px !important;
+  font-size: 1.05rem !important;
 }
 
-/* Effet de vague au survol */
 .contact-btn::after {
   content: '';
   position: absolute;
@@ -368,45 +358,27 @@
   transform: rotateY(360deg);
 }
 
-/* Section des certifications avec style maritime */
+/* Section des certifications */
 .certifications {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
   margin-top: 60px;
-  margin-bottom: 0 !important; /* Aucune marge en bas */
+  margin-bottom: 0 !important; /* Supprime la marge en bas */
   padding-top: 50px;
+  padding-bottom: 0 !important; /* Supprime le padding en bas */
   border-top: 1px solid rgba(0, 102, 155, 0.1);
+  border-bottom: none !important; /* Supprime toute bordure en bas */
   opacity: 0;
   animation: fadeSlideIn 1s ease 0.6s forwards;
   position: relative;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  margin-bottom: 20px !important; /* Espace sous les certifications */
-  padding-bottom: 30px !important; /* Padding supplémentaire */
-  z-index: 2; /* S'assure que les icônes sont au-dessus */
+  padding-bottom: 30px !important;
+  z-index: 2;
 }
 
 @keyframes fadeSlideIn {
   to { opacity: 1; }
-}
-
-/* Élément décoratif de bulles */
-.certifications::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  left: 10%;
-  width: 80%;
-  height: 40px;
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(0, 184, 212, 0.05) 20px, transparent 20px),
-    radial-gradient(circle at 40% 40%, rgba(0, 184, 212, 0.05) 16px, transparent 16px),
-    radial-gradient(circle at 60% 60%, rgba(0, 184, 212, 0.05) 14px, transparent 14px),
-    radial-gradient(circle at 80% 40%, rgba(0, 184, 212, 0.05) 18px, transparent 18px);
-  opacity: 0.6;
 }
 
 .certification {
@@ -437,20 +409,14 @@
   transition: all 0.5s ease;
   position: relative;
   overflow: hidden;
-  z-index: 3; /* S'assurer qu'elles sont bien visibles */
-  width: 70px !important; /* Réduit de 90px à 70px */
-  height: 70px !important; /* Réduit de 90px à 70px */
-  font-size: 20px !important; /* Réduit de 24px à 20px */
-  box-shadow: 0 8px 20px rgba(0, 102, 155, 0.25) !important; /* Ombre légèrement réduite */
+  z-index: 3;
 }
 
-/* Effet ondulant */
 .certification:hover .certification-icon {
   transform: scale(1.1);
   box-shadow: 0 12px 25px rgba(0, 102, 155, 0.3);
 }
 
-/* Vague brillante au survol */
 .certification-icon::after {
   content: '';
   position: absolute;
@@ -477,219 +443,14 @@
   max-width: 120px;
   transition: color 0.3s ease;
   line-height: 1.4;
-  font-size: 0.9rem !important; /* Réduit de 1rem à 0.9rem */
-  max-width: 120px !important; /* Réduit de 140px à 120px */
-  font-weight: 500 !important;
 }
 
 .certification:hover span {
   color: var(--color-heading);
 }
 
-/* Vague décorative du bas */
-.pre-footer-wave {
-  display: none; /* Cache complètement la vague */
-  display: none !important;
-}
-
-/* Media Queries avec améliorations */
-@media (max-width: 992px) {
-  .pre-footer-content {
-    gap: 30px;
-  }
-  
-  .pre-footer-contact {
-    width: 100%;
-  }
-  
-  .certifications {
-    gap: 35px;
-  }
-
-  .pre-footer-info h2 {
-    font-size: var(--text-2xl);
-  }
-  
-  .pre-footer-info h2::after {
-    width: 70px;
-  }
-  
-  .pre-footer-contact h3 {
-    font-size: var(--text-xl);
-  }
-}
-
-@media (max-width: 768px) {
-  .pre-footer {
-    padding: 60px 0 0; /* Suppression du padding-bottom */
-    margin-bottom: 0;
-    padding-bottom: 60px !important;
-  }
-  
-  .pre-footer-content {
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .pre-footer-contact {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-  }
-  
-  .pre-footer-badges {
-    justify-content: center;
-  }
-  
-  .certifications {
-    margin-top: 50px;
-    margin-bottom: 0;
-    gap: 30px;
-    margin-bottom: 15px !important;
-  }
-  
-  .certification-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 16px;
-    width: 65px !important; /* Réduit de 75px à 65px */
-    height: 65px !important;
-    font-size: 18px !important;
-  }
-  
-  .pre-footer-wave {
-    height: 20px; /* Vague encore plus petite */
-  }
-
-  .pre-footer-info p {
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 100%;
-    font-size: 1.05rem !important;
-  }
-  
-  .badge span {
-    font-size: 0.875rem;
-  }
-  
-  .pre-footer-contact h3::after {
-    width: 35px;
-  }
-  
-  .contact-btn {
-    font-size: 0.9rem;
-  }
-  
-  .pre-footer-info h2 {
-    font-size: calc(var(--text-2xl) * 1.1) !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .pre-footer {
-    padding: 50px 0 0; /* Suppression du padding-bottom */
-    margin-bottom: 0;
-    padding-bottom: 50px !important;
-  }
-  
-  .pre-footer-info h2 {
-    font-size: var(--text-xl);
-    margin-bottom: 1rem;
-  }
-  
-  .pre-footer-info h2::after {
-    width: 60px;
-    height: 2px;
-    bottom: -8px;
-  }
-  
-  .pre-footer-info p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .pre-footer-contact h3 {
-    font-size: 1.1rem;
-  }
-  
-  .certifications {
-    margin-top: 40px;
-    margin-bottom: 0;
-    gap: 25px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-bottom: 10px !important;
-  }
-  
-  .certification {
-    width: 45%;
-  }
-  
-  .pre-footer-wave {
-    height: 15px; /* Vague minimale */
-  }
-
-  .certification span {
-    font-size: 0.8rem;
-    max-width: 100px;
-  }
-  
-  .certification-icon {
-    width: 65px !important;
-    height: 65px !important;
-    font-size: 18px !important;
-    width: 55px !important; /* Réduit de 65px à 55px */
-    height: 55px !important;
-    font-size: 16px !important;
-  }
-  
-  .certification span {
-    font-size: 0.9rem !important;
-    max-width: 120px !important;
-    font-size: 0.85rem !important;
-    max-width: 110px !important;
-  }
-}
-
-/* Solution pour éliminer la marge blanche entre préfooter et footer */
-
-/* 1. Modifier le préfooter */
-.pre-footer {
-  background: linear-gradient(165deg, #f7fbff 0%, #e6f1f9 100%);
-  padding: 70px 0 0;
-  position: relative;
-  overflow: visible; /* Changé de 'hidden' à 'visible' */
-  border-top: none;
-  margin-bottom: 0;
-}
-
-/* 2. Ajouter une connexion directe entre préfooter et footer */
-.pre-footer::after {
-  content: '';
-  position: absolute;
-  bottom: -1px; /* Assure la connexion parfaite */
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: transparent;
-  z-index: 10;
-}
-
-/* 3. Sélecteur pour cibler le footer directement après le préfooter */
-.pre-footer + footer,
-.pre-footer + .footer {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* 4. Modifier les certifications pour qu'elles n'ajoutent pas d'espace */
-.certifications {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* 5. Forcer la suppression de tout espace entre préfooter et footer */
-body {
-  overflow-x: hidden; /* Évite les barres de défilement horizontales */
+/* Footer */
+.footer {
+  margin-top: 0 !important; /* Supprime la marge en haut */
+  padding-top: 0 !important; /* Supprime le padding en haut */
 }

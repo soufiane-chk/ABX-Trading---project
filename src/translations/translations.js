@@ -69,16 +69,81 @@ export const translations = {
       detailsButton: "Voir détails",
       orderButton: "Commander",
       items: [
-        { id: 1, nom: "Poulpe", prix: "100 DH/kg", category: "Céphalopodes", imageKey: "poulpe" },
-        { id: 2, nom: "Calamar", category: "Céphalopodes", imageKey: "calamar" },
-        { id: 3, nom: "Seiche", category: "Céphalopodes", imageKey: "seiche" },
-        { id: 4, nom: "Mongo", category: "Céphalopodes", imageKey: "mongo" },
+        { id: 1, nom: "Poulpe", category: "Mollusques Céphalopodes", imageKey: "poulpe" },
+        { id: 2, nom: "Calamar", category: "Mollusques Céphalopodes", imageKey: "calamar" },
+        { id: 3, nom: "Seiche", category: "Mollusques Céphalopodes", imageKey: "seiche" },
+        { id: 4, nom: "Mulet", category: "Poissons Pélagiques", imageKey: "mulet" },
         { id: 5, nom: "Almendrita", category: "Poissons Pélagiques", imageKey: "almendrita" },
-        { id: 6, nom: "Puntilla", category: "Céphalopodes", imageKey: "puntilla" },
+        { id: 6, nom: "Puntilla", category: "Mollusques Céphalopodes", imageKey: "puntilla" },
         { id: 7, nom: "Sardine", category: "Poissons Pélagiques", imageKey: "sardine" },
         { id: 8, nom: "Maquereau", category: "Poissons Pélagiques", imageKey: "maquereau" },
         { id: 9, nom: "Sabre", category: "Poissons Pélagiques", imageKey: "sabre" },
-      ]
+      ],
+      details: {
+        characteristics: "Caractéristiques",
+        company: "Société",
+        companyValue: "ABXTRADING Safi, Maroc",
+        fishingArea: "Zone de pêche",
+        fishingAreaValue: "Côtes de Safi - Atlantique Marocain",
+        shippingPort: "Port d'expédition",
+        shippingPortValue: "Safi",
+        quality: "Qualité",
+        qualityValue: "Premium Export",
+        guaranteed: "Qualité garantie",
+        selectedWith: "Produit sélectionné avec soin selon nos standards d'excellence",
+        certifications: "Certifications et Conformité",
+        haccp: "HACCP",
+        haccpDesc: "Système de contrôle pour la sécurité alimentaire",
+        iso: "ISO 22000",
+        isoDesc: "Norme internationale pour la sécurité alimentaire",
+        sanitary: "Certification Sanitaire",
+        sanitaryDesc: "Conforme aux exigences sanitaires internationales",
+        traceability: "Traçabilité",
+        traceabilityDesc: "Suivi complet de la pêche à l'exportation"
+      },
+      descriptions: {
+        poulpe: "Le poulpe marocain est reconnu mondialement pour sa qualité exceptionnelle...",
+        calamar: "Notre calamar est pêché dans les eaux froides et propres de l'Atlantique marocain...",
+        seiche: "La seiche que nous proposons est réputée pour sa fraîcheur exceptionnelle...",
+        mulet: "Le mulet de la côte marocaine est un poisson à chair blanche réputé pour sa saveur délicate et son goût légèrement sucré. Pêché dans les eaux côtières de l'Atlantique, ce poisson polyvalent convient parfaitement aux grillades et aux préparations méditerranéennes. Riche en protéines et en acides gras oméga-3, le mulet est aussi apprécié pour ses qualités nutritionnelles que pour sa finesse en bouche.",
+        sardine: "La sardine marocaine est un trésor nutritionnel de l'Atlantique...",
+        maquereau: "Notre maquereau est pêché dans les eaux riches de l'Atlantique marocain...",
+        sabre: "Le sabre est un poisson à la chair blanche et délicate...",
+        almendrita: "L'Almendrita est un petit poisson pélagique typique des côtes marocaines...",
+        puntilla: "La Puntilla est un petit céphalopode très prisé pour sa tendreté...",
+        default: "Ce produit de la mer est sélectionné avec le plus grand soin pour garantir une qualité optimale..."
+      }
+    },
+    vet: {
+      title: "Services Vétérinaires",
+      subtitle: "Garantie de qualité et conformité sanitaire",
+      description: "Nos services vétérinaires certifiés assurent la qualité et la conformité de tous nos produits marins aux normes internationales les plus strictes.",
+      sections: {
+        certification: "Certification Sanitaire",
+        quality: "Contrôle Qualité",
+        traceability: "Traçabilité Complète",
+        safety: "Sécurité Alimentaire"
+      },
+      services: [
+        {
+          title: "Certification sanitaire export",
+          description: "Tous nos produits sont accompagnés de certificats sanitaires officiels délivrés par les autorités compétentes."
+        },
+        {
+          title: "Analyses en laboratoire",
+          description: "Des tests réguliers sont réalisés pour garantir l'absence de contaminants et assurer la sécurité alimentaire."
+        },
+        {
+          title: "Surveillance vétérinaire",
+          description: "Nos vétérinaires spécialisés supervisent l'ensemble du processus, de la pêche à l'expédition."
+        },
+        {
+          title: "Documentation complète",
+          description: "Nous fournissons toute la documentation nécessaire pour faciliter les procédures d'importation."
+        }
+      ],
+      contactButton: "Demander un certificat",
+      learnMore: "En savoir plus"
     },
     orderForm: {
       title: "Commander",
@@ -113,7 +178,25 @@ export const translations = {
     },
     
     footer: {
-      rights: "Tous droits réservés."
+      rights: "Tous droits réservés.",
+      company: "ABX Trading",
+      allRightsReserved: "Tous droits réservés."
+    },
+    preFooter: {
+      title: "Leader en exportation de produits marins",
+      description: "Avec plus de 20 ans d'expérience, nous sommes votre partenaire de confiance pour l'exportation de produits marins de haute qualité depuis Safi, Maroc.",
+      experience: "20+ ans d'expérience",
+      markets: "Marchés internationaux",
+      export: "Export premium",
+      contactTitle: "Contactez-nous dès aujourd'hui",
+      contactText: "Besoin d'informations sur nos produits ou services ? Notre équipe est à votre disposition.",
+      contactButton: "Nous contacter",
+      productsButton: "Nos Produits"
+    },
+    navigation: {
+      home: "Accueil",
+      productsLink: "Nos Produits",
+      contact: "Contact"
     }
   },
   EN: {
@@ -177,18 +260,83 @@ export const translations = {
       searchPlaceholder: "Search for a product...",
       categories: ['All', 'Pelagic Fish', 'Cephalopods'],
       detailsButton: "View Details",
-      orderButton: "Order",
+      orderButton: "Order Now",
       items: [
-        { id: 1, nom: "Octopus", prix: "100 DH/kg", category: "Cephalopods", imageKey: "poulpe" },
-        { id: 2, nom: "Squid", prix: "120 DH/kg", category: "Cephalopods", imageKey: "calamar" },
-        { id: 3, nom: "Cuttlefish", prix: "110 DH/kg", category: "Cephalopods", imageKey: "seiche" },
-        { id: 4, nom: "Mongo", prix: "130 DH/kg", category: "Cephalopods", imageKey: "mongo" },
-        { id: 5, nom: "Almendrita", prix: "140 DH/kg", category: "Pelagic Fish", imageKey: "almendrita" },
-        { id: 6, nom: "Puntilla", prix: "150 DH/kg", category: "Cephalopods", imageKey: "puntilla" },
-        { id: 7, nom: "Sardine", prix: "50 DH/kg", category: "Pelagic Fish", imageKey: "sardine" },
-        { id: 8, nom: "Mackerel", prix: "70 DH/kg", category: "Pelagic Fish", imageKey: "maquereau" },
-        { id: 9, nom: "Sabre", prix: "80 DH/kg", category: "Pelagic Fish", imageKey: "sabre" },
-      ]
+        { id: 1, nom: "Octopus", category: "Cephalopod Mollusks", imageKey: "poulpe" },
+        { id: 2, nom: "Squid", category: "Cephalopod Mollusks", imageKey: "calamar" },
+        { id: 3, nom: "Cuttlefish", category: "Cephalopod Mollusks", imageKey: "seiche" },
+        { id: 4, nom: "Mullet", category: "Pelagic Fish", imageKey: "mulet" },
+        { id: 5, nom: "Almendrita", category: "Pelagic Fish", imageKey: "almendrita" },
+        { id: 6, nom: "Puntilla", category: "Cephalopod Mollusks", imageKey: "puntilla" },
+        { id: 7, nom: "Sardine", category: "Pelagic Fish", imageKey: "sardine" },
+        { id: 8, nom: "Mackerel", category: "Pelagic Fish", imageKey: "maquereau" },
+        { id: 9, nom: "Sabre", category: "Pelagic Fish", imageKey: "sabre" },
+      ],
+      details: {
+        characteristics: "Characteristics",
+        company: "Company",
+        companyValue: "ABXTRADING Safi, Morocco",
+        fishingArea: "Fishing Area",
+        fishingAreaValue: "Safi Coast - Moroccan Atlantic",
+        shippingPort: "Shipping Port",
+        shippingPortValue: "Safi",
+        quality: "Quality",
+        qualityValue: "Premium Export",
+        guaranteed: "Quality Guaranteed",
+        selectedWith: "Product carefully selected according to our standards of excellence",
+        certifications: "Certifications and Compliance",
+        haccp: "HACCP",
+        haccpDesc: "Control system for food safety",
+        iso: "ISO 22000",
+        isoDesc: "International standard for food safety",
+        sanitary: "Sanitary Certification",
+        sanitaryDesc: "Compliant with international sanitary requirements",
+        traceability: "Traceability",
+        traceabilityDesc: "Complete tracking from fishing to export"
+      },
+      descriptions: {
+        poulpe: "Moroccan octopus is recognized worldwide for its exceptional quality...",
+        calamar: "Our squid is caught in the cold, clean waters of the Moroccan Atlantic...",
+        seiche: "The cuttlefish we offer is renowned for its exceptional freshness...",
+        mulet: "The mullet from the Moroccan coast is a white-fleshed fish known for its delicate flavor and slightly sweet taste. Caught in the coastal waters of the Atlantic, this versatile fish is perfect for grilling and Mediterranean preparations. Rich in protein and omega-3 fatty acids, mullet is appreciated as much for its nutritional qualities as for its fine taste.",
+        sardine: "Moroccan sardine is a nutritional treasure from the Atlantic...",
+        maquereau: "Our mackerel is caught in the rich waters of the Moroccan Atlantic...",
+        sabre: "Sabre fish has white and delicate flesh...",
+        almendrita: "Almendrita is a small pelagic fish typical of the Moroccan coast...",
+        puntilla: "Puntilla is a small cephalopod highly prized for its tenderness...",
+        default: "This seafood product is selected with the greatest care to ensure optimal quality..."
+      }
+    },
+    vet: {
+      title: "Veterinary Services",
+      subtitle: "Quality assurance and sanitary compliance",
+      description: "Our certified veterinary services ensure the quality and compliance of all our seafood products with the strictest international standards.",
+      sections: {
+        certification: "Sanitary Certification",
+        quality: "Quality Control",
+        traceability: "Complete Traceability",
+        safety: "Food Safety"
+      },
+      services: [
+        {
+          title: "Export sanitary certification",
+          description: "All our products are accompanied by official sanitary certificates issued by competent authorities."
+        },
+        {
+          title: "Laboratory analysis",
+          description: "Regular testing is carried out to ensure the absence of contaminants and guarantee food safety."
+        },
+        {
+          title: "Veterinary supervision",
+          description: "Our specialized veterinarians oversee the entire process, from fishing to shipping."
+        },
+        {
+          title: "Complete documentation",
+          description: "We provide all necessary documentation to facilitate import procedures."
+        }
+      ],
+      contactButton: "Request a certificate",
+      learnMore: "Learn more"
     },
     orderForm: {
       title: "Order",
@@ -222,7 +370,25 @@ export const translations = {
       messageSent: "Your message has been sent successfully!"
     },
     footer: {
-      rights: "All rights reserved."
+      rights: "All rights reserved.",
+      company: "ABX Trading",
+      allRightsReserved: "All rights reserved."
+    },
+    preFooter: {
+      title: "Leader in seafood export",
+      description: "With over 20 years of experience, we are your trusted partner for exporting high-quality seafood products from Safi, Morocco.",
+      experience: "20+ years of experience",
+      markets: "International markets",
+      export: "Premium export",
+      contactTitle: "Contact us today",
+      contactText: "Need information about our products or services? Our team is at your disposal.",
+      contactButton: "Contact us",
+      productsButton: "Our Products"
+    },
+    navigation: {
+      home: "Home",
+      productsLink: "Our Products",
+      contact: "Contact"
     }
   },
   ES: {
@@ -270,22 +436,87 @@ export const translations = {
     },
     products: {
       title: "Nuestros Productos",
-      description: "Descubre nuestra selección de productos del mar de primera calidad",
+      description: "Descubra nuestra selección de productos del mar de primera calidad",
       searchPlaceholder: "Buscar un producto...",
       categories: ['Todos', 'Peces Pelágicos', 'Cefalópodos'],
       detailsButton: "Ver detalles",
       orderButton: "Ordenar",
       items: [
-        { id: 1, nom: "Pulpo", prix: "100 DH/kg", category: "Cefalópodos", imageKey: "poulpe" },
-        { id: 2, nom: "Calamar", prix: "120 DH/kg", category: "Cefalópodos", imageKey: "calamar" },
-        { id: 3, nom: "Sepia", prix: "110 DH/kg", category: "Cefalópodos", imageKey: "seiche" },
-        { id: 4, nom: "Mongo", prix: "130 DH/kg", category: "Cefalópodos", imageKey: "mongo" },
-        { id: 5, nom: "Almendrita", prix: "140 DH/kg", category: "Peces Pelágicos", imageKey: "almendrita" },
-        { id: 6, nom: "Puntilla", prix: "150 DH/kg", category: "Cefalópodos", imageKey: "puntilla" },
-        { id: 7, nom: "Sardina", prix: "50 DH/kg", category: "Peces Pelágicos", imageKey: "sardine" },
-        { id: 8, nom: "Caballa", prix: "70 DH/kg", category: "Peces Pelágicos", imageKey: "maquereau" },
-        { id: 9, nom: "Sabre", prix: "80 DH/kg", category: "Peces Pelágicos", imageKey: "sabre" },
-      ]
+        { id: 1, nom: "Pulpo", category: "Moluscos Cefalópodos", imageKey: "poulpe" },
+        { id: 2, nom: "Calamar", category: "Moluscos Cefalópodos", imageKey: "calamar" },
+        { id: 3, nom: "Sepia", category: "Moluscos Cefalópodos", imageKey: "seiche" },
+        { id: 4, nom: "Mújol", category: "Peces Pelágicos", imageKey: "mulet" },
+        { id: 5, nom: "Almendrita", category: "Peces Pelágicos", imageKey: "almendrita" },
+        { id: 6, nom: "Puntilla", category: "Moluscos Cefalópodos", imageKey: "puntilla" },
+        { id: 7, nom: "Sardina", category: "Peces Pelágicos", imageKey: "sardine" },
+        { id: 8, nom: "Caballa", category: "Peces Pelágicos", imageKey: "maquereau" },
+        { id: 9, nom: "Sable", category: "Peces Pelágicos", imageKey: "sabre" },
+      ],
+      details: {
+        characteristics: "Características",
+        company: "Empresa",
+        companyValue: "ABXTRADING Safi, Marruecos",
+        fishingArea: "Zona de pesca",
+        fishingAreaValue: "Costas de Safi - Atlántico Marroquí",
+        shippingPort: "Puerto de envío",
+        shippingPortValue: "Safi",
+        quality: "Calidad",
+        qualityValue: "Exportación Premium",
+        guaranteed: "Calidad garantizada",
+        selectedWith: "Producto seleccionado cuidadosamente según nuestros estándares de excelencia",
+        certifications: "Certificaciones y Conformidad",
+        haccp: "HACCP",
+        haccpDesc: "Sistema de control para la seguridad alimentaria",
+        iso: "ISO 22000",
+        isoDesc: "Norma internacional para la seguridad alimentaria",
+        sanitary: "Certificación Sanitaria",
+        sanitaryDesc: "Conforme a las exigencias sanitarias internacionales",
+        traceability: "Trazabilidad",
+        traceabilityDesc: "Seguimiento completo desde la pesca hasta la exportación"
+      },
+      descriptions: {
+        poulpe: "El pulpo marroquí es reconocido mundialmente por su calidad excepcional...",
+        calamar: "Nuestro calamar se pesca en las aguas frías y limpias del Atlántico marroquí...",
+        seiche: "La sepia que ofrecemos es conocida por su frescura excepcional...",
+        mulet: "El mújol de la costa marroquí es un pescado de carne blanca conocido por su sabor delicado y su gusto ligeramente dulce. Pescado en las aguas costeras del Atlántico, este pescado versátil es perfecto para parrilladas y preparaciones mediterráneas. Rico en proteínas y ácidos grasos omega-3, el mújol es apreciado tanto por sus cualidades nutricionales como por su sabor refinado.",
+        sardine: "La sardina marroquí es un tesoro nutricional del Atlántico...",
+        maquereau: "Nuestra caballa se pesca en las ricas aguas del Atlántico marroquí...",
+        sabre: "El pez sable tiene una carne blanca y delicada...",
+        almendrita: "La Almendrita es un pequeño pez pelágico típico de las costas marroquíes...",
+        puntilla: "La Puntilla es un pequeño cefalópodo muy apreciado por su ternura...",
+        default: "Este producto del mar se selecciona con el mayor cuidado para garantizar una calidad óptima..."
+      }
+    },
+    vet: {
+      title: "Servicios Veterinarios",
+      subtitle: "Garantía de calidad y conformidad sanitaria",
+      description: "Nuestros servicios veterinarios certificados aseguran la calidad y conformidad de todos nuestros productos marinos con las normas internacionales más estrictas.",
+      sections: {
+        certification: "Certificación Sanitaria",
+        quality: "Control de Calidad",
+        traceability: "Trazabilidad Completa",
+        safety: "Seguridad Alimentaria"
+      },
+      services: [
+        {
+          title: "Certificación sanitaria de exportación",
+          description: "Todos nuestros productos van acompañados de certificados sanitarios oficiales emitidos por las autoridades competentes."
+        },
+        {
+          title: "Análisis de laboratorio",
+          description: "Se realizan pruebas regulares para garantizar la ausencia de contaminantes y asegurar la seguridad alimentaria."
+        },
+        {
+          title: "Supervisión veterinaria",
+          description: "Nuestros veterinarios especializados supervisan todo el proceso, desde la pesca hasta el envío."
+        },
+        {
+          title: "Documentación completa",
+          description: "Proporcionamos toda la documentación necesaria para facilitar los procedimientos de importación."
+        }
+      ],
+      contactButton: "Solicitar un certificado",
+      learnMore: "Saber más"
     },
     orderForm: {
       title: "Ordenar",
@@ -319,7 +550,25 @@ export const translations = {
       messageSent: "¡Su mensaje ha sido enviado con éxito!"
     },
     footer: {
-      rights: "Todos los derechos reservados."
+      rights: "Todos los derechos reservados.",
+      company: "ABX Trading",
+      allRightsReserved: "Todos los derechos reservados."
+    },
+    preFooter: {
+      title: "Líder en exportación de productos marinos",
+      description: "Con más de 20 años de experiencia, somos su socio de confianza para la exportación de productos marinos de alta calidad desde Safi, Marruecos.",
+      experience: "20+ años de experiencia",
+      markets: "Mercados internacionales",
+      export: "Exportación premium",
+      contactTitle: "Contáctenos hoy",
+      contactText: "¿Necesita información sobre nuestros productos o servicios? Nuestro equipo está a su disposición.",
+      contactButton: "Contáctenos",
+      productsButton: "Nuestros Productos"
+    },
+    navigation: {
+      home: "Inicio",
+      productsLink: "Nuestros Productos",
+      contact: "Contacto"
     }
   },
   PT: {
@@ -373,16 +622,81 @@ export const translations = {
       detailsButton: "Ver detalhes",
       orderButton: "Encomendar",
       items: [
-        { id: 1, nom: "Polvo", prix: "100 DH/kg", category: "Cefalópodes", imageKey: "poulpe" },
-        { id: 2, nom: "Lula", prix: "120 DH/kg", category: "Cefalópodes", imageKey: "calamar" },
-        { id: 3, nom: "Choco", prix: "110 DH/kg", category: "Cefalópodes", imageKey: "seiche" },
-        { id: 4, nom: "Mongo", prix: "130 DH/kg", category: "Cefalópodes", imageKey: "mongo" },
-        { id: 5, nom: "Almendrita", prix: "140 DH/kg", category: "Peixes", imageKey: "almendrita" },
-        { id: 6, nom: "Puntilla", prix: "150 DH/kg", category: "Cefalópodes", imageKey: "puntilla" },
-        { id: 7, nom: "Sardinha", prix: "50 DH/kg", category: "Peixes Pelágicos", imageKey: "sardine" },
-        { id: 8, nom: "Cavala", prix: "70 DH/kg", category: "Peixes Pelágicos", imageKey: "maquereau" },
-        { id: 9, nom: "Sabre", prix: "80 DH/kg", category: "Peixes", imageKey: "sabre" },
-      ]
+        { id: 1, nom: "Polvo", category: "Moluscos Cefalópodes", imageKey: "poulpe" },
+        { id: 2, nom: "Lula", category: "Moluscos Cefalópodes", imageKey: "calamar" },
+        { id: 3, nom: "Choco", category: "Moluscos Cefalópodes", imageKey: "seiche" },
+        { id: 4, nom: "Tainha", category: "Peixes Pelágicos", imageKey: "mulet" },
+        { id: 5, nom: "Almendrita", category: "Peixes Pelágicos", imageKey: "almendrita" },
+        { id: 6, nom: "Puntilla", category: "Moluscos Cefalópodes", imageKey: "puntilla" },
+        { id: 7, nom: "Sardinha", category: "Peixes Pelágicos", imageKey: "sardine" },
+        { id: 8, nom: "Cavala", category: "Peixes Pelágicos", imageKey: "maquereau" },
+        { id: 9, nom: "Sabre", category: "Peixes Pelágicos", imageKey: "sabre" },
+      ],
+      details: {
+        characteristics: "Características",
+        company: "Empresa",
+        companyValue: "ABXTRADING Safi, Marrocos",
+        fishingArea: "Área de pesca",
+        fishingAreaValue: "Costas de Safi - Atlântico Marroquino",
+        shippingPort: "Porto de envio",
+        shippingPortValue: "Safi",
+        quality: "Qualidade",
+        qualityValue: "Exportação Premium",
+        guaranteed: "Qualidade garantida",
+        selectedWith: "Produto selecionado cuidadosamente de acordo com nossos padrões de excelência",
+        certifications: "Certificações e Conformidade",
+        haccp: "HACCP",
+        haccpDesc: "Sistema de controle para segurança alimentar",
+        iso: "ISO 22000",
+        isoDesc: "Norma internacional para segurança alimentar",
+        sanitary: "Certificação Sanitária",
+        sanitaryDesc: "Em conformidade com as exigências sanitárias internacionais",
+        traceability: "Rastreabilidade",
+        traceabilityDesc: "Acompanhamento completo desde a pesca até a exportação"
+      },
+      descriptions: {
+        poulpe: "O polvo marroquino é reconhecido mundialmente por sua qualidade excepcional...",
+        calamar: "Nossa lula é pescada nas águas frias e limpas do Atlântico marroquino...",
+        seiche: "O choco que oferecemos é conhecido por sua frescura excepcional...",
+        mulet: "A tainha da costa marroquina é um peixe de carne branca conhecido por seu sabor delicado e levemente adocicado. Pescada nas águas costeiras do Atlântico, este peixe versátil é perfeito para grelhados e preparações mediterrâneas. Rica em proteínas e ácidos graxos ômega-3, a tainha é apreciada tanto por suas qualidades nutricionais quanto pelo seu sabor refinado.",
+        sardine: "A sardinha marroquina é um tesouro nutricional do Atlântico...",
+        maquereau: "Nossa cavala é pescada nas águas ricas do Atlântico marroquino...",
+        sabre: "O peixe sabre tem uma carne branca e delicada...",
+        almendrita: "A Almendrita é um pequeno peixe pelágico típico das costas marroquinas...",
+        puntilla: "A Puntilla é um pequeno cefalópode muito apreciado por sua maciez...",
+        default: "Este produto do mar é selecionado com o maior cuidado para garantir uma qualidade ótima..."
+      }
+    },
+    vet: {
+      title: "Serviços Veterinários",
+      subtitle: "Garantia de qualidade e conformidade sanitária",
+      description: "Nossos serviços veterinários certificados garantem a qualidade e conformidade de todos os nossos produtos marinhos com os mais rigorosos padrões internacionais.",
+      sections: {
+        certification: "Certificação Sanitária",
+        quality: "Controle de Qualidade",
+        traceability: "Rastreabilidade Completa",
+        safety: "Segurança Alimentar"
+      },
+      services: [
+        {
+          title: "Certificação sanitária de exportação",
+          description: "Todos os nossos produtos são acompanhados de certificados sanitários oficiais emitidos pelas autoridades competentes."
+        },
+        {
+          title: "Análises laboratoriais",
+          description: "Testes regulares são realizados para garantir a ausência de contaminantes e assegurar a segurança alimentar."
+        },
+        {
+          title: "Supervisão veterinária",
+          description: "Nossos veterinários especializados supervisionam todo o processo, desde a pesca até o envio."
+        },
+        {
+          title: "Documentação completa",
+          description: "Fornecemos toda a documentação necessária para facilitar os procedimentos de importação."
+        }
+      ],
+      contactButton: "Solicitar um certificado",
+      learnMore: "Saiba mais"
     },
     orderForm: {
       title: "Encomendar",
@@ -416,7 +730,25 @@ export const translations = {
       messageSent: "Sua mensagem foi enviada com sucesso!"
     },
     footer: {
-      rights: "Todos os direitos reservados."
+      rights: "Todos os direitos reservados.",
+      company: "ABX Trading",
+      allRightsReserved: "Todos os direitos reservados."
+    },
+    preFooter: {
+      title: "Líder em exportação de produtos marinhos",
+      description: "Com mais de 20 anos de experiência, somos o seu parceiro de confiança para a exportação de produtos marinhos de alta qualidade de Safi, Marrocos.",
+      experience: "20+ anos de experiência",
+      markets: "Mercados internacionais",
+      export: "Exportação premium",
+      contactTitle: "Contacte-nos hoje",
+      contactText: "Precisa de informações sobre nossos produtos ou serviços? Nossa equipe está à sua disposição.",
+      contactButton: "Contacte-nos",
+      productsButton: "Nossos Produtos"
+    },
+    navigation: {
+      home: "Início",
+      productsLink: "Nossos Produtos",
+      contact: "Contato"
     }
   }
 };

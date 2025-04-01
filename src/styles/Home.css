@@ -18,10 +18,13 @@
    --light-bg: #f5f7fa;
    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
    --transition: all 0.3s ease;
+   --mobile-width: 480px;
+   --tablet-width: 768px;
+   --desktop-width: 1200px;
  }
  
  /* Styles de base */
- body, html {
+ html, body {
    margin: 0;
    padding: 0;
    font-family: 'Poppins', sans-serif;
@@ -29,18 +32,26 @@
    color: var(--text-dark);
    overflow-x: hidden;
    width: 100%;
+   max-width: 100%;
    scroll-behavior: smooth;
  }
- 
- body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Empêche les débordements horizontaux */
-  width: 100% !important;
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-}
- 
+
+ /* Correction ciblée pour la marge blanche à droite */
+ html, body {
+   width: 100%;
+   max-width: 100%;
+   overflow-x: hidden;
+   margin: 0;
+   padding: 0;
+ }
+
+ body #root, body .app {
+   width: 100% !important;
+   max-width: 100% !important;
+   overflow-x: hidden !important;
+   position: relative !important;
+ }
+
  body::before {
    content: '';
    position: fixed;
@@ -66,7 +77,6 @@
   forced-color-adjust: auto !important;
 }
 
-/* CORRECTION DE LA LARGEUR DU SITE */
 
 /* 1. Container principal */
 .home-page, .app {
@@ -82,12 +92,74 @@
   max-width: 100% !important;
   overflow-x: hidden !important;
   position: relative !important;
+  box-sizing: border-box !important;
+  margin: 0 auto !important;
+}
+
+/* Correction ciblée pour éliminer la marge blanche à droite */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Assurer que les sections principales respectent les limites */
+.home-page,
+.hero-section,
+.our-services-section,
+.process-section,
+.why-choose-us-section {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Correction des éléments décoratifs qui causent des débordements */
+.circle-decoration,
+.dots-decoration,
+.wave-decoration-process {
+  position: fixed;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Assurer que les grilles restent dans les limites */
+.why-choose-grid,
+.services-cards-container,
+.process-cards {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Empêcher les débordements des éléments absolus */
+.hero-navigation,
+.nav-arrow,
+.hero-content {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Correction spécifique pour les éléments décoratifs qui peuvent dépasser */
+.circle-decoration {
+  position: fixed !important;
+  z-index: -1 !important; 
+  overflow: hidden !important;
+  pointer-events: none !important;
 }
 
 /* 2. Sections principales */
 .hero-section,
 .our-services-section,
 .services-section,
+.process-section,
 .why-choose-us-section {
   width: 100% !important;
   max-width: 100% !important;
@@ -96,6 +168,7 @@
   padding-left: 5% !important;
   padding-right: 5% !important;
   box-sizing: border-box !important;
+  overflow: visible !important;
 }
 
 .our-services-section, 
@@ -172,6 +245,90 @@
   .service-card:nth-child(even) {
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+}
+
+/* Desktop First Approach */
+@media screen and (max-width: 1200px) {
+  .hero-section {
+    height: 85vh !important;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero-content p {
+    font-size: 1rem !important;
+  }
+
+  .services-cards-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section {
+    height: 80vh !important;
+  }
+
+  .hero-content {
+    width: 90% !important;
+    padding: 20px !important;
+  }
+
+  .nav-arrow {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .hero-dots {
+    bottom: 30px !important;
+  }
+
+  .process-container {
+    flex-direction: column !important;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-section {
+    height: 70vh !important;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem !important;
+  }
+
+  .nav-arrow {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .services-cards-container,
+  .why-choose-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-header-animated h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .hero-dots {
+    bottom: 20px !important;
+  }
+
+  .hero-dot {
+    width: 8px !important;
+    height: 8px !important;
   }
 }
  
@@ -322,13 +479,13 @@
   ****************************/
  .hero-section {
   position: relative;
-  width: 100%; /* Changement de 100vw à 100% pour éviter les débordements */
-  height: 100vh; /* Hauteur pleine pour l'écran */
-  margin: 0; /* Supprimez les marges */
-  padding: 0; /* Supprimez les paddings */
-  overflow: hidden; /* Empêche les débordements */
-  background-color: #000; /* Fond noir pour les transitions d'images */
-  margin-top: 60px; /* Pour éviter que le contenu ne soit caché sous le header */
+  width: 100%;
+  height: 93vh; /* Réduit la hauteur à 70% de la hauteur de l'écran */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000;
+  margin-top: 60px;
  }
  
  .hero-section::before,
@@ -337,25 +494,22 @@
 }
 
  .hero-image {
-  width: 100%; /* Assurez-vous que l'image occupe toute la largeur */
-  height: 100%; /* Assurez-vous que l'image occupe toute la hauteur */
-  object-fit: cover; /* Ajuste l'image pour qu'elle remplisse la section sans déformation */
-  display: block; /* Supprime les espaces blancs autour des images */
-  margin: 0; /* Supprimez les marges */
-  padding: 0; /* Supprimez les paddings */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
   transition: opacity 1s ease-in-out;
   opacity: 0;
-  image-rendering: -webkit-optimize-contrast;
-  z-index: 1; /* Assure que l'image est au-dessus du fond */
+  z-index: 1;
  }
- 
- .hero-image.active {
-   opacity: 1;
-   z-index: 2; /* Image active au-dessus des autres */
- }
+
+.hero-image.active {
+  opacity: 1;
+  z-index: 2;
+}
  
  .hero-content {
    position: absolute !important;
@@ -364,29 +518,36 @@
    transform: translate(-50%, -50%) !important;
    text-align: center !important;
    color: white !important;
-   padding: 30px !important;
+   padding: 25px !important; /* Réduit de 30px à 25px */
    border-radius: 15px !important;
    z-index: 5 !important;
    background: rgba(0, 0, 0, 0.6) !important;
    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-   max-width: 800px !important;
-   width: 90% !important;
+   max-width: 700px !important; /* Réduit de 800px à 700px */
+   width: 80% !important; /* Réduit de 90% à 80% */
    margin: 0 auto !important;
+ }
+
+ /* Assurer que les éléments absolus ne causent pas de débordement */
+ .hero-navigation,
+ .nav-arrow,
+ .hero-content {
+   max-width: 100vw !important;
  }
  
  .hero-content h1 {
    font-weight: 700;
-   font-size: 2.5rem;
+   font-size: 2.3rem !important; /* Légèrement réduit */
    color: #ffffff;
-   margin-bottom: 1rem;
+   margin-bottom: 0.8rem !important; /* Réduit l'espace */
    animation: fadeIn 1s ease-in-out;
  }
  
  .hero-content p {
    font-weight: 400;
-   font-size: 1.2rem;
+   font-size: 1.1rem !important; /* Légèrement réduit */
    color: #dddddd;
-   margin-bottom: 2rem;
+   margin-bottom: 1.5rem !important; /* Réduit l'espace */
    animation: fadeIn 1.5s ease-in-out;
  }
  
@@ -433,26 +594,39 @@
   transform: translateY(3px) !important;
 }
  
- .prev-button, .next-button {
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   background-color: transparent;
-   color: white;
-   border: none;
-   padding: 20px;
-   cursor: pointer;
-   z-index: 2;
-   font-size: 2rem;
- }
- 
- .prev-button {
-   left: 10px;
- }
- 
- .next-button {
-   right: 10px;
- }
+ /* Flèches de navigation */
+.nav-arrow {
+  position: absolute !important;
+  top: 50% !important; /* Centre vertical */
+  transform: translateY(-50%) !important; /* Ajustement précis du centrage */
+  background: rgba(0, 0, 0, 0.5) !important;
+  color: white !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  transition: all 0.3s ease !important;
+  font-size: 1.2rem !important;
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.nav-arrow.prev {
+  left: 20px !important;
+}
+
+.nav-arrow.next {
+  right: 20px !important;
+}
+
+.nav-arrow:hover {
+  background: rgba(0, 102, 155, 0.8) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  border-color: white !important;
+}
  
  .dots-container {
    position: absolute;
@@ -476,252 +650,84 @@
    background-color: white;
  }
 
-/* Styles pour la navigation du hero */
-.hero-navigation {
-  position: absolute !important;
-  bottom: 40px !important; /* Légèrement plus bas */
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 0 !important;
-  z-index: 10 !important;
-}
-
-.nav-arrow {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  background: rgba(0, 0, 0, 0.5) !important; /* Fond plus sombre */
-  color: white !important;
-  width: 50px !important;
-  height: 50px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  cursor: pointer !important;
-  z-index: 15 !important; /* Mettez-le au-dessus de tout le reste */
-  transition: all 0.3s ease !important;
-  font-size: 1.2rem !important;
-  border: 2px solid rgba(255, 255, 255, 0.5) !important; /* Bordure visible */
-}
-
-/* Réduction de la taille des flèches */
-.nav-arrow {
-  width: 40px !important; /* Réduit la largeur */
-  height: 40px !important; /* Réduit la hauteur */
-  font-size: 1rem !important; /* Réduit la taille de l'icône */
-  border: 1px solid rgba(255, 255, 255, 0.5) !important; /* Réduit l'épaisseur de la bordure */
-}
-
-.nav-arrow.prev {
-  left: 20px !important;
-}
-
-.nav-arrow.next {
-  right: 20px !important;
-}
-
-.nav-arrow:hover {
-  background: rgba(0, 102, 155, 0.8) !important; /* Bleu au survol */
-  transform: translateY(-50%) scale(1.1) !important;
-}
-
-.hero-dots {
-  display: flex !important;
-  gap: 12px !important; /* Légèrement plus espacés */
-  justify-content: center !important;
-  background: rgba(0, 0, 0, 0.3) !important; /* Fond semi-transparent */
-  padding: 10px 20px !important; /* Padding pour un meilleur contraste */
-  border-radius: 30px !important; /* Forme plus arrondie */
-}
-
-/* Réduction des points de navigation */
-.hero-dot {
-  width: 10px !important; /* Réduit la largeur */
-  height: 10px !important; /* Réduit la hauteur */
-  border: 1px solid rgba(255, 255, 255, 0.3) !important; /* Réduit l'épaisseur de la bordure */
-}
-
-.hero-dot.active {
-  width: 12px !important; /* Taille légèrement plus grande pour le point actif */
-  height: 12px !important; /* Taille légèrement plus grande pour le point actif */
-  border: 1px solid rgba(0, 102, 155, 0.5) !important; /* Bordure bleue subtile */
-}
-
-/* CORRECTIONS POUR LA NAVIGATION DU SLIDER */
-
-/* Centrer les points et agrandir les flèches */
+ /* Styles pour la navigation du hero */
 .hero-navigation {
   position: absolute !important;
   bottom: 30px !important;
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important; /* Changé de space-between à center */
-  align-items: center !important;
-  padding: 0 !important; /* Supprimé le padding */
-  z-index: 10 !important; /* Augmenté le z-index */
-}
-
-/* Grandes flèches de navigation à gauche et à droite */
-.nav-arrow {
-  position: absolute !important; /* Positionnement absolu */
-  background: rgba(255, 255, 255, 0.3) !important; /* Plus visible */
-  border: none !important;
-  color: white !important;
-  width: 50px !important; /* Agrandi */
-  height: 50px !important; /* Agrandi */
-  border-radius: 50% !important;
+  left: 0 !important;
+  right: 0 !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  font-size: 1.2rem !important; /* Texte plus grand */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important; /* Ombre plus visible */
-  top: 50% !important; /* Centré verticalement */
-  transform: translateY(-50%) !important; /* Ajustement vertical */
+  z-index: 10 !important;
 }
 
-/* Flèche gauche */
-.nav-arrow.prev {
-  left: 20px !important; /* Éloigné du bord */
-}
-
-/* Flèche droite */
-.nav-arrow.next {
-  right: 20px !important; /* Éloigné du bord */
-}
-
-.nav-arrow:hover {
-  background: rgba(255, 255, 255, 0.5) !important; /* Plus visible au survol */
-  transform: translateY(-50%) scale(1.1) !important; /* Léger agrandissement */
-}
-
-/* Container de points centré */
+/* Points de navigation */
 .hero-dots {
   display: flex !important;
-  gap: 10px !important;
-  position: relative !important; /* Positionnement relatif */
-  z-index: 15 !important; /* Au-dessus des flèches */
-  bottom: 0 !important; /* En bas */
+  gap: 12px !important;
+  padding: 10px !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 20px !important;
 }
 
-/* Style des points */
 .hero-dot {
   width: 12px !important;
   height: 12px !important;
-  background: rgba(255, 255, 255, 0.4) !important;
   border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.5) !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
-  border: 2px solid transparent !important; /* Bordure invisible */
+  border: 2px solid transparent !important;
 }
 
-/* Point actif */
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.8) !important;
+  transform: scale(1.1) !important;
+}
+
 .hero-dot.active {
   background: white !important;
   transform: scale(1.2) !important;
-  border: 2px solid rgba(0, 102, 155, 0.5) !important; /* Bordure bleue subtile */
+  border-color: #00669b !important;
 }
 
-/* CORRECTION POSITION DES FLÈCHES DE NAVIGATION */
-
-/* Ajustement vertical des flèches */
+/* Styles des flèches de navigation */
 .nav-arrow {
-  position: absolute !important;
-  top: -760% !important; /* Déplacé vers le haut (était à 30%) */
-  transform: translateY(-50%) !important;
-  background: rgba(0, 0, 0, 0.5) !important;
-  color: white !important;
-  width: 60px !important;
-  height: 60px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  cursor: pointer !important;
-  z-index: 50 !important;
-  transition: all 0.3s ease !important;
-  font-size: 1.4rem !important;
-  border: 2px solid rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  position: absolute;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Amélioration de la visibilité des flèches */
-.nav-arrow::before {
-  content: '' !important;
-  position: absolute !important;
-  width: 150% !important;
-  height: 150% !important;
-  background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%) !important;
-  z-index: -1 !important;
-  opacity: 0.5 !important;
-  transition: opacity 0.3s ease !important;
-}
-
-.nav-arrow:hover::before {
-  opacity: 0.8 !important;
-}
-
-/* Animation au survol */
-.nav-arrow:hover {
-  background: rgba(0, 102, 155, 0.9) !important;
-  transform: translateY(-50%) scale(1.1) !important;
-  border-color: white !important;
-}
-
-/* Style des icônes à l'intérieur des flèches */
-.nav-arrow i {
-  font-size: 24px !important;
-  font-weight: bold !important;
-}
-
-/* Positionnement latéral des flèches */
 .nav-arrow.prev {
-  left: 50px !important; /* Plus éloigné du bord */
+  left: 20px;
 }
 
 .nav-arrow.next {
-  right: 50px !important; /* Plus éloigné du bord */
+  right: 20px;
 }
 
-/* Positionnement des flèches aux extrémités de l'image */
-.nav-arrow.prev {
-  left: 10px !important; /* Positionné à l'extrême gauche */
-}
-
-.nav-arrow.next {
-  right: 10px !important; /* Positionné à l'extrême droite */
-}
-
-/* Animation au survol */
 .nav-arrow:hover {
-  background: rgba(0, 102, 155, 0.9) !important; /* Bleu plus opaque au survol */
-  transform: translateY(-50%) scale(1.1) !important;
-  border-color: white !important;
+  background: rgba(0, 102, 155, 0.8);
+  transform: translateY(-50%) scale(1.1);
+  border-color: white;
 }
 
-/* Style des icônes à l'intérieur des flèches */
-.nav-arrow i {
-  font-size: 24px !important; /* Taille d'icône plus grande */
+/* Assurer que les images restent derrière les flèches */
+.hero-image {
+  z-index: 1;
 }
 
-/* Pour les écrans plus petits, ajustez la position */
-@media (max-width: 768px) {
-  .nav-arrow {
-    width: 50px !important;
-    height: 50px !important;
-  }
-  .nav-arrow.prev {
-    left: 20px !important;
-  }
-  .nav-arrow.next {
-    right: 20px !important;
-  }
+.hero-image.active {
+  z-index: 2;
 }
  
  /****************************
@@ -1185,464 +1191,34 @@
   }
 }
 
-/* SUPPRIMEZ toutes les règles existantes pour ces sélecteurs et utilisez uniquement celles-ci */
+/* Solution ciblée pour éliminer la marge blanche à droite */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
 
-/* 1. Réduction de la hauteur des images */
-.our-services-section .service-image-container {
-  height: 110px !important; /* Hauteur très réduite */
+.home-page {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
   position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  border-bottom: 1px solid rgba(0, 102, 155, 0.1) !important;
+  box-sizing: border-box !important;
 }
 
-/* 2. Ajustement des images */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 80% !important;
-  object-fit: cover !important;
-  object-position: center center !important;
-  transition: transform 0.5s ease !important;
+/* Correction des éléments décoratifs qui causent le débordement */
+.circle-decoration {
+  position: fixed !important; /* Changer absolute en fixed */
+  z-index: -1 !important; /* S'assurer qu'il est derrière tout */
 }
 
-/* 3. Position des icônes en bas à droite */
-.service-icon {
-  position: absolute !important;
-  bottom: 10px !important; /* Plus bas */
-  right: 10px !important; /* Plus à droite */
-  width: 40px !important; /* Plus petit */
-  height: 40px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-  transition: transform 0.3s ease !important;
-}
-
-/* 4. Animation au survol */
-.service-card:hover .service-icon {
-  transform: scale(1.15) !important;
-}
-
-/* 5. Adaptation mobile */
-@media (max-width: 768px) {
-  .our-services-section .service-image-container {
-    height: 90px !important; /* Encore plus réduit sur mobile */
-  }
-  
-  .service-icon {
-    width: 35px !important;
-    height: 35px !important;
-    bottom: 5px !important;
-    right: 5px !important;
-  }
-}
-
-/* SOLUTION FINALE - Supprime l'espace blanc et positionne correctement les icônes */
-
-/* 1. Réduction maximale de la hauteur des images */
-.our-services-section .service-image-container {
-  height: 110px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  border-bottom: none !important; /* Suppression de la bordure qui crée l'espace */
-  margin: 0 !important; /* Suppression des marges */
-  padding: 0 !important; /* Suppression du padding */
-}
-
-/* 2. Optimisation des images */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 80% !important;
-  object-fit: cover !important;
-  object-position: center top !important; /* Aligne en haut */
-  display: block !important; /* Important pour supprimer les espaces blancs */
-  margin: 0 !important; /* Suppression des marges */
-}
-
-/* 3. Position des icônes en bas à droite */
-.service-icon {
-  position: absolute !important;
-  bottom: 10px !important;
-  right: 10px !important;
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-}
-
-/* 4. Ajustement du contenu pour éliminer l'espace */
-.our-services-section .service-content {
-  padding: 15px 20px !important;
-  margin-top: 0 !important; /* Supprime l'espace entre l'image et le contenu */
-}
-
-/* 5. Adaptation mobile */
-@media (max-width: 768px) {
-  .our-services-section .service-image-container {
-    height: 90px !important;
-  }
-  
-  .service-icon {
-    width: 35px !important;
-    height: 35px !important;
-    bottom: 5px !important;
-    right: 5px !important;
-  }
-}
-
-/* Solution finale pour les images à 80% de hauteur sans espace blanc */
-
-/* Conteneur d'image avec hauteur fixe */
-.our-services-section .service-image-container {
-  height: 110px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  display: flex !important;
-  align-items: flex-end !important; /* Aligne le contenu en bas */
-  padding: 0 !important;
-  margin: 0 !important;
-  background-color: transparent !important;
-}
-
-/* Image occupant 80% de la hauteur sans marge */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 80% !important; /* 80% de la hauteur comme demandé */
-  object-fit: cover !important;
-  object-position: center top !important; /* Aligne en haut */
-  display: block !important;
-  margin: 0 !important;
-  border-radius: 12px 12px 0 0 !important; /* Arrondi uniquement en haut */
-}
-
-/* Repositionnement de l'icône pour qu'elle reste au bon endroit */
-.service-icon {
-  position: absolute !important;
-  bottom: 5px !important; /* Plus proche du bas */
-  right: 10px !important;
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-}
-
-/* Suppression de toute marge ou bordure entre l'image et le contenu */
-.our-services-section .service-content {
-  padding: 15px 20px !important;
-  margin-top: 0 !important;
-  border-top: none !important;
-}
-
-/* Solution finale corrigée - Supprime la marge blanche en haut */
-
-/* 1. Conteneur d'image ajusté */
-.our-services-section .service-image-container {
-  height: 110px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  background-color: transparent !important;
-}
-
-/* 2. Image alignée au bord supérieur */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 100% !important; /* Utilise 100% de la hauteur du conteneur */
-  object-fit: cover !important;
-  object-position: center top !important; /* Alignement en haut */
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 12px 12px 0 0 !important; /* Arrondi uniquement en haut */
-}
-
-/* 3. Position des icônes en bas à droite */
-.service-icon {
-  position: absolute !important;
-  bottom: 10px !important;
-  right: 10px !important;
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-}
-
-/* 4. Contenu de la carte sans espacement supérieur */
-.our-services-section .service-content {
-  padding: 15px 20px !important;
-  margin-top: 0 !important;
-  border-top: none !important;
-}
-
-/* 5. Adaptation mobile */
-@media (max-width: 768px) {
-  .our-services-section .service-image-container {
-    height: 90px !important;
-  }
-  
-  .service-icon {
-    width: 35px !important;
-    height: 35px !important;
-    bottom: 5px !important;
-    right: 5px !important;
-  }
-}
-
-/* Solution simplifiée - Minimise la hauteur de la carte */
-
-/* 1. Conteneur d'image plus petit */
-.our-services-section .service-image-container {
-  height: 100px !important; /* Hauteur réduite */
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-}
-
-/* 2. Image à 80% comme demandé */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 80% !important; /* Maintien de 80% */
-  object-fit: cover !important;
-  object-position: center center !important;
-  display: block !important;
-  margin: 0 !important;
-}
-
-/* 3. Icônes bien positionnées */
-.service-icon {
-  position: absolute !important;
-  bottom: 5px !important; /* Plus bas */
-  right: 10px !important;
-  width: 35px !important; /* Plus petit */
-  height: 35px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-}
-
-/* 4. Contenu de la carte rapproché */
-.our-services-section .service-content {
-  padding: 12px 20px !important; /* Padding réduit */
-  margin-top: 0 !important;
-}
-
-/* 5. Adaptation mobile */
-@media (max-width: 768px) {
-  .our-services-section .service-image-container {
-    height: 80px !important; /* Encore plus court sur mobile */
-  }
-  
-  .service-icon {
-    width: 30px !important;
-    height: 30px !important;
-    bottom: 3px !important;
-    right: 8px !important;
-  }
-}
-
-/* Solution finale - Garde l'image à 80% et supprime l'espace blanc en haut */
-
-/* 1. Conteneur d'image */
-.our-services-section .service-image-container {
-  height: 100px !important; /* Hauteur maintenue */
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  display: flex !important;
-  align-items: flex-start !important; /* Aligne le contenu en HAUT */
-}
-
-/* 2. Image à 80% sans marge */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 80% !important; /* Maintient 80% comme demandé */
-  object-fit: cover !important;
-  object-position: center top !important; /* Aligne en haut */
-  display: block !important;
-  margin: 0 !important; 
-  padding: 0 !important;
-  border-radius: 12px 12px 0 0 !important;
-}
-
-/* 3. Icônes bien positionnées */
-.service-icon {
-  position: absolute !important;
-  bottom: 5px !important;
-  right: 10px !important;
-  width: 35px !important;
-  height: 35px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-}
-
-/* 4. Contenu de la carte */
-.our-services-section .service-content {
-  padding: 12px 20px !important;
-  margin-top: 0 !important;
-  border-top: none !important;
-}
-
-/* AMÉLIORATIONS POUR LA SECTION "NOS SERVICES" UNIQUEMENT */
-
-/* 1. Amélioration du conteneur d'images avec border-radius */
-.our-services-section .service-image-container {
-  height: 100px !important; /* Hauteur maintenue */
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  display: flex !important;
-  align-items: flex-start !important;
-  border-radius: 12px 12px 0 0 !important; /* Border-radius en haut seulement */
-}
-
-/* 2. Ajustement des images à 80% de hauteur */
-.our-services-section .service-image {
-  width: 100% !important;
-  height: 80% !important; /* 80% comme demandé */
-  object-fit: cover !important;
-  object-position: center top !important;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 12px 12px 0 0 !important; /* Bords arrondis en haut */
-}
-
-/* 3. Position des icônes en bas à droite */
-.our-services-section .service-icon {
-  position: absolute !important;
-  bottom: 5px !important;
-  right: 10px !important;
-  width: 38px !important; /* Taille légèrement réduite */
-  height: 38px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #00669b, #00b8d4) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-  z-index: 10 !important;
-  border: 2px solid white !important;
-  transition: transform 0.3s ease !important;
-}
-
-/* 4. Animation au survol de l'icône */
-.our-services-section .service-card:hover .service-icon {
-  transform: scale(1.15) !important;
-}
-
-/* 5. Amélioration du contenu texte avec bords arrondis en bas */
-.our-services-section .service-content {
-  padding: 15px 20px !important;
-  margin-top: 0 !important;
-  border-top: none !important;
-  border-radius: 0 0 12px 12px !important; /* Bords arrondis en bas */
-  background: white !important;
-}
-
-/* 6. Amélioration du titre avec ligne de séparation décorative */
-.our-services-section .service-content h3 {
-  color: #00669b !important;
-  position: relative !important;
-  margin-bottom: 12px !important;
-  padding-bottom: 10px !important;
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-}
-
-/* 7. Ligne décorative sous le titre */
-.our-services-section .service-content h3::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 40px !important;
-  height: 3px !important;
-  background: linear-gradient(90deg, #00669b, #00b8d4) !important;
-  border-radius: 3px !important;
-  transition: width 0.3s ease !important;
-}
-
-/* 8. Animation de la ligne décorative au survol */
-.our-services-section .service-card:hover .service-content h3::after {
-  width: 80px !important;
-}
-
-/* 9. Style du texte de description */
-.our-services-section .service-content p {
-  color: #4a5568 !important;
-  line-height: 1.5 !important;
-  font-size: 0.95rem !important;
-  margin-top: 0 !important;
-}
-
-/* 10. Style global des cartes avec ombre portée améliorée */
-.our-services-section .service-card {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  margin-bottom: 20px !important;
-}
-
-/* 11. Animation au survol des cartes */
-.our-services-section .service-card:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+/* Ajustement des grilles pour qu'elles restent à l'intérieur des limites */
+.why-choose-grid {
+  width: 90% !important; /* Limiter à 90% pour éviter les débordements */
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  gap: 20px !important;
+  box-sizing: border-box !important;
 }
  
  /****************************
@@ -1661,6 +1237,8 @@
    background: linear-gradient(135deg, #f7fbff 0%, #ffffff 100%);
    padding-top: 80px;
    padding-bottom: 80px;
+   margin-bottom: 0 !important;
+   padding-bottom: 40px !important;
  }
  
  .process-section::before {
@@ -2397,6 +1975,8 @@
    padding: 80px 5%;
    background: linear-gradient(135deg, #f7fbff 0%, #ffffff 100%);
    text-align: center;
+   margin-top: 0 !important;
+   padding-top: 40px !important;
  }
  
  .why-choose-grid {
@@ -2405,6 +1985,9 @@
    gap: 30px;
    max-width: 1200px;
    margin: 0 auto;
+   width: 90% !important; /* Limiter à 90% pour éviter les débordements */
+   gap: 20px !important;
+   box-sizing: border-box !important;
  }
  
  .why-choose-card {
@@ -2502,7 +2085,8 @@
  }
  
  .circle-decoration {
-   position: absolute;
+   position: fixed !important; /* Changer absolute en fixed */
+   z-index: -1 !important; /* S'assurer qu'il est derrière tout */
    border-radius: 50%;
    opacity: 0.2;
    background: var(--gradient-primary);
@@ -2858,4 +2442,14 @@ close-icon:hover {
     height: 40px !important;
     font-size: 16px !important;
   }
+}
+
+/* Séparateur entre les sections */
+.section-separator {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00669b, transparent);
+  margin: 60px auto;
+  max-width: 1200px;
+  opacity: 0.5;
 }

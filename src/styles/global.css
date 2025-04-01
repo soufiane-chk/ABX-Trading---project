@@ -1,20 +1,18 @@
-/* Typographie améliorée pour l'ensemble du site */
-
-/* 1. Polices de base et variables */
+/* Variables */
 :root {
   --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-secondary: 'Montserrat', 'Segoe UI', sans-serif;
   --font-heading: 'Montserrat', 'Segoe UI', sans-serif;
   
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.875rem;  /* 30px */
-  --text-4xl: 2.25rem;   /* 36px */
-  --text-5xl: 3rem;      /* 48px */
+  --text-xs: 0.75rem;   
+  --text-sm: 0.875rem;  
+  --text-base: 1rem;    
+  --text-lg: 1.125rem;  
+  --text-xl: 1.25rem;   
+  --text-2xl: 1.5rem;   
+  --text-3xl: 1.875rem; 
+  --text-4xl: 2.25rem;  
+  --text-5xl: 3rem;     
   
   --color-text: #1e3a5f;
   --color-text-light: #4a5568;
@@ -24,7 +22,7 @@
   --color-accent: #00b8d4;
 }
 
-/* 2. Règles de base */
+/* Base */
 body {
   font-family: var(--font-primary);
   font-size: var(--text-base);
@@ -35,7 +33,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 3. Typographie des titres */
+/* Titres */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -71,7 +69,7 @@ h6 {
   font-weight: 600;
 }
 
-/* 4. Paragraphes et texte */
+/* Textes */
 p {
   margin-bottom: 1.5rem;
   color: var(--color-paragraph);
@@ -84,12 +82,10 @@ p {
   font-weight: 400;
   line-height: 1.6;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
 }
 
-/* 5. Mise en évidence - Titres de sections */
+/* Titres de section */
 .section-header-animated .animated-title {
   font-size: var(--text-4xl);
   font-weight: 700;
@@ -102,9 +98,7 @@ p {
   position: relative;
 }
 
-/* Amélioration spécifique pour chaque section */
-
-/* 6. Hero Section */
+/* Hero */
 .hero-content h1 {
   font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
   font-weight: 800;
@@ -122,7 +116,7 @@ p {
   font-weight: 400;
 }
 
-/* 7. Services Section */
+/* Services */
 .service-title {
   font-size: var(--text-xl);
   font-weight: 700;
@@ -149,7 +143,7 @@ p {
   font-size: var(--text-base);
 }
 
-/* 8. Process Section */
+/* Processus */
 .service-number {
   font-family: var(--font-secondary);
   font-size: var(--text-4xl);
@@ -160,7 +154,7 @@ p {
   right: 15px;
 }
 
-/* 9. Why Choose Us Section */
+/* Pourquoi nous choisir */
 .why-choose-card h3 {
   font-size: var(--text-lg);
   font-weight: 700;
@@ -174,7 +168,7 @@ p {
   color: var(--color-text-light);
 }
 
-/* 10. PreFooter Section */
+/* Pré-footer */
 .pre-footer-info h2 {
   font-size: var(--text-3xl);
   margin-bottom: 1.5rem;
@@ -191,7 +185,7 @@ p {
   font-size: var(--text-sm);
 }
 
-/* 11. Footer */
+/* Footer */
 .footer {
   font-size: var(--text-sm);
 }
@@ -202,12 +196,12 @@ p {
   margin-bottom: 1.25rem;
 }
 
-/* 12. Responsive Typography */
+/* Responsive */
 @media (max-width: 992px) {
   :root {
-    --text-5xl: 2.5rem;  /* 40px */
-    --text-4xl: 2rem;    /* 32px */
-    --text-3xl: 1.75rem; /* 28px */
+    --text-5xl: 2.5rem;
+    --text-4xl: 2rem;
+    --text-3xl: 1.75rem;
   }
   
   .hero-content h1 {

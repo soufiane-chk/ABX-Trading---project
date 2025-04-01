@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from '../context/LanguageContext';
 import "../styles/header.css";
+import logoSvg from "../assets/logosite.svg";
 
+/* Drapeaux pour les langues */
 import frFlag from "../assets/france.png";
 import enFlag from "../assets/english.png";
 import esFlag from "../assets/spain.png";
 import ptFlag from "../assets/portugal.png";
+
 
 const languages = [
   { code: "FR", name: "Français", flag: frFlag },
@@ -16,15 +19,16 @@ const languages = [
 ];
 
 const Header = () => {
+  /* États et hooks */
   const { language, setLanguage, t } = useLanguage();
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
   const [visible, setVisible] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
   const [showLangMenu, setShowLangMenu] = useState(false);
-  
   const location = useLocation();
   const selectedLang = languages.find(lang => lang.code === language) || languages[0];
 
+  /* Gestion du défilement */
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -36,12 +40,11 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
+  /* Fonctions de gestion des événements */
   const handleToggleSearch = () => {
     setShowSearch(!showSearch);
     if (!showSearch) {
-      setTimeout(() => {
-        document.querySelector(".search-input")?.focus();
-      }, 100);
+      setTimeout(() => document.querySelector(".search-input")?.focus(), 100);
     }
   };
 
@@ -51,16 +54,18 @@ const Header = () => {
   };
 
   const handleNavClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <header className={`header ${visible ? "visible" : "hidden"}`}>
       <div className="container">
-        <h2 className="logo">ABX Fish</h2>
+        {/* Logo */}
+        <Link to="/" className="logo-container">
+          <img src={logoSvg} alt="ABX Fish" className="logo-img" />
+        </Link>
+
+        {/* Navigation */}
         <nav className="nav">
           <ul>
             <li>
@@ -93,22 +98,21 @@ const Header = () => {
           </ul>
         </nav>
 
+        {/* Zone droite (recherche et langue) */}
         <div className="header-right">
+          {/* Barre de recherche */}
           <div className={`search-container ${showSearch ? "expanded" : ""}`}>
             <button className="search-icon" onClick={handleToggleSearch} aria-label="Toggle search">
               <i className="fa fa-search"></i>
             </button>
             {showSearch && (
               <div className="search-box">
-                <input 
-                  type="text" 
-                  className="search-input" 
-                  placeholder={t.nav.search} 
-                />
+                <input type="text" className="search-input" placeholder={t.nav.search} />
               </div>
             )}
           </div>
 
+          {/* Sélecteur de langue */}
           <div className="language-selector">
             <button onClick={() => setShowLangMenu(!showLangMenu)} className="lang-button">
               <img src={selectedLang.flag} alt={selectedLang.code} className="lang-flag" />
