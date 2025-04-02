@@ -11,11 +11,11 @@
   box-shadow: 0 5px 20px rgba(13, 59, 102, 0.1);
   display: flex;
   align-items: center;
-  padding: 0; /* Supprime tout le padding */
-  padding-right: 15px; /* Garde l'espace à droite uniquement */
+  padding: 0;
+  padding-right: 15px; 
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding-left: 0; /* Supprime le padding gauche du header */
+  padding-left: 0; 
 }
 
 .header:hover {
@@ -28,44 +28,44 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0; /* Supprime tout padding */
-  margin: 0; /* Supprime toute marge */
+  padding: 0; 
+  margin: 0;
 }
 
 /* Logo container et positionnement ajusté */
 .logo-container {
   display: flex;
   align-items: center;
-  margin: 0; /* Supprime toutes les marges */
+  margin: 0; 
   position: relative;
-  padding: 0; /* Supprime tout le padding */
-  padding-right: 20px; /* Espace à droite du logo */
+  padding: 0;
+  padding-right: 20px; 
   animation: slideFadeIn 0.6s ease-out forwards;
 }
 
 /* Logo image élargi et amélioré */
 .logo-img {
-  height: 65px; /* Augmenté de 60px à 70px */
+  height: 65px; 
   width: auto;
-  max-width: none; /* Empêche les restrictions de largeur */
-  filter: drop-shadow(0 4px 8px rgba(0, 102, 155, 0.4)); /* Ombre plus prononcée */
+  max-width: none; 
+  filter: drop-shadow(0 4px 8px rgba(0, 102, 155, 0.4)); 
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: block;
-  margin-right: 95px; /* Espace supplémentaire après le logo */
-  margin-left: 25px; /* Assure qu'il n'y a pas de marge à gauche */
+  margin-right: 95px; 
+  margin-left: 25px; 
 }
 
 /* Animation hover améliorée */
 .logo-container:hover .logo-img {
-  transform: scale(1.12); /* Légèrement plus grand au survol */
-  filter: drop-shadow(0 6px 12px rgba(0, 184, 212, 0.5)); /* Ombre colorée plus visible */
+  transform: scale(1.12); 
+  filter: drop-shadow(0 6px 12px rgba(0, 184, 212, 0.5));
 }
 
 /* Navigation */
 .nav {
   display: flex;
   align-items: center;
-  margin-left: 30px; /* Plus d'espace après le logo */
+  margin-left: 30px; 
   height: 80px;
 }
 
@@ -194,17 +194,17 @@
 /* ----------- LANGUE ----------- */
 /* Ajuster le conteneur de la liste des langues */
 .language-selector {
-  margin-left: auto !important; /* Aligne à droite */
-  margin-right: -40px !important; /* Ajoute un espace entre le bouton et le bord droit */
+  margin-left: auto !important; 
+  margin-right: -40px !important; 
   position: relative !important;
   display: flex !important;
   align-items: center !important;
-  z-index: 1000 !important; /* Assurez que la liste est au-dessus des autres éléments */
+  z-index: 1000 !important; 
 }
 
 /* Ajuster le bouton de langue */
 .lang-button {
-  padding: 10px 20px !important; /* Ajoute plus d'espace intérieur */
+  padding: 10px 20px !important;
   border-radius: 20px !important;
   background: rgba(0, 0, 0, 0.1) !important;
   color: #00669b !important;
@@ -213,8 +213,8 @@
   transition: all 0.3s ease !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important; /* Centre le texte */
-  gap: 10px !important; /* Ajoute un espace entre l'icône et le texte */
+  justify-content: center !important; 
+  gap: 10px !important; 
 }
 
 /* Ajuster l'icône dans le bouton */
