@@ -1,274 +1,235 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 import PreFooter from '../components/PreFooter';
 import "../styles/Contact.css";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
-import { translations } from "../translations/translations";
 import { useLanguage } from '../context/LanguageContext';
-import { useLocation } from 'react-router-dom';
 
 const Contact = () => {
-  /* États */
-  const location = useLocation();
-  const { language = "FR" } = useLanguage() || {};
-  const [t, setT] = useState(() => {
-    const langKey = language?.toUpperCase() || "FR";
-    return translations[langKey]?.contact || translations["FR"].contact;
-  });
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
-    name: '', phone: '', email: '', subject: '', message: ''
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
   });
-  const [errors, setErrors] = useState({
-    name: '', phone: '', email: '', subject: '', message: ''
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null }
   });
 
-  /* Effets */
-  useEffect(() => {
-    if (location.hash) {
-      setTimeout(() => {
-        const id = location.hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  }, [location]);
-  
-  useEffect(() => {
-    const langKey = language?.toUpperCase() || "FR";
-    setT(translations[langKey]?.contact || translations["FR"].contact);
-  }, [language]);
-
-  /* Validation */
-  const validateForm = () => {
-    let tempErrors = { name: '', phone: '', email: '', subject: '', message: '' };
-    let isValid = true;
-
-    if (!formData.name.trim()) {
-      tempErrors.name = "Le nom est requis";
-      isValid = false;
-    }
-
-    if (!formData.phone.trim()) {
-      tempErrors.phone = "Le numéro de téléphone est requis";
-      isValid = false;
-    } else if (!/^[0-9+\s]{8,15}$/.test(formData.phone.trim())) {
-      tempErrors.phone = "Format de téléphone invalide";
-      isValid = false;
-    }
-
-    if (!formData.email.trim()) {
-      tempErrors.email = "L'email est requis";
-      isValid = false;
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())) {
-      tempErrors.email = "Format d'email invalide";
-      isValid = false;
-    }
-
-    if (!formData.subject.trim()) {
-      tempErrors.subject = "Le sujet est requis";
-      isValid = false;
-    }
-
-    if (!formData.message.trim()) {
-      tempErrors.message = "Le message est requis";
-      isValid = false;
-    }
-
-    setErrors(tempErrors);
-    return isValid;
-  };
-
-  /* Gestionnaires d'événements */
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({...formData, [name]: value});
-    
-    let fieldError = '';
-    if (value.trim() === '') {
-      fieldError = `${t[name + 'Placeholder'] || name} est requis`;
-    } else if (name === 'email' && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-      fieldError = "Format d'email invalide";
-    } else if (name === 'phone' && !/^[0-9+\s]{8,15}$/.test(value)) {
-      fieldError = "Format de téléphone invalide";
-    }
-    
-    setErrors({...errors, [name]: fieldError});
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
-    
-    const iframeName = 'hidden-contact-iframe';
-    let iframe = document.getElementById(iframeName);
-    
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.setAttribute('id', iframeName);
-      iframe.setAttribute('name', iframeName);
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-  
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = `https://formsubmit.co/chakirsoufiane458@gmail.com`;
-    form.target = iframeName;
-    form.style.display = 'none';
-  
-    const fields = {
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
-      '_subject': `Message de contact: ${formData.subject}`,
-      '_captcha': 'false',
-      '_template': 'table',
-      '_next': 'https://formsubmit.co/ajax/chakirsoufiane458@gmail.com'
-    };
-  
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement('input');
-      input.type = name === 'message' ? 'textarea' : 'hidden';
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
+    setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
+
+    // Utilisez fetch ou axios pour envoyer le formulaire sans redirection
+    fetch('https://formsubmit.co/ajax/chakirsoufiane458@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || 'Non spécifié',
+        subject: `ABX TRADING - ${formData.subject || 'Nouveau message de contact'}`,
+        message: formData.message,
+        _captcha: false,
+        _template: 'table',
+        _subject: `ABX TRADING - ${formData.subject || 'Nouveau message de contact'}`
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      // Réinitialiser le formulaire
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+
+      // Afficher le message de succès
+      setStatus({
+        submitted: true,
+        submitting: false,
+        info: { error: false, msg: 'Votre message a été envoyé avec succès! Nous vous répondrons dans les plus brefs délais.' }
+      });
+      
+      // Ajouter un petit délai pour que le message de succès soit rendu avant de défiler
+      setTimeout(() => {
+        // Sélectionner le message de succès et défiler vers lui
+        const successMessage = document.querySelector('.status-message.success');
+        if (successMessage) {
+          successMessage.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center'
+          });
+        }
+      }, 100);
+
+      // Effacer le message de succès après 5 secondes
+      setTimeout(() => {
+        setStatus({
+          submitted: false,
+          submitting: false,
+          info: { error: false, msg: null }
+        });
+      }, 5000);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      setStatus({
+        submitted: false,
+        submitting: false,
+        info: { error: true, msg: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer." }
+      });
     });
-  
-    document.body.appendChild(form);
-    form.submit();
-    
-    setFormData({name: '', phone: '', email: '', subject: '', message: ''});
-    
-    const messageElement = document.createElement('div');
-    messageElement.className = 'success-message';
-    messageElement.innerText = t.messageSent || 'Message envoyé avec succès!';
-    
-    const formElement = document.querySelector('.contact-form');
-    formElement.appendChild(messageElement);
-    
-    setTimeout(() => {
-      if (formElement.contains(messageElement)) {
-        formElement.removeChild(messageElement);
-      }
-    }, 3000);
-    
-    setTimeout(() => {
-      document.body.removeChild(form);
-    }, 500);
   };
 
-  /* Rendu */
   return (
     <div className="contact-page">
       <Header />
-      
-      {/* En-tête */}
+
       <div className="contact-hero">
-        <h1>{t.title}</h1>
-        <p>{t.subtitle}</p>
+        <h1>{t.contact?.title || 'Contactez-nous'}</h1>
+        <p>{t.contact?.subtitle || 'Nous sommes à votre écoute pour toute question ou demande.'}</p>
       </div>
 
       <div className="contact-container">
-        {/* Informations de contact */}
         <div className="contact-info-section">
           <div className="info-card">
             <div className="info-icon"><FaPhone /></div>
-            <h3>{t.phone}</h3>
+            <h3>{t.contact?.phone || 'Téléphone'}</h3>
             <p>+212 524651641</p>
             <p>+212 671420274</p>
           </div>
 
           <div className="info-card">
             <div className="info-icon"><FaEnvelope /></div>
-            <h3>{t.email}</h3>
+            <h3>{t.contact?.email || 'Email'}</h3>
             <p>rikali.yassine@gmail.com</p>
             <p>ste.abxtrading@gmail.com</p>
           </div>
 
           <div className="info-card">
             <div className="info-icon"><FaMapMarkerAlt /></div>
-            <h3>{t.address}</h3>
+            <h3>{t.contact?.address || 'Adresse'}</h3>
             <p>LOT 28 31 ROUTE JERF LIHOUDI ZONE INDUSTRIEL</p>
             <p>Safi, Maroc</p>
           </div>
 
           <div className="info-card">
             <div className="info-icon"><FaClock /></div>
-            <h3>{t.hours}</h3>
-            <p>{t.openingHours.weekdays}</p>
-            <p>{t.openingHours.saturday}</p>
+            <h3>{t.contact?.hours || 'Horaires'}</h3>
+            <p>{t.contact?.openingHours?.weekdays || 'Lundi - Vendredi: 9h - 18h'}</p>
+            <p>{t.contact?.openingHours?.saturday || 'Samedi: 9h - 13h'}</p>
           </div>
         </div>
 
-        {/* Formulaire */}
         <div className="contact-form-section">
-          <h2 id="contact-form-title">{t.sendMessage}</h2>
-          <form id="contact-form" className="contact-form" onSubmit={handleSubmit}>
-            <div className={`form-group ${errors.name ? 'has-error' : formData.name ? 'has-success' : ''}`}>
-              <label htmlFor="name">{t.name}</label>
-              <input 
-                type="text" id="name" name="name" 
-                value={formData.name} onChange={handleChange}
-                className={errors.name ? 'invalid' : formData.name ? 'valid' : ''} 
-                required 
-              />
-              {errors.name && <div className="error-message">{errors.name}</div>}
+          <h2>{t.contact?.form?.title || 'Envoyez-nous un message'}</h2>
+
+          {status.info.msg && (
+            <div className={`status-message ${status.info.error ? 'error' : 'success'}`}>
+              <span>{status.info.msg}</span>
             </div>
-            
-            <div className={`form-group ${errors.phone ? 'has-error' : formData.phone ? 'has-success' : ''}`}>
-              <label htmlFor="phone">{t.phonePlaceholder}</label>
-              <input 
-                type="tel" id="phone" name="phone" 
-                value={formData.phone} onChange={handleChange}
-                className={errors.phone ? 'invalid' : formData.phone ? 'valid' : ''} 
-                required 
-              />
-              {errors.phone && <div className="error-message">{errors.phone}</div>}
+          )}
+
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">{t.contact?.form?.name || 'Nom'}</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Votre nom"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">{t.contact?.form?.email || 'Email'}</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Votre adresse email"
+                  required
+                />
+              </div>
             </div>
-            
-            <div className={`form-group ${errors.email ? 'has-error' : formData.email ? 'has-success' : ''}`}>
-              <label htmlFor="email">{t.emailPlaceholder}</label>
-              <input 
-                type="email" id="email" name="email" 
-                value={formData.email} onChange={handleChange}
-                className={errors.email ? 'invalid' : formData.email ? 'valid' : ''} 
-                required 
+
+            <div className="form-group">
+              <label htmlFor="phone">{t.contact?.form?.phone || 'Téléphone'} (optionnel)</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Votre numéro de téléphone"
               />
-              {errors.email && <div className="error-message">{errors.email}</div>}
             </div>
-            
-            <div className={`form-group ${errors.subject ? 'has-error' : formData.subject ? 'has-success' : ''}`}>
-              <label htmlFor="subject">{t.subject}</label>
-              <input 
-                type="text" id="subject" name="subject" 
-                value={formData.subject} onChange={handleChange}
-                className={errors.subject ? 'invalid' : formData.subject ? 'valid' : ''} 
-                required 
+
+            <div className="form-group">
+              <label htmlFor="subject">{t.contact?.form?.subject || 'Sujet'}</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="Sujet de votre message"
               />
-              {errors.subject && <div className="error-message">{errors.subject}</div>}
             </div>
-            
-            <div className={`form-group ${errors.message ? 'has-error' : formData.message ? 'has-success' : ''}`}>
-              <label htmlFor="message">{t.message}</label>
-              <textarea 
-                id="message" name="message" 
-                value={formData.message} onChange={handleChange}
-                className={errors.message ? 'invalid' : formData.message ? 'valid' : ''}
+
+            <div className="form-group">
+              <label htmlFor="message">{t.contact?.form?.message || 'Message'}</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Votre message..."
+                rows="6"
+                required
               ></textarea>
-              {errors.message && <div className="error-message">{errors.message}</div>}
             </div>
-            
-            <button type="submit" className="submit-button">{t.send}</button>
+
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={status.submitting}
+            >
+              {status.submitting
+                ? (t.contact?.form?.sending || 'Envoi en cours...')
+                : (t.contact?.form?.submit || 'Envoyer le message')}
+            </button>
           </form>
         </div>
 
-        {/* Carte */}
         <div className="map-section">
-          <h2>{t.location}</h2>
+          <h2>{t.contact?.location || 'Localisation'}</h2>
           <div className="map-container">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108170.53917339125!2d-9.33397763027105!3d32.31921229054736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdac212049843597%3A0x6b618c47dfd85d40!2sSafi%2C%20Maroc!5e0!3m2!1sfr!2sma!4v1709916852599!5m2!1sfr!2sma"
@@ -277,7 +238,7 @@ const Contact = () => {
             ></iframe>
           </div>
           <div className="map-address">
-            <p><strong>{t.mapAddress}</strong></p>
+            <p><strong>{t.contact?.mapAddress || 'Adresse sur la carte'}</strong></p>
           </div>
         </div>
       </div>

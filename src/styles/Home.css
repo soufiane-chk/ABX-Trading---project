@@ -23,7 +23,6 @@
    --desktop-width: 1200px;
  }
  
- /* Styles de base */
  html, body {
    margin: 0;
    padding: 0;
@@ -36,7 +35,6 @@
    scroll-behavior: smooth;
  }
 
- /* Correction ciblée pour la marge blanche à droite */
  html, body {
    width: 100%;
    max-width: 100%;
@@ -72,13 +70,10 @@
    overflow-x: hidden;
  }
 
-/* Remplacer les utilisations de -ms-high-contrast-adjust */
 * {
   forced-color-adjust: auto !important;
 }
 
-
-/* 1. Container principal */
 .home-page, .app {
   width: 100% !important;
   max-width: 100% !important;
@@ -96,7 +91,6 @@
   margin: 0 auto !important;
 }
 
-/* Correction ciblée pour éliminer la marge blanche à droite */
 html, body {
   width: 100%;
   max-width: 100%;
@@ -105,7 +99,6 @@ html, body {
   padding: 0;
 }
 
-/* Assurer que les sections principales respectent les limites */
 .home-page,
 .hero-section,
 .our-services-section,
@@ -119,7 +112,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Correction des éléments décoratifs qui causent des débordements */
 .circle-decoration,
 .dots-decoration,
 .wave-decoration-process {
@@ -129,7 +121,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Assurer que les grilles restent dans les limites */
 .why-choose-grid,
 .services-cards-container,
 .process-cards {
@@ -139,7 +130,6 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Empêcher les débordements des éléments absolus */
 .hero-navigation,
 .nav-arrow,
 .hero-content {
@@ -147,7 +137,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Correction spécifique pour les éléments décoratifs qui peuvent dépasser */
 .circle-decoration {
   position: fixed !important;
   z-index: -1 !important; 
@@ -155,7 +144,6 @@ html, body {
   pointer-events: none !important;
 }
 
-/* 2. Sections principales */
 .hero-section,
 .our-services-section,
 .services-section,
@@ -182,11 +170,10 @@ html, body {
   box-sizing: border-box !important;
 }
 
-/* 3. Conteneurs de cartes */
 .services-cards-container,
 .why-choose-grid {
   width: 100% !important;
-  max-width: 1400px !important; /* Augmenté de 1200px à 1400px */
+  max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -202,22 +189,19 @@ html, body {
   box-sizing: border-box !important;
 }
 
-/* 4. Cartes individuelles - largeur augmentée */
 .our-services-section .service-card {
-  width: 350px !important; /* Augmenté de 320px à 350px */
+  width: 350px !important;
 }
 
-/* 5. Cartes de processus */
 .service-card {
-  width: calc(50% - 60px) !important; /* Augmenté l'espace */
-  max-width: 600px !important; /* Plus grande largeur maximale */
+  width: calc(50% - 60px) !important;
+  max-width: 600px !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
   margin: 0 !important;
 }
 
-/* 6. Media queries pour responsive */
 @media (max-width: 1200px) {
   .service-card {
     width: calc(50% - 40px) !important;
@@ -233,7 +217,7 @@ html, body {
 @media (max-width: 768px) {
   .our-services-section .service-card {
     width: 100% !important;
-    max-width: 400px !important; /* Augmenté de 350px à 400px */
+    max-width: 400px !important;
   }
   
   .service-card {
@@ -248,7 +232,6 @@ html, body {
   }
 }
 
-/* Desktop First Approach */
 @media screen and (max-width: 1200px) {
   .hero-section {
     height: 85vh !important;
@@ -402,7 +385,6 @@ html, body {
   }
 }
 
-/* Animation pour le point lumineux */
 @keyframes pulsatePoint {
   0% {
     transform: translateX(-50%) scale(1);
@@ -418,7 +400,6 @@ html, body {
   }
 }
 
-/* Animation pulse pour le cercle actif */
 @keyframes pulseCircle {
   0% {
     box-shadow: 0 0 0 0 rgba(0, 184, 212, 0.6);
@@ -431,7 +412,6 @@ html, body {
   }
 }
 
-/* Animation de la ligne de progression */
 .timeline-progress-line {
   animation: glowLine 2s infinite alternate !important;
 }
@@ -480,7 +460,7 @@ html, body {
  .hero-section {
   position: relative;
   width: 100%;
-  height: 93vh; /* Réduit la hauteur à 70% de la hauteur de l'écran */
+  height: 93vh;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -490,7 +470,7 @@ html, body {
  
  .hero-section::before,
 .hero-section::after {
-  display: none !important; /* Supprime complètement ces éléments */
+  display: none !important;
 }
 
  .hero-image {
@@ -518,17 +498,16 @@ html, body {
    transform: translate(-50%, -50%) !important;
    text-align: center !important;
    color: white !important;
-   padding: 25px !important; /* Réduit de 30px à 25px */
+   padding: 25px !important;
    border-radius: 15px !important;
    z-index: 5 !important;
    background: rgba(0, 0, 0, 0.6) !important;
    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-   max-width: 700px !important; /* Réduit de 800px à 700px */
-   width: 80% !important; /* Réduit de 90% à 80% */
+   max-width: 700px !important;
+   width: 80% !important;
    margin: 0 auto !important;
  }
 
- /* Assurer que les éléments absolus ne causent pas de débordement */
  .hero-navigation,
  .nav-arrow,
  .hero-content {
@@ -537,17 +516,17 @@ html, body {
  
  .hero-content h1 {
    font-weight: 700;
-   font-size: 2.3rem !important; /* Légèrement réduit */
+   font-size: 2.3rem !important;
    color: #ffffff;
-   margin-bottom: 0.8rem !important; /* Réduit l'espace */
+   margin-bottom: 0.8rem !important;
    animation: fadeIn 1s ease-in-out;
  }
  
  .hero-content p {
    font-weight: 400;
-   font-size: 1.1rem !important; /* Légèrement réduit */
+   font-size: 1.1rem !important;
    color: #dddddd;
-   margin-bottom: 1.5rem !important; /* Réduit l'espace */
+   margin-bottom: 1.5rem !important;
    animation: fadeIn 1.5s ease-in-out;
  }
  
@@ -564,9 +543,9 @@ html, body {
   box-shadow: 0 4px 15px rgba(0, 102, 155, 0.3) !important;
   position: relative !important;
   overflow: hidden !important;
-  margin: 10px auto !important; /* Centrage horizontal */
-  display: block !important; /* Pour que le margin auto fonctionne */
-  padding: 12px 30px !important; /* Plus large */
+  margin: 10px auto !important;
+  display: block !important;
+  padding: 12px 30px !important;
 }
 
 .cta-button:hover {
@@ -580,7 +559,6 @@ html, body {
   box-shadow: 0 3px 10px rgba(0, 102, 155, 0.3) !important;
 }
 
-/* Animation de flèche descendante pour indiquer le défilement */
 .cta-button::after {
   content: "↓" !important;
   position: absolute !important;
@@ -594,11 +572,10 @@ html, body {
   transform: translateY(3px) !important;
 }
  
- /* Flèches de navigation */
 .nav-arrow {
   position: absolute !important;
-  top: 50% !important; /* Centre vertical */
-  transform: translateY(-50%) !important; /* Ajustement précis du centrage */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
   background: rgba(0, 0, 0, 0.5) !important;
   color: white !important;
   width: 50px !important;
@@ -650,7 +627,6 @@ html, body {
    background-color: white;
  }
 
- /* Styles pour la navigation du hero */
 .hero-navigation {
   position: absolute !important;
   bottom: 30px !important;
@@ -662,7 +638,6 @@ html, body {
   z-index: 10 !important;
 }
 
-/* Points de navigation */
 .hero-dots {
   display: flex !important;
   gap: 12px !important;
@@ -692,7 +667,6 @@ html, body {
   border-color: #00669b !important;
 }
 
-/* Styles des flèches de navigation */
 .nav-arrow {
   position: absolute;
   height: 50px;
@@ -721,7 +695,6 @@ html, body {
   border-color: white;
 }
 
-/* Assurer que les images restent derrière les flèches */
 .hero-image {
   z-index: 1;
 }
@@ -739,7 +712,6 @@ html, body {
    margin-bottom: 60px;
  }
  
- /* Titre animé de la section services */
  .section-header-animated {
    text-align: center;
    margin-bottom: 50px;
@@ -775,19 +747,18 @@ html, body {
    opacity: 0;
  }
  
- /* Cartes de services */
  .services-cards-container {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important; /* Colonnes flexibles avec largeur minimale de 350px */
-  gap: 30px !important; /* Espacement uniforme entre les cartes */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+  gap: 30px !important;
   width: 100% !important;
-  max-width: 1400px !important; /* Largeur maximale */
+  max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 0 20px !important; /* Réduction du padding horizontal */
+  padding: 0 20px !important;
 }
  
  .our-services-section .service-card {
-  width: 100% !important; /* Prend toute la largeur disponible dans la colonne */
+  width: 100% !important;
   height: auto !important;
   background: #fff;
   border-radius: 12px;
@@ -799,7 +770,7 @@ html, body {
 }
  
  .our-services-section .service-card:hover {
-  transform: scale(1.05); /* Agrandit légèrement la carte */
+  transform: scale(1.05);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
  
@@ -822,7 +793,7 @@ html, body {
   padding: 25px !important;
   display: flex !important;
   flex-direction: column !important;
-  flex: 1 !important; /* Permet au contenu de prendre toute la hauteur disponible */
+  flex: 1 !important;
 }
  
  .our-services-section .service-title {
@@ -858,7 +829,6 @@ html, body {
    padding: 0 10px !important;
  }
 
-/* Ajustements pour la section "Nos Services" */
 .our-services-section .service-card {
   height: auto !important;
   margin-bottom: 30px !important;
@@ -868,28 +838,25 @@ html, body {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Compression des images pour la section services */
 .our-services-section .service-image-container {
-  height: 220px !important; /* Hauteur réduite pour les images de services */
+  height: 220px !important;
   overflow: hidden !important;
   position: relative !important;
 }
 
-/* Ajustement de l'image pour qu'elle couvre bien l'espace */
 .our-services-section .service-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center !important; /* Centre l'image */
+  object-position: center !important;
   transition: transform 0.5s ease !important;
 }
 
-/* Positionnement de l'icône sur l'image */
 .our-services-section .process-stage-icon {
   position: absolute !important;
   bottom: 15px !important;
   right: 15px !important;
-  width: 55px !important; /* Taille légèrement plus petite que dans le processus */
+  width: 55px !important;
   height: 55px !important;
   border-radius: 50% !important;
   background: linear-gradient(135deg, #00669b, #00b8d4) !important;
@@ -904,18 +871,15 @@ html, body {
   border: 3px solid white !important;
 }
 
-/* Effet au survol des cartes */
 .our-services-section .service-card:hover {
   transform: translateY(-5px) !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Animation de l'image au survol */
 .our-services-section .service-card:hover .service-image {
   transform: scale(1.05) !important;
 }
 
-/* Ajustement du contenu texte */
 .our-services-section .service-content {
   padding: 20px 25px !important;
   background: white !important;
@@ -940,7 +904,6 @@ html, body {
   border-radius: 2px !important;
 }
 
-/* Ajustement pour mobile */
 @media (max-width: 768px) {
   .our-services-section .service-image-container {
     height: 180px !important;
@@ -953,29 +916,25 @@ html, body {
   }
 }
 
-/* Ajustements pour les cartes de la section "Nos Services" - recadrage des images */
 .our-services-section .service-image-container {
-  height: 220px !important; /* Hauteur fixe pour le conteneur d'images */
+  height: 220px !important;
   overflow: hidden !important;
   position: relative !important;
   border-bottom: 1px solid rgba(0, 102, 155, 0.1) !important;
 }
 
-/* Recadrage des images pour se concentrer sur le centre */
 .our-services-section .service-image {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Maintient le recadrage */
-  object-position: center 35% !important; /* Légèrement vers le haut pour voir plus de l'image */
+  object-fit: cover !important;
+  object-position: center 35% !important;
   transition: transform 0.5s ease !important;
 }
 
-/* Effet au survol réduit pour éviter de déformer l'image */
 .our-services-section .service-card:hover .service-image {
-  transform: scale(1.03) !important; /* Zoom minimal pour éviter la distorsion */
+  transform: scale(1.03) !important;
 }
 
-/* Amélioration du conteneur de cartes */
 .services-cards-container {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
@@ -984,7 +943,6 @@ html, body {
   padding: 0 20px !important;
 }
 
-/* Ajustements des cartes */
 .our-services-section .service-card {
   width: 100% !important; 
   height: auto !important;
@@ -995,89 +953,79 @@ html, body {
   background: white !important;
 }
 
-/* Ajustement pour mobile */
 @media (max-width: 768px) {
   .our-services-section .service-image-container {
-    height: 180px !important; /* Plus petit sur mobile */
+    height: 180px !important;
   }
   
   .services-cards-container {
-    grid-template-columns: 1fr !important; /* Une seule colonne sur mobile */
+    grid-template-columns: 1fr !important;
   }
 }
 
-/* Augmenter la hauteur des images dans les cartes de services sans modifier la largeur */
 .our-services-section .service-image-container {
-  height: 220px !important; /* Réduit de 280px à 220px pour moins de hauteur */
+  height: 220px !important;
   overflow: hidden !important;
   position: relative !important;
   border-bottom: 1px solid rgba(0, 102, 155, 0.1) !important;
-  width: 100% !important; /* S'assure que l'image prend toute la largeur */
+  width: 100% !important;
 }
 
-/* Ajustement de l'image pour maximiser la largeur */
 .our-services-section .service-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center center !important; /* Centrage parfait */
+  object-position: center center !important;
   transition: transform 0.5s ease !important;
 }
 
-/* Assurer que les cartes prennent toute la largeur disponible */
 .services-cards-container {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important; /* 3 colonnes égales */
-  gap: 25px !important; /* Légèrement réduit pour plus d'espace horizontal */
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 25px !important;
   width: 100% !important;
   max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 0 15px !important; /* Moins de padding horizontal */
+  padding: 0 15px !important;
 }
 
-/* Ajustement pour mobile */
 @media (max-width: 768px) {
   .our-services-section .service-image-container {
-    height: 180px !important; /* Encore plus court sur mobile */
+    height: 180px !important;
   }
 }
 
-/* Conteneur d'images des cartes de services */
 .our-services-section .service-image-container {
-  height: 150px !important; /* Hauteur réduite pour minimiser l'espace occupé */
+  height: 150px !important;
   overflow: hidden !important;
   position: relative !important;
-  width: 100% !important; /* Assure que l'image prend toute la largeur */
+  width: 100% !important;
 }
 
-/* Ajustement des images pour maximiser la largeur */
 .our-services-section .service-image {
-  width: 100% !important; /* L'image occupe toute la largeur */
-  height: 100% !important; /* L'image occupe toute la hauteur du conteneur */
-  object-fit: cover !important; /* Maintient le recadrage sans déformation */
-  object-position: center center !important; /* Centre l'image horizontalement et verticalement */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
   transition: transform 0.5s ease !important;
 }
 
-/* Effet au survol des images */
 .our-services-section .service-card:hover .service-image {
-  transform: scale(1.05) !important; /* Zoom léger au survol */
+  transform: scale(1.05) !important;
 }
 
-/* Conteneur des cartes de services */
 .services-cards-container {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important; /* Trois colonnes égales */
-  gap: 20px !important; /* Espacement entre les cartes */
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
   width: 100% !important;
-  max-width: 1400px !important; /* Largeur maximale */
+  max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 0 15px !important; /* Réduction du padding horizontal */
+  padding: 0 15px !important;
 }
 
-/* Cartes de services */
 .our-services-section .service-card {
-  width: 100% !important; /* Prend toute la largeur disponible dans la colonne */
+  width: 100% !important;
   height: auto !important;
   border-radius: 12px !important;
   overflow: hidden !important;
@@ -1086,18 +1034,16 @@ html, body {
   background: white !important;
 }
 
-/* Ajustement pour mobile */
 @media (max-width: 768px) {
   .our-services-section .service-image-container {
-    height: 120px !important; /* Hauteur encore plus réduite sur mobile */
+    height: 120px !important;
   }
 
   .services-cards-container {
-    grid-template-columns: 1fr !important; /* Une seule colonne sur mobile */
+    grid-template-columns: 1fr !important;
   }
 }
 
-/* Conteneur des icônes sur les images */
 .service-icon {
   position: absolute;
   bottom: 15px;
@@ -1115,7 +1061,6 @@ html, body {
   z-index: 10;
 }
 
-/* Styles pour les icônes des services */
 .service-icon {
   position: absolute !important;
   bottom: 15px !important;
@@ -1138,27 +1083,24 @@ html, body {
   transform: scale(1.15) !important;
 }
 
-/* Assurez-vous que le conteneur d'image est en position relative */
 .service-image-container {
   position: relative !important;
   overflow: hidden !important;
 }
 
-/* Réduction de la hauteur du conteneur d'image pour les services */
 .our-services-section .service-image-container {
-  height: 130px !important; /* Réduit de 150px à 130px pour occuper moins d'espace vertical */
+  height: 130px !important;
   overflow: hidden !important;
   position: relative !important;
   width: 100% !important;
   border-bottom: 1px solid rgba(0, 102, 155, 0.1) !important;
 }
 
-/* Positionnement optimisé des icônes en bas à droite */
 .service-icon {
   position: absolute !important;
-  bottom: 15px !important; /* Position fixe en bas */
-  right: 15px !important; /* Position fixe à droite */
-  width: 45px !important; /* Taille légèrement réduite pour être proportionnelle à l'image */
+  bottom: 15px !important;
+  right: 15px !important;
+  width: 45px !important;
   height: 45px !important;
   border-radius: 50% !important;
   background: linear-gradient(135deg, #00669b, #00b8d4) !important;
@@ -1172,15 +1114,13 @@ html, body {
   transition: transform 0.3s ease !important;
 }
 
-/* Animation au survol */
 .service-card:hover .service-icon {
   transform: scale(1.15) !important;
 }
 
-/* Ajustement pour mobile */
 @media (max-width: 768px) {
   .our-services-section .service-image-container {
-    height: 110px !important; /* Encore plus court sur mobile */
+    height: 110px !important;
   }
   
   .service-icon {
@@ -1191,7 +1131,6 @@ html, body {
   }
 }
 
-/* Solution ciblée pour éliminer la marge blanche à droite */
 html, body {
   width: 100%;
   max-width: 100%;
@@ -1206,15 +1145,13 @@ html, body {
   box-sizing: border-box !important;
 }
 
-/* Correction des éléments décoratifs qui causent le débordement */
 .circle-decoration {
-  position: fixed !important; /* Changer absolute en fixed */
-  z-index: -1 !important; /* S'assurer qu'il est derrière tout */
+  position: fixed !important;
+  z-index: -1 !important;
 }
 
-/* Ajustement des grilles pour qu'elles restent à l'intérieur des limites */
 .why-choose-grid {
-  width: 90% !important; /* Limiter à 90% pour éviter les débordements */
+  width: 90% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
   gap: 20px !important;
@@ -1252,7 +1189,6 @@ html, body {
    opacity: 0.3;
  }
  
- /* Nouvelle barre de progression avec thème maritime */
 .timeline-progress {
   position: absolute !important;
   left: 0 !important;
@@ -1267,7 +1203,6 @@ html, body {
   overflow: hidden !important;
 }
 
-/* Effet de vague dans la barre de progression */
 .timeline-progress::before {
   content: '' !important;
   position: absolute !important;
@@ -1282,7 +1217,6 @@ html, body {
   opacity: 0.3 !important;
 }
 
-/* Point lumineux qui suit la progression */
 .timeline-progress::after {
   content: '' !important;
   position: absolute !important;
@@ -1297,7 +1231,6 @@ html, body {
   animation: pulsateTimeline 2s infinite !important;
 }
 
-/* Animation de la vague */
 @keyframes wave {
   0% {
     background-position: 0 0;
@@ -1307,7 +1240,6 @@ html, body {
   }
 }
 
-/* Animation du point lumineux */
 @keyframes pulsateTimeline {
   0% {
     box-shadow: 0 0 0 0 rgba(0, 184, 212, 0.8);
@@ -1320,16 +1252,14 @@ html, body {
   }
 }
 
-/* Styles pour les cartes de processus de production */
 .services-section.process-section {
   position: relative;
   padding: 80px 20px;
   background: linear-gradient(135deg, #f7fbff 0%, #ffffff 100%);
   margin-bottom: 60px;
-  overflow: visible !important; /* Important pour que la timeline soit visible */
+  overflow: visible !important;
 }
 
-/* Suppression complète de toutes les numérotations */
 .services-section .service-card::before,
 .services-section .service-card .service-number,
 .services-section .service-card .service-content::before,
@@ -1344,8 +1274,7 @@ html, body {
   background: none !important;
 }
 
-/* Cartes du processus de production */
- .services-container {
+.services-container {
   position: relative !important;
   padding: 40px 0 80px !important;
   display: flex !important;
@@ -1380,7 +1309,6 @@ html, body {
    margin-right: 0;
  }
  
- /* Suppression spécifique des numérotations pour les cartes 3 et 4 */
  .services-section .service-card::before,
  .services-section .service-card .service-number,
  .services-section .service-card .service-content::before,
@@ -1399,25 +1327,23 @@ html, body {
    padding-top: 20px !important;
  }
  
- /* Images des cartes du processus */
  .service-card .service-image-container {
   width: 100%;
-  height: 300px !important; /* Augmenté de 200px à 300px */
+  height: 300px !important;
   overflow: hidden;
 }
  
  .service-card .service-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Garde l'image proportionnelle */
-  transition: transform 0.5s ease; /* Transition plus fluide */
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
  
  .service-card:hover .service-image {
-  transform: scale(1.05); /* Zoom moins agressif */
+  transform: scale(1.05);
 }
  
- /* Contenu texte des cartes */
  .service-card .service-content {
   padding: 20px;
   text-align: center;
@@ -1436,7 +1362,6 @@ html, body {
    font-size: 15px;
  }
  
- /* Icônes pour le processus de production */
  .service-icon {
    position: absolute;
    top: 10px;
@@ -1453,24 +1378,22 @@ html, body {
    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
  }
 
-/* Conteneur principal de la timeline */
 .timeline-container {
   position: absolute !important;
-  left: 50% !important; /* Centrer horizontalement */
-  transform: translateX(-50%) !important; /* Ajustement précis du centrage */
-  top: 250px !important; /* Position verticale - début à la première carte */
-  height: calc(100% - 350px) !important; /* Hauteur ajustée pour couvrir de la 1ère à la dernière carte */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: 250px !important;
+  height: calc(100% - 350px) !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important; /* Répartit les cercles uniformément */
+  justify-content: space-between !important;
   align-items: center !important;
   z-index: 1 !important;
-  width: 6px !important; /* Largeur de la ligne centrale */
+  width: 6px !important;
   background: linear-gradient(to bottom, rgba(225, 232, 237, 0.4), rgba(225, 232, 237, 0.8)) !important;
   border-radius: 8px !important;
 }
 
-/* Timeline Step Container */
 .timeline-step {
   position: absolute !important;
   left: 50% !important;
@@ -1479,7 +1402,6 @@ html, body {
   transition: all 0.4s ease !important;
 }
 
-/* Cercles de la timeline */
 .timeline-circle {
   width: 40px !important;
   height: 40px !important;
@@ -1496,7 +1418,6 @@ html, body {
   z-index: 3 !important;
 }
 
-/* Cercle actif */
 .timeline-circle.active {
   transform: scale(1.3) !important;
   background: linear-gradient(135deg, #00669b, #00b8d4) !important;
@@ -1514,7 +1435,6 @@ html, body {
   animation: ripple 1.5s infinite;
 }
 
-/* Icône dans le cercle */
 .timeline-icon {
   color: #00669b !important;
   font-size: 16px !important;
@@ -1526,7 +1446,6 @@ html, body {
   transform: rotate(360deg) !important;
 }
 
-/* Ondulations autour du cercle actif */
 .timeline-ripple {
   position: absolute !important;
   top: 50% !important;
@@ -1556,7 +1475,6 @@ html, body {
   animation-delay: 0.8s !important;
 }
 
-/* Connecteur entre les cercles */
 .timeline-connector {
   position: absolute !important;
   width: 8px !important;
@@ -1574,13 +1492,12 @@ html, body {
   height: calc(100% - 40px) !important;
 }
 
-/* Ligne de progression */
 .timeline-progress-line {
   position: absolute !important;
   left: 0 !important;
-  top: 10px !important; /* Débute au niveau du premier cercle */
+  top: 10px !important;
   width: 100% !important;
-  height: 0% !important; /* Commence à 0 */
+  height: 0% !important;
   background: linear-gradient(to bottom, #00669b, #00b8d4) !important;
   border-radius: 4px !important;
   transition: height 0.8s ease-in-out !important;
@@ -1588,27 +1505,25 @@ html, body {
   box-shadow: 0 0 10px rgba(0, 184, 212, 0.4) !important;
 }
 
-/* Ligne de progression qui se remplit correctement */
 .timeline-progress-line {
   position: absolute !important;
   left: 0 !important;
-  top: 0 !important; /* Commence tout en haut */
+  top: 0 !important;
   width: 100% !important;
-  height: 0% !important; /* Commence à 0% */
+  height: 0% !important;
   background: linear-gradient(to bottom, #00669b, #00b8d4) !important;
   border-radius: 4px !important;
-  transition: height 0.5s ease-in-out !important; /* Transition plus rapide */
+  transition: height 0.5s ease-in-out !important;
   z-index: 2 !important;
   box-shadow: 0 0 10px rgba(0, 184, 212, 0.4) !important;
 }
 
-/* Ligne de progression qui se remplit - corrigée */
 .timeline-progress-line {
   position: absolute !important;
   left: 0 !important;
-  top: 10px !important; /* Commence au premier cercle */
+  top: 10px !important;
   width: 100% !important;
-  height: 0% !important; /* Commence à 0% */
+  height: 0% !important;
   background: linear-gradient(to bottom, #00669b, #00b8d4) !important;
   border-radius: 4px !important;
   transition: height 0.8s ease-in-out !important;
@@ -1616,27 +1531,24 @@ html, body {
   box-shadow: 0 0 10px rgba(0, 184, 212, 0.4) !important;
 }
 
-/* Ligne de progression qui se remplit - optimisée */
 .timeline-progress-line {
   position: absolute !important;
   left: 0 !important;
-  top: 0 !important; /* Commence tout en haut */
+  top: 0 !important;
   width: 100% !important;
-  height: 0% !important; /* Commence à 0% */
+  height: 0% !important;
   background: linear-gradient(to bottom, #00669b, #00b8d4) !important;
   border-radius: 4px !important;
-  transition: height 0.4s ease-out !important; /* Transition plus fluide */
+  transition: height 0.4s ease-out !important;
   z-index: 2 !important;
   box-shadow: 0 0 10px rgba(0, 184, 212, 0.4) !important;
-  will-change: height !important; /* Optimisation des performances */
+  will-change: height !important;
 }
 
-/* Suppression du point bleu au début */
 .timeline-progress-line::after {
   display: none !important;
 }
 
-/* Cercles représentant chaque étape - ajustement */
 .timeline-circle {
   width: 20px !important;
   height: 20px !important;
@@ -1648,22 +1560,19 @@ html, body {
   position: relative !important;
 }
 
-/* Cercle actif - effet plus visible */
 .timeline-circle.active {
   background-color: #00b8d4 !important;
   transform: scale(1.2) !important;
   box-shadow: 0 0 15px rgba(0, 184, 212, 0.8) !important;
 }
 
-/* Lignes entre les cercles */
 .timeline-line {
   width: 6px !important;
-  height: 100px !important; /* Ajustez selon l'espacement des cartes */
+  height: 100px !important;
   background-color: rgba(225, 232, 237, 0.8) !important;
   margin: 10px 0 !important;
 }
 
-/* Ajustement de la disposition des cartes pour accommoder la timeline centrale */
 .process-container {
   position: relative !important;
   padding-top: 20px !important;
@@ -1674,7 +1583,6 @@ html, body {
   z-index: 5 !important;
 }
 
-/* Timeline innovante avec thème maritime */
 .wave-timeline {
   position: absolute !important;
   left: 50% !important;
@@ -1689,7 +1597,6 @@ html, body {
   box-shadow: 0 0 20px rgba(0, 102, 155, 0.1) !important;
 }
 
-/* Arrière-plan animé de vagues */
 .wave-background {
   position: absolute !important;
   top: 0 !important;
@@ -1714,7 +1621,6 @@ html, body {
   animation: rotateWave 30s infinite linear !important;
 }
 
-/* Conteneur de la timeline avec fond transparent */
 .wave-timeline {
   position: absolute !important;
   left: 50% !important;
@@ -1729,13 +1635,12 @@ html, body {
   box-shadow: 0 0 20px rgba(0, 102, 155, 0.1) !important;
 }
 
-/* Effet de vague qui se remplit progressivement */
 .wave-background {
   position: absolute !important;
   left: 0 !important;
-  bottom: 0 !important; /* Position initiale au bas */
+  bottom: 0 !important;
   width: 100% !important;
-  height: 0% !important; /* Commence à 0% */
+  height: 0% !important;
   background: linear-gradient(to bottom, #00669b, #00b8d4) !important;
   transition: height 0.5s ease-in-out !important;
   z-index: 2 !important;
@@ -1743,20 +1648,18 @@ html, body {
   box-shadow: 0 0 15px rgba(0, 184, 212, 0.5) !important;
 }
 
-/* Assurez-vous que ce CSS est bien dans votre fichier Home.css */
 .wave-background {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 0%; /* Commence à 0% */
+  height: 0%;
   background: linear-gradient(to top, #00669b, #00b8d4);
   border-radius: 4px;
   transition: height 0.4s ease-out;
   z-index: 1;
 }
 
-/* Animation de vagues à l'intérieur de la barre */
 .wave-background::before {
   content: '' !important;
   position: absolute !important;
@@ -1784,7 +1687,6 @@ html, body {
   z-index: 10 !important;
 }
 
-/* Style des icônes individuelles */
 .image-icon {
   width: 50px !important;
   height: 50px !important;
@@ -1800,14 +1702,12 @@ html, body {
   font-size: 20px !important;
 }
 
-/* Animation au survol */
 .image-icon:hover {
   transform: translateY(-5px) !important;
   background: linear-gradient(135deg, #00669b, #00b8d4) !important;
   color: white !important;
 }
 
-/* Adaptation responsive */
 @media (max-width: 768px) {
   .image-icons-container {
     gap: 10px !important;
@@ -1820,7 +1720,6 @@ html, body {
   }
 }
 
-/* Style pour une icône unique dans le coin de l'image */
 .process-stage-icon {
   position: absolute !important;
   bottom: 15px !important;
@@ -1840,20 +1739,17 @@ html, body {
   border: 3px solid white !important;
 }
 
-/* Animation de l'icône au survol de la carte */
 .service-card:hover .process-stage-icon {
   transform: scale(1.1) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Positionnement relatif du conteneur d'image */
 .service-image-container {
   position: relative !important;
   overflow: hidden !important;
-  height: 300px !important; /* Hauteur augmentée comme demandé */
+  height: 300px !important;
 }
 
-/* Ajustement de l'image */
 .service-image {
   width: 100% !important;
   height: 100% !important;
@@ -1861,12 +1757,10 @@ html, body {
   transition: transform 0.5s ease !important;
 }
 
-/* Zoom réduit au survol */
 .service-card:hover .service-image {
   transform: scale(1.05) !important;
 }
 
-/* Responsive pour mobile */
 @media (max-width: 768px) {
   .process-stage-icon {
     width: 50px !important;
@@ -1881,7 +1775,6 @@ html, body {
   }
 }
 
-/* Disposition des cartes de processus avec timeline alternée gauche/droite */
 .process-cards {
   position: relative !important;
   width: 100% !important;
@@ -1894,7 +1787,6 @@ html, body {
   z-index: 10 !important;
 }
 
-/* Style des cartes du processus */
 .process-cards .service-card {
   width: calc(50% - 50px) !important;
   max-width: 600px !important;
@@ -1908,7 +1800,6 @@ html, body {
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-/* Position alternée des cartes */
 .process-cards .service-card:nth-child(odd) {
   align-self: flex-start !important;
   margin-right: auto !important;
@@ -1923,13 +1814,11 @@ html, body {
   transform-origin: left center !important;
 }
 
-/* Animation au survol */
 .process-cards .service-card:hover {
   transform: translateY(-5px) !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Ajustement de la timeline centrale */
 .timeline-container.wave-timeline {
   position: absolute !important;
   left: 50% !important;
@@ -1943,7 +1832,6 @@ html, body {
   background: rgba(225, 232, 237, 0.5) !important;
 }
 
-/* Responsive - Ajustement pour mobile */
 @media (max-width: 992px) {
   .process-cards .service-card {
     width: calc(50% - 40px) !important;
@@ -1985,7 +1873,7 @@ html, body {
    gap: 30px;
    max-width: 1200px;
    margin: 0 auto;
-   width: 90% !important; /* Limiter à 90% pour éviter les débordements */
+   width: 90% !important;
    gap: 20px !important;
    box-sizing: border-box !important;
  }
@@ -2085,8 +1973,8 @@ html, body {
  }
  
  .circle-decoration {
-   position: fixed !important; /* Changer absolute en fixed */
-   z-index: -1 !important; /* S'assurer qu'il est derrière tout */
+   position: fixed !important;
+   z-index: -1 !important;
    border-radius: 50%;
    opacity: 0.2;
    background: var(--gradient-primary);
@@ -2162,48 +2050,43 @@ html, body {
    background-color: #1ebd57;
  }
 
-/* Correction du bouton WhatsApp */
 .whatsapp-button {
   position: fixed !important;
-  bottom: 30px !important; /* Position légèrement plus haute */
-  right: 30px !important; /* Position légèrement plus à droite */
-  width: 60px !important; /* Taille augmentée */
-  height: 60px !important; /* Taille augmentée */
+  bottom: 30px !important;
+  right: 30px !important;
+  width: 60px !important;
+  height: 60px !important;
   border-radius: 50% !important;
-  background-color: #25d366 !important; /* Vert WhatsApp */
+  background-color: #25d366 !important;
   color: white !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important; /* Ombre plus visible */
-  transition: all 0.3s ease !important; /* Transition pour toutes les propriétés */
-  z-index: 1000 !important; /* S'assure qu'il est au-dessus des autres éléments */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease !important;
+  z-index: 1000 !important;
   border: none !important;
   text-decoration: none !important;
 }
 
-/* Effets au survol */
 .whatsapp-button:hover {
-  background-color: #1ebd57 !important; /* Vert plus foncé */
-  transform: scale(1.1) !important; /* Léger agrandissement */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important; /* Ombre plus grande */
+  background-color: #1ebd57 !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Effet au clic */
 .whatsapp-button:active {
-  transform: scale(0.95) !important; /* Réduction lors du clic */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important; /* Ombre réduite */
-  background-color: #128c7e !important; /* Vert encore plus foncé */
+  transform: scale(0.95) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  background-color: #128c7e !important;
 }
 
-/* Style de l'icône */
 .whatsapp-button i {
-  font-size: 30px !important; /* Taille de l'icône augmentée */
+  font-size: 30px !important;
   color: white !important;
 }
 
-/* Animation d'impulsion pour attirer l'attention */
 @keyframes whatsappPulse {
   0% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
@@ -2220,7 +2103,6 @@ html, body {
   animation: whatsappPulse 2s infinite !important;
 }
 
-/* Style du conteneur WhatsApp */
 .whatsapp-container {
   position: fixed !important;
   bottom: 30px !important;
@@ -2228,7 +2110,6 @@ html, body {
   z-index: 1000 !important;
 }
 
-/* Style du bouton WhatsApp */
 .whatsapp-button {
   width: 60px !important;
   height: 60px !important;
@@ -2244,13 +2125,11 @@ html, body {
   border: none !important;
 }
 
-/* Animation du bouton */
 .whatsapp-button:hover {
   transform: scale(1.1) !important;
   background-color: #1ebd57 !important;
 }
 
-/* Boîte de dialogue WhatsApp */
 .whatsapp-chatbox {
   position: absolute !important;
   bottom: 75px !important;
@@ -2278,7 +2157,6 @@ html, body {
   }
 }
 
-/* En-tête de la boîte de dialogue */
 .chatbox-header {
   background-color: #25d366 !important;
   color: white !important;
@@ -2298,7 +2176,6 @@ close-icon:hover {
   transform: rotate(90deg) !important;
 }
 
-/* Corps de la boîte de dialogue */
 .chatbox-body {
   padding: 15px !important;
   max-height: 200px !important;
@@ -2316,7 +2193,6 @@ close-icon:hover {
   max-width: 85% !important;
 }
 
-/* Pied de page de la boîte de dialogue */
 .chatbox-footer {
   padding: 15px !important;
   background-color: white !important;
@@ -2430,7 +2306,7 @@ close-icon:hover {
    }
    
    .service-card .service-image-container {
-    height: 250px !important; /* Légèrement plus petit sur mobile */
+    height: 250px !important;
   }
   
   .image-icons-container {

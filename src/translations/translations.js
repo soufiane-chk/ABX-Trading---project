@@ -4,6 +4,13 @@ import imgcond from "../assets/imgsupp3.png";
 
 export const translations = {
   FR: {
+    header: {
+      home: "Accueil",
+      products: "Produits",
+      contact: "Contact",
+      orders: "Commandes",
+      login: "Connexion"
+    },
     nav: {
       home: "Accueil",
       products: "Produits",
@@ -200,6 +207,13 @@ export const translations = {
     }
   },
   EN: {
+    header: {
+      home: "Home",
+      products: "Products",
+      contact: "Contact",
+      orders: "Orders",
+      login: "Login"
+    },
     nav: {
       home: "Home",
       products: "Products",
@@ -392,6 +406,13 @@ export const translations = {
     }
   },
   ES: {
+    header: {
+      home: "Inicio",
+      products: "Productos",
+      contact: "Contacto",
+      orders: "Pedidos",
+      login: "Iniciar sesión"
+    },
     nav: {
       home: "Inicio",
       products: "Productos",
@@ -572,6 +593,13 @@ export const translations = {
     }
   },
   PT: {
+    header: {
+      home: "Início",
+      products: "Produtos",
+      contact: "Contato",
+      orders: "Pedidos",
+      login: "Entrar"
+    },
     nav: {
       home: "Início",
       products: "Produtos",

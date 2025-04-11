@@ -6,6 +6,9 @@ import PreFooter from '../components/PreFooter';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from "../translations/translations";
 import "../styles/Products.css";
+import axios from 'axios';
+import { useCart } from '../context/CartContext';
+import { FaCartPlus, FaTimes } from 'react-icons/fa';
 
 /* Images des produits */
 import sardineImg from "../assets/sardine.jpg";
@@ -17,78 +20,43 @@ import seicheImg from "../assets/seiche1.jpg";
 import almendritaImg from "../assets/almendrita2.jpg";
 import puntillaImg from "../assets/puntilla1.jpeg";
 import muletImg from "../assets/imgmulet.jpg";
+import imgcongImg from "../assets/imgcong.jpg";
 
+// Mappage des images importées
 const images = {
   poulpe: poulpeImg,
   calamar: calamarImg,
+  calamar1: calamarImg,
   seiche: seicheImg,
+  seiche1: seicheImg,
   mulet: muletImg,
+  imgmulet: muletImg,
   almendrita: almendritaImg,
+  almendrita2: almendritaImg,
   puntilla: puntillaImg,
+  puntilla1: puntillaImg,
   sardine: sardineImg,
   maquereau: maquereauImg,
   sabre: sabreImg,
+  sabre1: sabreImg,
+  imgcong: imgcongImg
 };
 
-const products = [
-  {
-    id: 1,
-    nom: "Poulpe",
-    category: "Mollusques Céphalopodes",
-    imageKey: "poulpe",
-  },
-  {
-    id: 2,
-    nom: "Calamar",
-    category: "Mollusques Céphalopodes",
-    imageKey: "calamar",
-  },
-  {
-    id: 3,
-    nom: "Seiche",
-    category: "Mollusques Céphalopodes",
-    imageKey: "seiche",
-  },
-  {
-    id: 4,
-    nom: "Mulet",
-    category: "Poissons Pélagiques",
-    imageKey: "mulet",
-  },
-  {
-    id: 5,
-    nom: "Almendrita",
-    category: "Poissons Pélagiques",
-    imageKey: "almendrita",
-  },
-  {
-    id: 6,
-    nom: "Puntilla",
-    category: "Mollusques Céphalopodes",
-    imageKey: "puntilla",
-  },
-  {
-    id: 7,
-    nom: "Sardine",
-    category: "Poissons Pélagiques",
-    imageKey: "sardine",
-  },
-  {
-    id: 8,
-    nom: "Maquereau",
-    category: "Poissons Pélagiques",
-    imageKey: "maquereau",
-  },
-  {
-    id: 9,
-    nom: "Sabre",
-    category: "Poissons Pélagiques",
-    imageKey: "sabre",
-  },
+// Produits statiques par défaut
+const DEFAULT_PRODUCTS = [
+  { _id: '1', name: 'Sardine', category: 'Poissons Pélagiques', price: 12.99, image: 'sardine.jpg', imageKey: 'sardine' },
+  { _id: '2', name: 'Poulpe', category: 'Mollusques Céphalopodes', price: 25.99, image: 'poulpe.jpg', imageKey: 'poulpe' },
+  { _id: '3', name: 'Calamar', category: 'Mollusques Céphalopodes', price: 22.50, image: 'calamar.jpg', imageKey: 'calamar1' },
+  { _id: '4', name: 'Seiche', category: 'Mollusques Céphalopodes', price: 19.75, image: 'seiche.jpg', imageKey: 'seiche1' },
+  { _id: '5', name: 'Maquereau', category: 'Poissons Pélagiques', price: 14.50, image: 'maquereau.jpg', imageKey: 'maquereau' },
+  { _id: '6', name: 'Sabre', category: 'Poissons Pélagiques', price: 16.25, image: 'sabre.jpg', imageKey: 'sabre1' },
+  { _id: '7', name: 'Mulet', category: 'Poissons Pélagiques', price: 13.75, image: 'mulet.jpg', imageKey: 'imgmulet' },
+  { _id: '8', name: 'Almendrita', category: 'Poissons Pélagiques', price: 17.99, image: 'almendrita.jpg', imageKey: 'almendrita2' }
 ];
 
 const Products = () => {
   const { t, language } = useLanguage();
+  const { convertToMAD, addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [showOrderForm, setShowOrderForm] = useState(false);
@@ -101,6 +69,8 @@ const Products = () => {
   });
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [detailProduct, setDetailProduct] = useState(null);
+  const [products, setProducts] = useState(DEFAULT_PRODUCTS); // Initialiser avec les produits par défaut
+  const [isLoading, setIsLoading] = useState(false);
 
   const categories = t.products.categories;
 
@@ -112,11 +82,59 @@ const Products = () => {
     setSelectedCategory(t.products.categories[0]);
   }, [t.products.categories]);
 
+  // Effet pour charger les produits depuis l'API après l'affichage initial
+  useEffect(() => {
+    const fetchProductsFromAPI = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get('http://localhost:5000/api/products');
+        
+        if (response.data && response.data.length > 0) {
+          // Enrichir les données de l'API avec des imageKey pour assurer l'affichage des images
+          const productsWithImages = response.data.map(product => {
+            // Essayer de trouver une imageKey basée sur le nom de l'image ou d'autres propriétés
+            let imageKey = product.image?.replace('.jpg', '') || '';
+            
+            // Si on ne trouve pas l'image, utiliser une correspondance par nom
+            if (!images[imageKey]) {
+              // Convertir le nom en minuscule et supprimer les espaces pour la recherche
+              const normalizedName = product.name.toLowerCase().replace(/\s+/g, '');
+              
+              // Rechercher une correspondance approximative dans nos images
+              const possibleMatch = Object.keys(images).find(key => 
+                normalizedName.includes(key) || key.includes(normalizedName)
+              );
+              
+              if (possibleMatch) {
+                imageKey = possibleMatch;
+              }
+            }
+            
+            return {
+              ...product,
+              imageKey: imageKey || 'calamar1' // Utiliser calamar1 comme fallback
+            };
+          });
+          
+          setProducts(productsWithImages);
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération des produits:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProductsFromAPI();
+  }, []);
+
   /* Filtrage des produits */
   const filteredProducts = products.filter((produit) => {
+    if (!produit.name || !produit.category) return false; // Exclure les produits sans "name" ou "category"
+
     const isAllCategory = selectedCategory === categories[0];
     if (isAllCategory) return true;
-    
+
     const categoryMap = {
       'Poissons Pélagiques': 'Poissons Pélagiques',
       'Céphalopodes': 'Mollusques Céphalopodes',
@@ -127,7 +145,7 @@ const Products = () => {
       'Peixes Pelágicos': 'Poissons Pélagiques',
       'Cefalópodes': 'Mollusques Céphalopodes'
     };
-    
+
     const frenchCategory = categoryMap[selectedCategory] || selectedCategory;
     return produit.category === frenchCategory || produit.category.includes(frenchCategory);
   });
@@ -197,6 +215,19 @@ const Products = () => {
     document.body.style.overflow = 'hidden';
   };
 
+  const handleAddToCart = (product, event) => {
+    event.stopPropagation();
+    
+    // Assurez-vous que le produit a un prix avant de l'ajouter
+    const productWithPrice = {
+      ...product,
+      price: product.price || 15.99, // Prix par défaut si non défini
+      imageUrl: images[product.image?.replace('.jpg', '')] || 'default.jpg' // Pour l'image dans le panier
+    };
+    
+    addToCart(productWithPrice);
+  };
+
   return (
     <div className="products-page">
       <Header />
@@ -208,17 +239,8 @@ const Products = () => {
       </div>
 
       <div className="products-container">
-        {/* Filtres */}
+        {/* Filtres - uniquement catégories, sans recherche */}
         <div className="filters-section">
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder={t.products.searchPlaceholder}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
           <div className="categories-filter">
             {categories.map(category => (
               <button
@@ -234,11 +256,15 @@ const Products = () => {
 
         {/* Grille de produits */}
         <div className="products-grid">
-          {filteredProducts.filter(produit => produit.nom.toLowerCase().includes(searchTerm.toLowerCase()))
+          {filteredProducts
+            .filter(produit => produit.name)
             .map((produit) => (
-              <div key={produit.id} className="product-card">
+              <div key={produit._id} className="product-card">
                 <div className="product-image-container">
-                  <img src={images[produit.imageKey]} alt={produit.nom} />
+                  <img 
+                    src={images[produit.image?.replace('.jpg', '')] || images['sardine']} 
+                    alt={produit.name || 'Produit'} 
+                  />
                   <div className="product-overlay">
                     <button
                       className="detail-btn"
@@ -249,14 +275,37 @@ const Products = () => {
                   </div>
                 </div>
                 <div className="product-info">
-                  <h3>{t.products.items.find(item => item.imageKey === produit.imageKey)?.nom || produit.nom}</h3>
-                  <p className="category">{t.products.items.find(item => item.imageKey === produit.imageKey)?.category || produit.category}</p>
-                  <button
-                    className="order-button"
-                    onClick={() => handleOrderClick(produit)}
-                  >
-                    {t.products.orderButton}
-                  </button>
+                  <h3>{produit.name}</h3>
+                  <p className="category">{produit.category}</p>
+                  
+                  {/* Affichage du prix et boutons */}
+                  <div className="product-price-action">
+                    <span className="product-price">
+                      {produit.price ? 
+                        `${(produit.price * 10.93).toFixed(2)} MAD/kg` : 
+                        `${(15.99 * 10.93).toFixed(2)} MAD/kg`}
+                    </span>
+                    <div className="product-actions">
+                      <button
+                        className="add-to-cart-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart({
+                            ...produit,
+                            imageUrl: images[produit.image?.replace('.jpg', '')] || images['sardine']
+                          });
+                        }}
+                      >
+                        <FaCartPlus /> Ajouter
+                      </button>
+                      <button
+                        className="order-button"
+                        onClick={() => handleOrderClick(produit)}
+                      >
+                        {t.products.orderButton}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -326,19 +375,27 @@ const Products = () => {
         }}>
           <div className="product-detail-modal" onClick={(e) => e.stopPropagation()}>
             <button 
-              className="close-modal" 
+              className="close-detail-modal" 
               onClick={() => {
                 setShowDetailModal(false);
                 document.body.style.overflow = 'auto';
               }}
             >
-              &times;
+              <FaTimes />
             </button>
             
             <div className="product-detail-content">
               <div className="product-detail-left">
                 <div className="product-detail-image-container">
-                  <img src={images[detailProduct.imageKey]} alt={detailProduct.nom} className="product-detail-image" />
+                  <img 
+                    src={typeof images[detailProduct.imageKey] !== 'undefined' ? images[detailProduct.imageKey] : '/assets/calamar1.jpg'} 
+                    alt={detailProduct.nom} 
+                    className="product-detail-image"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/assets/calamar1.jpg';
+                    }}
+                  />
                   <div className="product-detail-overlay"></div>
                   <span className="product-category-badge">{detailProduct.category}</span>
                 </div>

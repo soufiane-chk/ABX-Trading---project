@@ -4,20 +4,18 @@ import { translations } from '../translations/translations';
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('FR');
-  const [t, setT] = useState(translations.FR);
-
-  useEffect(() => {
+  const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
+    return savedLanguage || 'FR'; // Langue par défaut
+  });
 
+  // Sauvegarde de la préférence de langue
   useEffect(() => {
-    setT(translations[language.toUpperCase()] || translations.FR);
     localStorage.setItem('language', language);
   }, [language]);
+
+  // Obtention des traductions pour la langue actuelle
+  const t = translations[language] || translations.FR;
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
@@ -29,7 +27,7 @@ export const LanguageProvider = ({ children }) => {
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error('useLanguage doit être utilisé à l\'intérieur d\'un LanguageProvider');
   }
   return context;
 };

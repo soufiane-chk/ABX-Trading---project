@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/footer.css";
 import { useLanguage } from '../context/LanguageContext';
-import logoSvg from "../assets/logosite.svg"; // Importez le logo SVG
+import logoSvg from "../assets/logosite.svg"; 
 
 const Footer = () => {
   const { t } = useLanguage();
