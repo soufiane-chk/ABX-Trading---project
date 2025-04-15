@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [globalSuccessMessage, setGlobalSuccessMessage] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [activeTab, setActiveTab] = useState('login');
 
   // Fonction pour effacer les erreurs
   const clearError = () => {
@@ -48,35 +50,15 @@ export const AuthProvider = ({ children }) => {
 
   // Inscription d'un utilisateur
   const register = async (name, email, password) => {
-    setLoading(true);
-    setError(null);
     try {
-      console.log("Tentative d'inscription:", { name, email });
-      
-      const res = await axios.post('http://localhost:5000/api/auth/register', {
-        name,
-        email,
-        password
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
       });
-      
-      console.log("Réponse du serveur:", res.data);
-      
-      // Définir un message de succès global
-      setGlobalSuccessMessage("✅ Votre compte a été créé avec succès!");
-      
-      // Effacer le message après un délai
-      setTimeout(() => {
-        setGlobalSuccessMessage("");
-      }, 5000);
-      
-      // IMPORTANT: Retourner true pour indiquer le succès à AuthModal
-      return true;
-    } catch (err) {
-      console.error("Erreur d'inscription:", err);
-      setError(err.response?.data?.message || "Erreur lors de l'inscription. Veuillez réessayer.");
+      return response.ok;
+    } catch (error) {
       return false;
-    } finally {
-      setLoading(false);
     }
   };
 

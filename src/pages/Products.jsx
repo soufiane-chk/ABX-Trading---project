@@ -44,21 +44,20 @@ const images = {
 
 // Produits statiques par défaut
 const DEFAULT_PRODUCTS = [
-  { _id: '1', name: 'Sardine', category: 'Poissons Pélagiques', price: 12.99, image: 'sardine.jpg', imageKey: 'sardine' },
-  { _id: '2', name: 'Poulpe', category: 'Mollusques Céphalopodes', price: 25.99, image: 'poulpe.jpg', imageKey: 'poulpe' },
-  { _id: '3', name: 'Calamar', category: 'Mollusques Céphalopodes', price: 22.50, image: 'calamar.jpg', imageKey: 'calamar1' },
-  { _id: '4', name: 'Seiche', category: 'Mollusques Céphalopodes', price: 19.75, image: 'seiche.jpg', imageKey: 'seiche1' },
-  { _id: '5', name: 'Maquereau', category: 'Poissons Pélagiques', price: 14.50, image: 'maquereau.jpg', imageKey: 'maquereau' },
-  { _id: '6', name: 'Sabre', category: 'Poissons Pélagiques', price: 16.25, image: 'sabre.jpg', imageKey: 'sabre1' },
-  { _id: '7', name: 'Mulet', category: 'Poissons Pélagiques', price: 13.75, image: 'mulet.jpg', imageKey: 'imgmulet' },
-  { _id: '8', name: 'Almendrita', category: 'Poissons Pélagiques', price: 17.99, image: 'almendrita.jpg', imageKey: 'almendrita2' }
+  { _id: '1', name: 'Sardine', category: 'Poissons Pélagiques', price: 2.50, image: 'sardine.jpg', imageKey: 'sardine' },
+  { _id: '2', name: 'Poulpe', category: 'Mollusques Céphalopodes', price: 6.99, image: 'poulpe.jpg', imageKey: 'poulpe' },
+  { _id: '3', name: 'Calamar', category: 'Mollusques Céphalopodes', price: 5.99, image: 'calamar.jpg', imageKey: 'calamar1' },
+  { _id: '4', name: 'Seiche', category: 'Mollusques Céphalopodes', price: 5.50, image: 'seiche.jpg', imageKey: 'seiche1' },
+  { _id: '5', name: 'Maquereau', category: 'Poissons Pélagiques', price: 3.50, image: 'maquereau.jpg', imageKey: 'maquereau' },
+  { _id: '6', name: 'Sabre', category: 'Poissons Pélagiques', price: 4.25, image: 'sabre.jpg', imageKey: 'sabre1' },
+  { _id: '7', name: 'Mulet', category: 'Poissons Pélagiques', price: 3.75, image: 'mulet.jpg', imageKey: 'imgmulet' },
+  { _id: '8', name: 'Almendrita', category: 'Poissons Pélagiques', price: 2.99, image: 'almendrita.jpg', imageKey: 'almendrita2' }
 ];
 
 const Products = () => {
   const { t, language } = useLanguage();
   const { convertToMAD, addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [orderDetails, setOrderDetails] = useState({

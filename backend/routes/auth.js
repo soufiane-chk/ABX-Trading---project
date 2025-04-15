@@ -12,40 +12,24 @@ const router = express.Router();
 
 // Inscription
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
-
   try {
-    // Log pour déboguer
-    console.log('Inscription - Données reçues:', { name, email });
+    const { name, email, password } = req.body;
 
-    // Vérifier si l'utilisateur existe déjà
+    // Vérifiez si l'utilisateur existe déjà
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      console.log('Inscription - Email déjà utilisé:', email);
       return res.status(400).json({ message: 'Cet email est déjà utilisé' });
     }
 
-    // Créer un nouvel utilisateur
+    // Créez un nouvel utilisateur
     const user = new User({ name, email, password });
     await user.save();
-    console.log('Inscription - Utilisateur créé:', user._id);
 
-    // Générer un token JWT
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    // Répondre avec les données d'utilisateur
-    res.status(201).json({ 
-      token, 
-      user: { 
-        id: user._id, 
-        name: user.name, 
-        email: user.email 
-      },
-      message: 'Inscription réussie'
-    });
+    // Réponse en cas de succès
+    res.status(201).json({ message: 'Inscription réussie' });
   } catch (err) {
-    console.error('Inscription - Erreur:', err);
-    res.status(500).json({ message: 'Erreur serveur', error: err.message });
+    console.error(err);
+    res.status(500).json({ message: 'Erreur serveur' });
   }
 });
 

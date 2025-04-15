@@ -1,13 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { FaEnvelope, FaLock, FaUser, FaEye, FaEyeSlash, FaCheck, FaExclamationCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import '../styles/AuthModal.css';
 
 const AuthModal = () => {
   const { isAuthModalOpen, closeAuthModal, login, register, error, loading, clearError } = useContext(AuthContext);
-  const [activeTab, setActiveTab] = useState('login');
+  const [activeTab, setActiveTab] = useState('register'); // Onglet actif
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -117,6 +119,36 @@ const AuthModal = () => {
       console.error("Erreur dans le composant Auth:", err);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setSuccessMessage('Inscription réussie ! Votre compte a été créé.');
+        setTimeout(() => {
+          setActiveTab('login'); // Passe à l'onglet connexion
+        }, 3000);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Erreur lors de l\'inscription.');
+      }
+    } catch (error) {
+      console.error('Erreur réseau :', error);
+      setError('Une erreur est survenue. Veuillez réessayer.');
     }
   };
 

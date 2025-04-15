@@ -9,65 +9,65 @@ mongoose.connect(process.env.MONGO_URI)
 const products = [
   { 
     name: 'Sardine', 
-    description: 'Sardine fraîche pêchée sur les côtes marocaines. Riche en oméga-3 et en protéines, elle est idéale pour une alimentation équilibrée.',
+    description: 'Sardine fraîche pêchée sur les côtes marocaines. Riche en oméga-3 et en protéines.',
     category: 'Poissons Pélagiques', 
-    price: 12.99,
+    price: 2.50,
     image: 'sardine.jpg',
     stock: 100
   },
   { 
     name: 'Poulpe', 
-    description: 'Poulpe frais de haute qualité, capturé dans les eaux profondes. Sa chair tendre et savoureuse est parfaite pour les plats méditerranéens.',
+    description: 'Poulpe frais de haute qualité, capturé dans les eaux profondes.',
     category: 'Mollusques Céphalopodes', 
-    price: 25.99,
+    price: 6.99,
     image: 'poulpe.jpg',
     stock: 50
   },
   { 
     name: 'Calamar', 
-    description: 'Calamar frais aux tentacules tendres et au corps charnu. Idéal pour les grillades ou les fritures.',
+    description: 'Calamar frais aux tentacules tendres et au corps charnu.',
     category: 'Mollusques Céphalopodes', 
-    price: 22.50,
+    price: 5.99,
     image: 'calamar.jpg',
     stock: 75
   },
   { 
     name: 'Seiche', 
-    description: 'Seiche fraîche à la chair ferme et savoureuse. Parfaite pour les plats mijotés ou grillés.',
+    description: 'Seiche fraîche à la chair ferme et savoureuse.',
     category: 'Mollusques Céphalopodes', 
-    price: 19.75,
+    price: 5.50,
     image: 'seiche.jpg',
     stock: 60
   },
   { 
     name: 'Maquereau', 
-    description: 'Maquereau frais au goût prononcé et à la chair grasse. Riche en oméga-3 et excellent grillé.',
+    description: 'Maquereau frais au goût prononcé et à la chair grasse.',
     category: 'Poissons Pélagiques', 
-    price: 14.50,
+    price: 3.50,
     image: 'maquereau.jpg',
     stock: 90
   },
   { 
     name: 'Sabre', 
-    description: 'Poisson sabre à la chair blanche et ferme. Sa forme allongée et sa saveur délicate en font un produit recherché.',
+    description: 'Poisson sabre à la chair blanche et ferme.',
     category: 'Poissons Pélagiques', 
-    price: 16.25,
+    price: 4.25,
     image: 'sabre.jpg',
     stock: 45
   },
   { 
     name: 'Mulet', 
-    description: 'Mulet frais à la chair fine et délicate. Excellent grillé ou en filet.',
+    description: 'Mulet frais à la chair fine et délicate.',
     category: 'Poissons Pélagiques', 
-    price: 13.75,
+    price: 3.75,
     image: 'mulet.jpg',
     stock: 80
   },
   { 
     name: 'Almendrita', 
-    description: 'Almendrita fraîche, un petit poisson savoureux. Parfait en friture ou en marinade.',
+    description: 'Almendrita fraîche, un petit poisson savoureux.',
     category: 'Poissons Pélagiques', 
-    price: 17.99,
+    price: 2.99,
     image: 'almendrita.jpg',
     stock: 110
   }

@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   padding: 0;
-  padding-right: 15px; 
+  padding-right: 0; 
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding-left: 0; 
@@ -56,7 +56,7 @@
   align-items: flex-end !important;
   justify-content: center !important;
   margin-left: auto !important;
-  margin-right: auto !important;
+  margin-right: 480px !important;
   height: 80px !important;
   position: relative !important;
   padding-bottom: 15px !important;
@@ -79,6 +79,7 @@
   position: relative !important;
   height: auto !important;
   padding-bottom: 5px;
+  
 }
 
 .nav a {
@@ -121,8 +122,8 @@
 
 /* Langue */
 .language-selector {
-  margin-left: auto !important; 
-  margin-right: auto !important; 
+  margin-left: 0 !important; 
+  margin-right: 10px !important; 
   position: relative !important;
   display: flex !important;
   align-items: center !important;
@@ -234,11 +235,15 @@
 }
 
 .header-right {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  margin-left: auto;
-  margin-right: 20px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  min-width: fit-content !important;
+  padding-right: 0 !important;
+  position: absolute !important;
+  right: 0 !important;
 }
 
 .search-container,
@@ -351,7 +356,7 @@ body, html {
   align-items: center !important;
   gap: 10px !important;
   margin-left: auto !important;
-  margin-right: 0 !important;
+  margin-right: 60px !important;
   min-width: fit-content !important;
 }
 
@@ -372,7 +377,7 @@ body, html {
   width: 180px;
   height: 38px;
   margin-left: 15px;
-  margin-right: -160px;
+  margin-right: 0;
   border-radius: 21px;
   background: linear-gradient(135deg, #00669b, #00b8d4);
   display: flex;
@@ -383,6 +388,7 @@ body, html {
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 102, 155, 0.2);
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-right: 0 !important;
 }
 
 .auth-button::before {
@@ -430,7 +436,7 @@ body, html {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
-  padding: 6px 12px !important;
+  padding: 8px 20px !important;
   border-radius: 20px !important;
   background: linear-gradient(135deg, #0070c9, #28a8ea) !important;
   color: white !important;
@@ -444,13 +450,13 @@ body, html {
 }
 
 .profile-icon-small {
-  font-size: 16px !important;
+  font-size: 18px !important;
   color: white !important;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
 }
 
 .user-name-display {
-  font-size: 14px !important;
+  font-size: 16px !important;
   font-weight: 600 !important;
   color: white !important;
   max-width: 100px !important;
@@ -525,6 +531,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 0 !important;
 }
 
 .cart-icon-simple {
