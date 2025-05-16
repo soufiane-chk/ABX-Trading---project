@@ -1,12 +1,27 @@
-# React + Vite
+# 🌍 ABX Trading – Plateforme d’exportation de poisson frais
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est une plateforme web développée pour simuler un site d’exportation de poissons frais à l’international, dans le cadre d’un projet personnel en full stack.
 
-Currently, two official plugins are available:
+## 🛠️ Stack technique
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Front-end :** React.js, Vite, CSS3
+- **Back-end :** Node.js, Express.js
+- **Base de données :** MongoDB
+- **Outils externes :** Google Maps API (géolocalisation des entrepôts)
 
-## Expanding the ESLint configuration
+## 🚀 Fonctionnalités principales
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Consultation de la liste des produits (poissons)
+- Affichage des détails d’un produit
+- Formulaire de commande personnalisé
+- Authentification des utilisateurs
+- Panier d’achat
+- Paiement en ligne (simulation)
+- Géolocalisation des entrepôts avec Google Maps
+- ## 🔧 Installation locale
+
+```bash
+git clone https://github.com/soufiane-chk/ABX-Trading---project
+cd abx-trading
+npm install
+npm run dev
